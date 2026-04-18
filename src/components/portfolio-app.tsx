@@ -165,7 +165,7 @@ export function PortfolioApp() {
           copy={copy}
         />
 
-        <Hero copy={copy} reduceMotion={shouldReduceMotion ?? false} />
+        <Hero copy={copy} visualMode={visualMode} reduceMotion={shouldReduceMotion ?? false} />
 
         <CapabilityMarquee reduceMotion={shouldReduceMotion ?? false} />
 
@@ -357,9 +357,11 @@ function CustomSelect({
 
 function Hero({
   copy,
+  visualMode,
   reduceMotion,
 }: {
   copy: (typeof translations)[Language];
+  visualMode: VisualMode;
   reduceMotion: boolean;
 }) {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -368,7 +370,7 @@ function Hero({
   const roleDirection = roleIndex % 2 === 0 ? 1 : -1;
   const roleMotion = isMobile
     ? {
-        initial: { x: roleDirection * 14, opacity: 0.7 },
+        initial: { x: roleDirection * 14, opacity: 1 },
         animate: { x: 0, opacity: 1 },
       }
     : {
@@ -396,6 +398,7 @@ function Hero({
         <div className="role-rotator" aria-live="polite">
           <span>{copy.subtitle}</span>
           <span className="role-window">
+            <span className="role-static">{activeRole}</span>
             <motion.strong
               key={activeRole}
               initial={reduceMotion ? false : roleMotion.initial}
@@ -421,7 +424,204 @@ function Hero({
 
         <p className="cv-note">{copy.cvNote}</p>
       </div>
+
+      <HeroShowcase visualMode={visualMode} reduceMotion={reduceMotion} />
     </section>
+  );
+}
+
+function HeroShowcase({
+  visualMode,
+  reduceMotion,
+}: {
+  visualMode: VisualMode;
+  reduceMotion: boolean;
+}) {
+  const initial = reduceMotion ? false : { opacity: 0, x: 26, filter: "blur(10px)" };
+  const animate = reduceMotion ? undefined : { opacity: 1, x: 0, filter: "blur(0px)" };
+
+  return (
+    <motion.div
+      className={cn("hero-showcase", `hero-showcase-${visualMode}`)}
+      initial={initial}
+      animate={animate}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      aria-label={`${visualMode} hero panel`}
+    >
+      {visualMode === "modern" ? <ModernHeroPanel reduceMotion={reduceMotion} /> : null}
+      {visualMode === "1980s" ? <EightiesHeroPanel reduceMotion={reduceMotion} /> : null}
+      {visualMode === "1990s" ? <NinetiesHeroPanel /> : null}
+      {visualMode === "2000s" ? <TwoThousandsHeroPanel reduceMotion={reduceMotion} /> : null}
+      {visualMode === "2010s" ? <TwentyTensHeroPanel /> : null}
+      {visualMode === "windows1" ? <WindowsOneHeroPanel /> : null}
+    </motion.div>
+  );
+}
+
+function ModernHeroPanel({ reduceMotion }: { reduceMotion: boolean }) {
+  return (
+    <div className="hero-console">
+      <div className="lab-window-bar">
+        <span />
+        <span />
+        <span />
+        <code>danila.engine</code>
+      </div>
+      <div className="hero-console-body">
+        <div className="console-status">
+          <LayoutDashboard size={20} />
+          <div>
+            <small>Live engineering console</small>
+            <strong>AI / DevOps / Software</strong>
+          </div>
+        </div>
+        <div className="console-grid">
+          {["AI workflows", "Linux systems", "Deployments", "Product UI"].map((item, index) => (
+            <motion.span
+              key={item}
+              animate={reduceMotion ? undefined : { opacity: [0.62, 1, 0.62] }}
+              transition={{ duration: 2.4, delay: index * 0.28, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Check size={14} />
+              {item}
+            </motion.span>
+          ))}
+        </div>
+        <div className="console-command">
+          <code>$ run portfolio --proof --mode=modern</code>
+          <a href="#lab">
+            Open lab
+            <ArrowUpRight size={15} />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EightiesHeroPanel({ reduceMotion }: { reduceMotion: boolean }) {
+  const rows = ["BOOT DANILA_SYS", "LOAD AI_TOOLS", "MOUNT /DEVOPS", "READY."];
+
+  return (
+    <div className="retro-terminal">
+      <div className="retro-screen">
+        {rows.map((row, index) => (
+          <motion.code
+            key={row}
+            animate={reduceMotion ? undefined : { opacity: [0.55, 1, 0.55] }}
+            transition={{ duration: 1.8, delay: index * 0.18, repeat: Infinity, ease: "easeInOut" }}
+          >
+            {">"} {row}
+          </motion.code>
+        ))}
+      </div>
+      <div className="retro-meter">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+    </div>
+  );
+}
+
+function NinetiesHeroPanel() {
+  return (
+    <div className="web-directory">
+      <div className="web-directory-title">
+        <strong>Danila&apos;s Web Engineering Index</strong>
+        <small>Best viewed with ambition</small>
+      </div>
+      <div className="directory-links">
+        {["AI.htm", "LINUX.htm", "PROJECTS.htm", "CV.pdf"].map((item) => (
+          <a href={item === "CV.pdf" ? "/cv/danila-anikin-cv.pdf" : "#lab"} key={item}>
+            {item}
+          </a>
+        ))}
+      </div>
+      <div className="hit-counter" aria-label="Portfolio counter">
+        {["0", "0", "0", "4", "2", "1"].map((digit, index) => (
+          <span key={`${digit}-${index}`}>{digit}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TwoThousandsHeroPanel({ reduceMotion }: { reduceMotion: boolean }) {
+  return (
+    <div className="glossy-launcher">
+      <div className="launcher-tabs">
+        <span>Home</span>
+        <span>Projects</span>
+        <span>AI</span>
+      </div>
+      <div className="launcher-core">
+        <Rocket size={34} />
+        <div>
+          <small>Product launch panel</small>
+          <strong>Freio + GorillaType + automation</strong>
+        </div>
+      </div>
+      <motion.div
+        className="launcher-progress"
+        animate={reduceMotion ? undefined : { backgroundPosition: ["0% 0%", "120% 0%"] }}
+        transition={{ duration: 2.8, repeat: Infinity, ease: "linear" }}
+      />
+      <div className="launcher-badges">
+        <span>Web 2.0</span>
+        <span>Fast</span>
+        <span>Shipped</span>
+      </div>
+    </div>
+  );
+}
+
+function TwentyTensHeroPanel() {
+  return (
+    <div className="flat-dashboard">
+      <div className="flat-card primary">
+        <Activity size={22} />
+        <span>Delivery</span>
+        <strong>Production-ready</strong>
+      </div>
+      <div className="flat-bars">
+        {["AI", "Web", "Linux", "DevOps"].map((item, index) => (
+          <div key={item}>
+            <span>{item}</span>
+            <i style={{ width: `${92 - index * 9}%` }} />
+          </div>
+        ))}
+      </div>
+      <div className="flat-stat-row">
+        <span>2 projects</span>
+        <span>5 roles</span>
+        <span>6 languages</span>
+      </div>
+    </div>
+  );
+}
+
+function WindowsOneHeroPanel() {
+  return (
+    <div className="win-one-desktop">
+      <div className="win-one-menu">
+        <span>File</span>
+        <span>View</span>
+        <span>Run</span>
+      </div>
+      <div className="win-one-window">
+        <div className="win-one-title">DANILA.EXE</div>
+        <div className="win-one-icons">
+          {["AI", "DEV", "LIN", "CV"].map((item) => (
+            <a href={item === "CV" ? "/cv/danila-anikin-cv.pdf" : "#lab"} key={item}>
+              <FileText size={20} />
+              {item}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
