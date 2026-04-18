@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useTheme } from "next-themes";
 import {
   ArrowUpRight,
@@ -17,9 +17,11 @@ import {
   Sparkles,
   Sun,
   ArrowUp,
+  Layers3,
 } from "lucide-react";
 import {
   capabilityIcons,
+  experience,
   languages,
   projects,
   skillGroups,
@@ -136,6 +138,8 @@ export function PortfolioApp() {
 
         <ProjectSection copy={copy} reduceMotion={shouldReduceMotion ?? false} />
 
+        <ExperienceSection copy={copy} reduceMotion={shouldReduceMotion ?? false} />
+
         <SkillsSection copy={copy} />
 
         <TimelineSection copy={copy} />
@@ -190,7 +194,7 @@ function Header({
 
       <nav className="primary-nav" aria-label="Primary navigation">
         {copy.nav.map((item, index) => {
-          const targets = ["#profile", "#projects", "#skills", "#timeline", "#contact"];
+          const targets = ["#profile", "#projects", "#experience", "#skills", "#timeline", "#contact"];
 
           return (
             <a href={targets[index]} key={item}>
@@ -310,6 +314,21 @@ function Hero({
   activeMode: (typeof visualModes)[number];
   reduceMotion: boolean;
 }) {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const activeRole = copy.roleWords[roleIndex % copy.roleWords.length];
+
+  useEffect(() => {
+    if (reduceMotion) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      setRoleIndex((current) => (current + 1) % copy.roleWords.length);
+    }, 2200);
+
+    return () => window.clearInterval(timer);
+  }, [copy.roleWords.length, reduceMotion]);
+
   return (
     <section className="hero-section" id="profile">
       <div className="hero-copy">
@@ -319,7 +338,22 @@ function Hero({
         </div>
         <p className="eyebrow">{copy.kicker}</p>
         <h1>{copy.title}</h1>
-        <p className="hero-subtitle">{copy.subtitle}</p>
+        <div className="role-rotator" aria-live="polite">
+          <span>{copy.subtitle}</span>
+          <span className="role-window">
+            <AnimatePresence mode="wait">
+              <motion.strong
+                key={activeRole}
+                initial={reduceMotion ? false : { y: 28, opacity: 0, filter: "blur(8px)" }}
+                animate={reduceMotion ? undefined : { y: 0, opacity: 1, filter: "blur(0px)" }}
+                exit={reduceMotion ? undefined : { y: -28, opacity: 0, filter: "blur(8px)" }}
+                transition={{ duration: 0.34, ease: "easeOut" }}
+              >
+                {activeRole}
+              </motion.strong>
+            </AnimatePresence>
+          </span>
+        </div>
         <p className="hero-intro">{copy.intro}</p>
 
         <div className="hero-actions">
@@ -385,6 +419,62 @@ function Hero({
         </div>
       </motion.div>
     </section>
+  );
+}
+
+function ExperienceSection({
+  copy,
+  reduceMotion,
+}: {
+  copy: (typeof translations)[Language];
+  reduceMotion: boolean;
+}) {
+  return (
+    <Reveal as="section" className="content-section experience-section" id="experience">
+      <div className="section-heading split-heading">
+        <div>
+          <p className="eyebrow">CV signal</p>
+          <h2>{copy.experienceTitle}</h2>
+        </div>
+        <p>{copy.experienceIntro}</p>
+      </div>
+
+      <div className="experience-grid">
+        {experience.map((item, index) => (
+          <motion.article
+            className="experience-card"
+            key={item.company}
+            initial={reduceMotion ? false : { opacity: 0, y: 26 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.24 }}
+            transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
+            whileHover={reduceMotion ? undefined : { y: -5 }}
+          >
+            <div className="experience-topline">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <small>{item.kind}</small>
+            </div>
+            <div className="experience-title">
+              <Layers3 size={22} />
+              <div>
+                <h3>{item.company}</h3>
+                <p>{item.role}</p>
+              </div>
+            </div>
+            <ul>
+              {item.points.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+            <div className="tag-row">
+              {item.stack.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          </motion.article>
+        ))}
+      </div>
+    </Reveal>
   );
 }
 

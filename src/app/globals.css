@@ -468,12 +468,55 @@ img {
   font-size: 6.8rem;
 }
 
+.role-rotator,
 .hero-subtitle {
   max-width: 720px;
   margin: 24px 0 0;
   color: color-mix(in srgb, var(--foreground) 88%, var(--muted));
   font-size: 1.55rem;
   line-height: 1.35;
+}
+
+.role-rotator {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+}
+
+.role-window {
+  position: relative;
+  display: inline-grid;
+  min-width: min(100%, 420px);
+  min-height: 50px;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line));
+  border-radius: var(--radius);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 14%, transparent), transparent),
+    var(--soft);
+  padding: 3px 14px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--foreground) 5%, transparent);
+}
+
+.role-window::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 12%, transparent), transparent);
+  transform: translateX(-100%);
+  animation: roleSweep 4s ease-in-out infinite;
+  content: "";
+}
+
+.role-window strong {
+  position: relative;
+  z-index: 1;
+  color: var(--foreground);
+  font-size: 1.42rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
 }
 
 .hero-intro,
@@ -719,6 +762,14 @@ img {
   margin-bottom: 0;
 }
 
+.split-heading {
+  display: grid;
+  max-width: none;
+  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 1fr);
+  gap: 24px;
+  align-items: end;
+}
+
 .section-heading h2,
 .contact-section h2 {
   margin-top: 8px;
@@ -912,6 +963,120 @@ img {
   --accent: #f2c94c;
 }
 
+.experience-section {
+  position: relative;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+
+.experience-card {
+  position: relative;
+  display: grid;
+  grid-column: span 2;
+  gap: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(140deg, color-mix(in srgb, var(--accent) 9%, transparent), transparent 42%),
+    color-mix(in srgb, var(--panel) 94%, transparent);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.experience-card:nth-child(1),
+.experience-card:nth-child(2) {
+  grid-column: span 3;
+}
+
+.experience-card::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.1;
+  content: "";
+}
+
+.experience-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.experience-topline,
+.experience-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.experience-topline {
+  justify-content: space-between;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+}
+
+.experience-topline span {
+  color: var(--accent);
+  font-weight: 850;
+}
+
+.experience-title {
+  align-items: flex-start;
+}
+
+.experience-title svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.experience-title h3 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+.experience-title p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.experience-card ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-card li {
+  position: relative;
+  padding-left: 18px;
+  color: color-mix(in srgb, var(--foreground) 78%, var(--muted));
+  line-height: 1.55;
+}
+
+.experience-card li::before {
+  position: absolute;
+  top: 0.68em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 60%, transparent);
+  content: "";
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1069,6 +1234,18 @@ a.contact-card:focus-visible {
 @keyframes logoSweep {
   to {
     transform: rotate(1turn);
+  }
+}
+
+@keyframes roleSweep {
+  0%,
+  34% {
+    transform: translateX(-100%);
+  }
+
+  72%,
+  100% {
+    transform: translateX(100%);
   }
 }
 
@@ -1406,13 +1583,32 @@ a.contact-card:focus-visible {
     font-size: 1.3rem;
   }
 
+  .role-rotator {
+    font-size: 1.3rem;
+  }
+
+  .role-window {
+    min-width: 100%;
+  }
+
+  .role-window strong {
+    font-size: 1.24rem;
+  }
+
   .project-title-row h3 {
     font-size: 2rem;
   }
 
   .project-grid,
-  .skills-grid {
+  .skills-grid,
+  .experience-grid {
     grid-template-columns: 1fr;
+  }
+
+  .experience-card,
+  .experience-card:nth-child(1),
+  .experience-card:nth-child(2) {
+    grid-column: auto;
   }
 
   .system-grid {
@@ -1425,6 +1621,10 @@ a.contact-card:focus-visible {
 
   .mode-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .split-heading {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1472,6 +1672,19 @@ a.contact-card:focus-visible {
 
   .hero-copy h1 {
     font-size: 3rem;
+  }
+
+  .role-rotator {
+    min-height: 94px;
+    font-size: 1.08rem;
+  }
+
+  .role-window {
+    min-height: 46px;
+  }
+
+  .role-window strong {
+    font-size: 1.08rem;
   }
 
   .section-heading h2,

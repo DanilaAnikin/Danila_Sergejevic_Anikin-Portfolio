@@ -39,6 +39,8 @@ Interactive developer portfolio with modern, retro, and Windows 1-inspired desig
 - Real project previews for:
   - Freio
   - GorillaType
+- CV-backed experience section with role history and technical impact
+- Rotating hero role text inspired by modern agency/product sites
 - Custom-designed language and design-mode controls
 - Scroll-triggered section reveals and animated project preview treatments
 - Floating scroll-to-top control

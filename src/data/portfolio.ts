@@ -132,6 +132,60 @@ export const projects = [
   },
 ];
 
+export const experience = [
+  {
+    company: "Cloudinfrastack",
+    role: "Software Engineer, Android Developer & Linux System Administrator",
+    kind: "Cloud / Linux / AI",
+    points: [
+      "Cloud infrastructure, deployment workflows, and Linux-based system administration.",
+      "Android development and cross-functional software delivery.",
+      "AI-driven solutions, code-generation workflows, and domain-specific automation.",
+    ],
+    stack: ["Linux", "Kubernetes", "AWS", "Android", "AI automation"],
+  },
+  {
+    company: "Outlier",
+    role: "AI Training & Software Developer",
+    kind: "AI evaluation",
+    points: [
+      "AI model training and evaluation with a focus on correctness, reasoning, and code quality.",
+      "Software-development judgment applied to technical model behavior and task quality.",
+    ],
+    stack: ["AI training", "Code review", "Evaluation", "Reasoning"],
+  },
+  {
+    company: "Freelance",
+    role: "Software Developer",
+    kind: "Client delivery",
+    points: [
+      "Full-stack web applications delivered from requirements to deployment.",
+      "Client communication, interface quality, maintainability, and business-focused iteration.",
+    ],
+    stack: ["React", "TypeScript", "Node.js", "Product UX"],
+  },
+  {
+    company: "DENEWY / juno.one",
+    role: "Frontend Developer",
+    kind: "Product frontend",
+    points: [
+      "Frontend features built with TypeScript and component-based architecture.",
+      "Product UI implementation with attention to maintainability and delivery speed.",
+    ],
+    stack: ["TypeScript", "Frontend", "Components", "Product"],
+  },
+  {
+    company: "Dum Deti A Mladeze Stodulky",
+    role: "Robotics Lector",
+    kind: "Teaching",
+    points: [
+      "Programming and robotics fundamentals taught through practical exercises.",
+      "Technical communication with younger students and hands-on learning groups.",
+    ],
+    stack: ["Robotics", "Programming", "Teaching", "Communication"],
+  },
+];
+
 export const skillGroups = [
   {
     title: "AI Engineering",
@@ -177,14 +231,14 @@ export const capabilityIcons = [
 
 export const translations = {
   en: {
-    nav: ["Profile", "Projects", "Skills", "Timeline", "Contact"],
+    nav: ["Profile", "Projects", "Experience", "Skills", "Path", "Contact"],
     availability: "Open to internships, junior roles, freelance work, AI automation, DevOps, and collaboration.",
     kicker: "Prague-based software developer",
     title: "Danila Sergejevic Anikin",
-    subtitle:
-      "Software Developer, AI Software Engineer, Linux Admin, AI Specialist, and DevOps Engineer.",
+    subtitle: "I build software across",
+    roleWords: ["AI systems", "automation", "web products", "Linux infrastructure", "DevOps pipelines"],
     intro:
-      "I build practical software around AI, automation, infrastructure, and modern web systems. My background comes from mathematics-, physics-, and programming-oriented schools in Prague, and I am preparing to continue at VSE, Faculty of Informatics and Statistics.",
+      "I build practical software around AI, automation, infrastructure, and modern web systems. My work combines product thinking, Linux systems, DevOps delivery, and a technical education shaped by mathematics, physics, and programming.",
     primaryCta: "Open projects",
     secondaryCta: "Download CV",
     cvNote: "Professional CV PDF is available at public/cv/danila-anikin-cv.pdf.",
@@ -196,6 +250,9 @@ export const translations = {
     projectsTitle: "Selected projects",
     projectsIntro:
       "Only the projects worth showing are here. Each preview opens the live product in a new tab.",
+    experienceTitle: "Experience",
+    experienceIntro:
+      "Practical work across cloud infrastructure, AI evaluation, freelance product delivery, frontend engineering, and technical teaching.",
     openProject: "Open live site",
     inspect: "Inspect case",
     skillsTitle: "Engineering range",
@@ -203,12 +260,12 @@ export const translations = {
       "The focus is broad on purpose: AI systems, automation, production web software, Linux administration, and delivery pipelines.",
     timelineTitle: "Path",
     timelineIntro:
-      "A mathematics, physics, and programming path through Prague schools, now moving toward university study at VSE FIS.",
+      "A stable technical foundation shaped by mathematics, physics, programming, product work, and hands-on engineering.",
     contactTitle: "Contact",
     contactIntro:
       "Available for internships, junior software roles, AI engineering, DevOps, freelance automation, open-source collaboration, and product work.",
     location: "Prague, Czech Republic",
-    status: "Finishing Gymnazium Christiana Dopplera and preparing for VSE FIS.",
+    status: "Based in Prague, focused on AI software, automation, Linux systems, and product engineering." ,
     repo: "Repository",
     command: "Press mode keys or use the controls.",
     timeline: [
@@ -216,18 +273,19 @@ export const translations = {
       ["Prague", "Living in Prague since early childhood."],
       ["Brdickova", "Primary school with a strong technical foundation."],
       ["Cerveny Vrch", "Continued mathematics-, physics-, and programming-based study."],
-      ["GCHD", "Finishing the fourth year and taking Maturita exams."],
-      ["VSE FIS", "Next step: Faculty of Informatics and Statistics."],
+      ["GCHD", "Mathematics, physics, computer science, and programming-oriented high-school foundation."],
+      ["Informatics", "A continued direction around software, statistics, systems, and product engineering."],
     ],
   },
   cs: {
-    nav: ["Profil", "Projekty", "Dovednosti", "Cesta", "Kontakt"],
+    nav: ["Profil", "Projekty", "Praxe", "Dovednosti", "Cesta", "Kontakt"],
     availability: "Otevřený stážím, junior rolím, freelance práci, AI automatizaci, DevOps a spolupráci.",
     kicker: "Softwarový vývojář z Prahy",
     title: "Danila Sergejevič Anikin",
-    subtitle: "Software Developer, AI Software Engineer, Linux Admin, AI Specialist a DevOps Engineer.",
+    subtitle: "Stavim software pro",
+    roleWords: ["AI systemy", "automatizaci", "webove produkty", "Linux infrastrukturu", "DevOps pipelines"],
     intro:
-      "Stavím praktický software kolem AI, automatizace, infrastruktury a moderních webových systémů. V Praze jsem prošel školami zaměřenými na matematiku, fyziku a programování a chystám se pokračovat na VŠE, Fakultě informatiky a statistiky.",
+      "Stavim prakticky software kolem AI, automatizace, infrastruktury a modernich webovych systemu. Spojuji produktove premysleni, Linux, DevOps delivery a technicky zaklad z matematiky, fyziky a programovani.",
     primaryCta: "Otevřít projekty",
     secondaryCta: "Stáhnout CV",
     cvNote: "Profesionální CV PDF je dostupné v public/cv/danila-anikin-cv.pdf.",
@@ -238,6 +296,9 @@ export const translations = {
     dark: "Tmavý",
     projectsTitle: "Vybrané projekty",
     projectsIntro: "Jsou tu jen projekty, které stojí za ukázku. Každý náhled otevře živý produkt v novém panelu.",
+    experienceTitle: "Praxe",
+    experienceIntro:
+      "Prakticka prace napric cloudovou infrastrukturou, AI evaluaci, freelance product delivery, frontend engineeringem a technickou vyukou.",
     openProject: "Otevřít web",
     inspect: "Prohlédnout",
     skillsTitle: "Technický rozsah",
@@ -245,31 +306,31 @@ export const translations = {
       "Záměrně široké zaměření: AI systémy, automatizace, produkční webový software, správa Linuxu a delivery pipelines.",
     timelineTitle: "Cesta",
     timelineIntro:
-      "Matematicko-fyzikální a programátorská cesta pražskými školami, teď směrem k VŠE FIS.",
+      "Stabilni technicky zaklad postaveny na matematice, fyzice, programovani, produktove praci a praktickem engineeringu.",
     contactTitle: "Kontakt",
     contactIntro:
       "Otevřený stážím, junior software rolím, AI engineeringu, DevOps, freelance automatizaci, open source a produktové práci.",
     location: "Praha, Česká republika",
-    status: "Dokončuji Gymnázium Christiana Dopplera a připravuji se na VŠE FIS.",
+    status: "Pusobim v Praze a soustredim se na AI software, automatizaci, Linux systemy a produktovy engineering.",
     repo: "Repozitář",
     command: "Použij klávesy režimů nebo ovládací prvky.",
     timeline: [
       ["Rusko", "Narodil jsem se v Rusku a později se přestěhoval do Prahy."],
       ["Praha", "V Praze žiji od raného dětství."],
-      ["Brdičkova", "Základní škola se silným technickým základem."],
       ["Červený Vrch", "Pokračování ve studiu zaměřeném na matematiku, fyziku a programování."],
-      ["GCHD", "Dokončuji čtvrtý ročník a skládám maturitní zkoušky."],
-      ["VŠE FIS", "Další krok: Fakulta informatiky a statistiky."],
+      ["GCHD", "Matematika, fyzika, informatika a programovani jako silny technicky zaklad."],
+      ["Informatika", "Dlouhodoby smer kolem softwaru, statistiky, systemu a produktoveho engineeringu."],
     ],
   },
   ru: {
-    nav: ["Профиль", "Проекты", "Навыки", "Путь", "Контакты"],
+    nav: ["Профиль", "Проекты", "Опыт", "Навыки", "Путь", "Контакты"],
     availability: "Открыт к стажировкам, junior-ролям, freelance, AI-автоматизации, DevOps и сотрудничеству.",
     kicker: "Software developer в Праге",
     title: "Данила Сергеевич Аникин",
-    subtitle: "Software Developer, AI Software Engineer, Linux Admin, AI Specialist и DevOps Engineer.",
+    subtitle: "Я создаю software для",
+    roleWords: ["AI-систем", "автоматизации", "web-продуктов", "Linux-инфраструктуры", "DevOps pipelines"],
     intro:
-      "Я создаю практичный софт на стыке AI, автоматизации, инфраструктуры и современных веб-систем. Мой путь в Праге связан со школами с сильным фокусом на математику, физику и программирование; следующий шаг - VSE, Faculty of Informatics and Statistics.",
+      "Я создаю практичный софт на стыке AI, автоматизации, инфраструктуры и современных веб-систем. В работе соединяю product thinking, Linux, DevOps delivery и сильную техническую базу из математики, физики и программирования.",
     primaryCta: "Открыть проекты",
     secondaryCta: "Скачать CV",
     cvNote: "Профессиональное CV PDF доступно в public/cv/danila-anikin-cv.pdf.",
@@ -280,6 +341,9 @@ export const translations = {
     dark: "Темная",
     projectsTitle: "Избранные проекты",
     projectsIntro: "Здесь только проекты, которые стоит показывать. Каждый превью открывает живой продукт в новой вкладке.",
+    experienceTitle: "Опыт",
+    experienceIntro:
+      "Практический опыт в cloud infrastructure, AI evaluation, freelance product delivery, frontend engineering и техническом обучении.",
     openProject: "Открыть сайт",
     inspect: "Открыть кейс",
     skillsTitle: "Инженерный диапазон",
@@ -287,12 +351,12 @@ export const translations = {
       "Фокус широкий намеренно: AI-системы, автоматизация, production web, Linux administration и delivery pipelines.",
     timelineTitle: "Путь",
     timelineIntro:
-      "Математика, физика и программирование в пражских школах, дальше - университет VSE FIS.",
+      "Стабильная техническая база: математика, физика, программирование, product work и практический engineering.",
     contactTitle: "Контакты",
     contactIntro:
       "Открыт к стажировкам, junior software ролям, AI engineering, DevOps, freelance automation, open source и продуктовой работе.",
     location: "Прага, Чехия",
-    status: "Заканчиваю Gymnazium Christiana Dopplera и готовлюсь к VSE FIS.",
+    status: "Живу в Праге и фокусируюсь на AI software, автоматизации, Linux-системах и product engineering.",
     repo: "Репозиторий",
     command: "Используй клавиши режимов или панель управления.",
     timeline: [
@@ -300,18 +364,19 @@ export const translations = {
       ["Прага", "Живу в Праге с раннего детства."],
       ["Brdičkova", "Начальная школа с сильной технической базой."],
       ["Červený Vrch", "Продолжил обучение с фокусом на математику, физику и программирование."],
-      ["GCHD", "Заканчиваю четвертый год и сдаю Maturita exams."],
-      ["VSE FIS", "Следующий шаг: Faculty of Informatics and Statistics."],
+      ["GCHD", "Математика, физика, computer science и программирование как сильная техническая база."],
+      ["Informatics", "Долгосрочное направление вокруг software, statistics, systems и product engineering."],
     ],
   },
   de: {
-    nav: ["Profil", "Projekte", "Skills", "Weg", "Kontakt"],
+    nav: ["Profil", "Projekte", "Erfahrung", "Skills", "Weg", "Kontakt"],
     availability: "Offen fur Praktika, Junior-Rollen, Freelance-Arbeit, AI-Automation, DevOps und Zusammenarbeit.",
     kicker: "Softwareentwickler in Prag",
     title: "Danila Sergejevic Anikin",
-    subtitle: "Software Developer, AI Software Engineer, Linux Admin, AI Specialist und DevOps Engineer.",
+    subtitle: "Ich baue Software fur",
+    roleWords: ["AI-Systeme", "Automatisierung", "Webprodukte", "Linux-Infrastruktur", "DevOps Pipelines"],
     intro:
-      "Ich baue praktische Software rund um AI, Automatisierung, Infrastruktur und moderne Websysteme. Mein Hintergrund kommt aus Prager Schulen mit Fokus auf Mathematik, Physik und Programmierung; als Nächstes folgt VSE, Faculty of Informatics and Statistics.",
+      "Ich baue praktische Software rund um AI, Automatisierung, Infrastruktur und moderne Websysteme. Meine Arbeit verbindet Produktdenken, Linux, DevOps Delivery und eine technische Basis aus Mathematik, Physik und Programmierung.",
     primaryCta: "Projekte öffnen",
     secondaryCta: "CV herunterladen",
     cvNote: "Das professionelle CV PDF liegt unter public/cv/danila-anikin-cv.pdf.",
@@ -322,6 +387,9 @@ export const translations = {
     dark: "Dunkel",
     projectsTitle: "Ausgewählte Projekte",
     projectsIntro: "Hier stehen nur Projekte, die eine starke Vorschau verdienen. Jede Vorschau öffnet das Live-Produkt in einem neuen Tab.",
+    experienceTitle: "Erfahrung",
+    experienceIntro:
+      "Praktische Arbeit in Cloud-Infrastruktur, AI Evaluation, Freelance Product Delivery, Frontend Engineering und technischer Lehre.",
     openProject: "Live-Seite öffnen",
     inspect: "Case öffnen",
     skillsTitle: "Engineering-Spektrum",
@@ -329,12 +397,12 @@ export const translations = {
       "Der Fokus ist bewusst breit: AI-Systeme, Automatisierung, produktive Websoftware, Linux-Administration und Delivery Pipelines.",
     timelineTitle: "Weg",
     timelineIntro:
-      "Ein Mathematik-, Physik- und Programmierweg durch Prager Schulen, jetzt Richtung VSE FIS.",
+      "Eine stabile technische Basis aus Mathematik, Physik, Programmierung, Produktarbeit und praktischer Softwareentwicklung.",
     contactTitle: "Kontakt",
     contactIntro:
       "Offen fur Praktika, Junior Software Rollen, AI Engineering, DevOps, Freelance Automation, Open Source und Produktarbeit.",
     location: "Prag, Tschechien",
-    status: "Ich beende Gymnazium Christiana Dopplera und bereite mich auf VSE FIS vor.",
+    status: "In Prag basiert, mit Fokus auf AI Software, Automatisierung, Linux-Systeme und Product Engineering.",
     repo: "Repository",
     command: "Nutze Modustasten oder die Controls.",
     timeline: [
@@ -342,18 +410,19 @@ export const translations = {
       ["Prag", "Seit fruher Kindheit in Prag."],
       ["Brdickova", "Grundschule mit starkem technischem Fundament."],
       ["Cerveny Vrch", "Weiterer Fokus auf Mathematik, Physik und Programmierung."],
-      ["GCHD", "Viertes Jahr, Abschlussphase und Maturita."],
-      ["VSE FIS", "Nächster Schritt: Faculty of Informatics and Statistics."],
+      ["GCHD", "Mathematik, Physik, Informatik und Programmierung als starke technische Basis."],
+      ["Informatik", "Langfristige Richtung rund um Software, Statistik, Systeme und Product Engineering."],
     ],
   },
   es: {
-    nav: ["Perfil", "Proyectos", "Skills", "Ruta", "Contacto"],
+    nav: ["Perfil", "Proyectos", "Experiencia", "Skills", "Ruta", "Contacto"],
     availability: "Abierto a practicas, roles junior, freelance, automatizacion con AI, DevOps y colaboracion.",
     kicker: "Desarrollador de software en Praga",
     title: "Danila Sergejevic Anikin",
-    subtitle: "Software Developer, AI Software Engineer, Linux Admin, AI Specialist y DevOps Engineer.",
+    subtitle: "Construyo software para",
+    roleWords: ["sistemas AI", "automatizacion", "productos web", "infraestructura Linux", "pipelines DevOps"],
     intro:
-      "Construyo software practico alrededor de AI, automatizacion, infraestructura y sistemas web modernos. Mi base viene de escuelas de Praga orientadas a matematicas, fisica y programacion; el siguiente paso es VSE, Faculty of Informatics and Statistics.",
+      "Construyo software practico alrededor de AI, automatizacion, infraestructura y sistemas web modernos. Combino pensamiento de producto, Linux, DevOps delivery y una base tecnica de matematicas, fisica y programacion.",
     primaryCta: "Abrir proyectos",
     secondaryCta: "Descargar CV",
     cvNote: "El CV profesional en PDF esta disponible en public/cv/danila-anikin-cv.pdf.",
@@ -364,6 +433,9 @@ export const translations = {
     dark: "Oscuro",
     projectsTitle: "Proyectos seleccionados",
     projectsIntro: "Solo estan los proyectos que vale la pena mostrar. Cada vista previa abre el producto real en una nueva pestaña.",
+    experienceTitle: "Experiencia",
+    experienceIntro:
+      "Trabajo practico en cloud infrastructure, AI evaluation, freelance product delivery, frontend engineering y enseñanza tecnica.",
     openProject: "Abrir sitio",
     inspect: "Ver caso",
     skillsTitle: "Rango tecnico",
@@ -371,12 +443,12 @@ export const translations = {
       "El enfoque es amplio a proposito: sistemas AI, automatizacion, web de produccion, administracion Linux y pipelines de entrega.",
     timelineTitle: "Ruta",
     timelineIntro:
-      "Una ruta de matematicas, fisica y programacion por escuelas de Praga, ahora hacia VSE FIS.",
+      "Una base tecnica estable: matematicas, fisica, programacion, trabajo de producto e ingenieria practica.",
     contactTitle: "Contacto",
     contactIntro:
       "Abierto a practicas, roles junior de software, AI engineering, DevOps, automatizacion freelance, open source y producto.",
     location: "Praga, Republica Checa",
-    status: "Terminando Gymnazium Christiana Dopplera y preparandome para VSE FIS.",
+    status: "Basado en Praga, enfocado en AI software, automatizacion, sistemas Linux y product engineering.",
     repo: "Repositorio",
     command: "Usa teclas de modo o los controles.",
     timeline: [
@@ -384,18 +456,19 @@ export const translations = {
       ["Praga", "Vivo en Praga desde la infancia."],
       ["Brdickova", "Escuela primaria con una base tecnica fuerte."],
       ["Cerveny Vrch", "Continuacion con matematicas, fisica y programacion."],
-      ["GCHD", "Terminando el cuarto ano y los examenes Maturita."],
-      ["VSE FIS", "Siguiente paso: Faculty of Informatics and Statistics."],
+      ["GCHD", "Matematicas, fisica, computer science y programacion como base tecnica fuerte."],
+      ["Informatics", "Direccion a largo plazo alrededor de software, estadistica, sistemas y product engineering."],
     ],
   },
   fr: {
-    nav: ["Profil", "Projets", "Skills", "Parcours", "Contact"],
+    nav: ["Profil", "Projets", "Experience", "Skills", "Parcours", "Contact"],
     availability: "Ouvert aux stages, postes junior, freelance, automatisation AI, DevOps et collaboration.",
     kicker: "Developpeur logiciel a Prague",
     title: "Danila Sergejevic Anikin",
-    subtitle: "Software Developer, AI Software Engineer, Linux Admin, AI Specialist et DevOps Engineer.",
+    subtitle: "Je construis du logiciel pour",
+    roleWords: ["systemes AI", "automatisation", "produits web", "infrastructure Linux", "pipelines DevOps"],
     intro:
-      "Je construis des logiciels pratiques autour de l'AI, de l'automatisation, de l'infrastructure et des systemes web modernes. Mon parcours vient d'ecoles de Prague orientees mathematiques, physique et programmation; la prochaine etape est VSE, Faculty of Informatics and Statistics.",
+      "Je construis des logiciels pratiques autour de l'AI, de l'automatisation, de l'infrastructure et des systemes web modernes. Mon travail combine pensee produit, Linux, DevOps delivery et une base technique en mathematiques, physique et programmation.",
     primaryCta: "Ouvrir les projets",
     secondaryCta: "Telecharger le CV",
     cvNote: "Le CV professionnel en PDF est disponible dans public/cv/danila-anikin-cv.pdf.",
@@ -406,6 +479,9 @@ export const translations = {
     dark: "Sombre",
     projectsTitle: "Projets selectionnes",
     projectsIntro: "Seulement les projets qui meritent d'etre montres. Chaque apercu ouvre le produit en ligne dans un nouvel onglet.",
+    experienceTitle: "Experience",
+    experienceIntro:
+      "Travail pratique en cloud infrastructure, AI evaluation, freelance product delivery, frontend engineering et enseignement technique.",
     openProject: "Ouvrir le site",
     inspect: "Voir le cas",
     skillsTitle: "Amplitude technique",
@@ -413,12 +489,12 @@ export const translations = {
       "Le focus est volontairement large: systemes AI, automatisation, web de production, administration Linux et pipelines de livraison.",
     timelineTitle: "Parcours",
     timelineIntro:
-      "Un parcours mathematiques, physique et programmation dans les ecoles de Prague, maintenant vers VSE FIS.",
+      "Une base technique stable: mathematiques, physique, programmation, travail produit et engineering pratique.",
     contactTitle: "Contact",
     contactIntro:
       "Ouvert aux stages, roles junior software, AI engineering, DevOps, automatisation freelance, open source et travail produit.",
     location: "Prague, Republique tcheque",
-    status: "Je termine Gymnazium Christiana Dopplera et je me prepare pour VSE FIS.",
+    status: "Base a Prague, avec un focus sur AI software, automatisation, systemes Linux et product engineering.",
     repo: "Depot",
     command: "Utilise les touches de mode ou les controles.",
     timeline: [
@@ -426,8 +502,8 @@ export const translations = {
       ["Prague", "Je vis a Prague depuis la petite enfance."],
       ["Brdickova", "Ecole primaire avec une base technique solide."],
       ["Cerveny Vrch", "Suite du parcours en mathematiques, physique et programmation."],
-      ["GCHD", "Fin de quatrieme annee et examens Maturita."],
-      ["VSE FIS", "Prochaine etape: Faculty of Informatics and Statistics."],
+      ["GCHD", "Mathematiques, physique, computer science et programmation comme base technique solide."],
+      ["Informatics", "Direction durable autour du software, des statistiques, des systemes et du product engineering."],
     ],
   },
 } satisfies Record<Language, {
@@ -436,6 +512,7 @@ export const translations = {
   kicker: string;
   title: string;
   subtitle: string;
+  roleWords: string[];
   intro: string;
   primaryCta: string;
   secondaryCta: string;
@@ -447,6 +524,8 @@ export const translations = {
   dark: string;
   projectsTitle: string;
   projectsIntro: string;
+  experienceTitle: string;
+  experienceIntro: string;
   openProject: string;
   inspect: string;
   skillsTitle: string;
