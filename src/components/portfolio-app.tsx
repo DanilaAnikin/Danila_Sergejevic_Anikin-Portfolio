@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTheme } from "next-themes";
 import {
   ArrowUpRight,
@@ -46,6 +46,22 @@ const modeShortcuts: Record<string, VisualMode> = {
   "5": "2010s",
   "6": "windows1",
 };
+
+function useMediaQuery(query: string) {
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => {
+      const media = window.matchMedia(query);
+      media.addEventListener("change", onStoreChange);
+
+      return () => media.removeEventListener("change", onStoreChange);
+    },
+    [query],
+  );
+  const getSnapshot = useCallback(() => window.matchMedia(query).matches, [query]);
+  const getServerSnapshot = useCallback(() => false, []);
+
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
 
 export function PortfolioApp() {
   const [language, setLanguage] = useState<Language>(() => {
@@ -315,7 +331,18 @@ function Hero({
   reduceMotion: boolean;
 }) {
   const [roleIndex, setRoleIndex] = useState(0);
+  const isMobile = useMediaQuery("(max-width: 640px)");
   const activeRole = copy.roleWords[roleIndex % copy.roleWords.length];
+  const roleDirection = roleIndex % 2 === 0 ? 1 : -1;
+  const roleMotion = isMobile
+    ? {
+        initial: { x: roleDirection * 14, opacity: 0.34 },
+        animate: { x: 0, opacity: 1 },
+      }
+    : {
+        initial: { y: 24, opacity: 0.24, filter: "blur(7px)" },
+        animate: { y: 0, opacity: 1, filter: "blur(0px)" },
+      };
 
   useEffect(() => {
     if (reduceMotion) {
@@ -341,17 +368,14 @@ function Hero({
         <div className="role-rotator" aria-live="polite">
           <span>{copy.subtitle}</span>
           <span className="role-window">
-            <AnimatePresence mode="wait">
-              <motion.strong
-                key={activeRole}
-                initial={reduceMotion ? false : { y: 28, opacity: 0, filter: "blur(8px)" }}
-                animate={reduceMotion ? undefined : { y: 0, opacity: 1, filter: "blur(0px)" }}
-                exit={reduceMotion ? undefined : { y: -28, opacity: 0, filter: "blur(8px)" }}
-                transition={{ duration: 0.34, ease: "easeOut" }}
-              >
-                {activeRole}
-              </motion.strong>
-            </AnimatePresence>
+            <motion.strong
+              key={activeRole}
+              initial={reduceMotion ? false : roleMotion.initial}
+              animate={reduceMotion ? undefined : roleMotion.animate}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              {activeRole}
+            </motion.strong>
           </span>
         </div>
         <p className="hero-intro">{copy.intro}</p>
