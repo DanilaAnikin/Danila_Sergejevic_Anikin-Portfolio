@@ -207,6 +207,258 @@ export const skillGroups = [
   },
 ];
 
+export const systemSignals = [
+  {
+    label: "Portfolio OS",
+    value: "AI / DevOps / Software",
+    detail: "A product-style portfolio with modes, command controls, proof layers, and project intelligence.",
+  },
+  {
+    label: "Delivery",
+    value: "Vercel + GitHub",
+    detail: "Designed for fast static delivery, clean repository workflow, and continuous iteration.",
+  },
+  {
+    label: "Automation",
+    value: "AI workflows",
+    detail: "Focused on replacing repetitive manual work with scripts, integrations, and model-assisted systems.",
+  },
+  {
+    label: "Location",
+    value: "Prague",
+    detail: "Multilingual profile for English, Czech, Russian, German, Spanish, and French audiences.",
+  },
+];
+
+export const copilotPrompts = [
+  {
+    question: "What can Danila build?",
+    keywords: ["build", "software", "fullstack", "product", "web", "app"],
+    answer:
+      "Danila builds practical software across AI automation, web products, Linux infrastructure, DevOps workflows, and product-focused frontend systems.",
+    links: ["Selected projects", "Architecture views", "Interactive CV"],
+  },
+  {
+    question: "Where is the strongest AI signal?",
+    keywords: ["ai", "llm", "model", "automation", "agents", "evaluation"],
+    answer:
+      "The strongest AI signal is the mix of AI model evaluation at Outlier, AI automation work at Cloudinfrastack, and a portfolio built around retrieval-style interaction and proof-first presentation.",
+    links: ["Proof mode", "AI Engineering", "Terminal commands"],
+  },
+  {
+    question: "Why should a team trust the engineering range?",
+    keywords: ["trust", "experience", "range", "devops", "linux", "frontend"],
+    answer:
+      "The range is backed by real work across Linux administration, Android delivery, frontend product development, freelance software delivery, robotics teaching, and AI evaluation.",
+    links: ["Experience", "Skill graph", "System status"],
+  },
+  {
+    question: "Which projects should I inspect first?",
+    keywords: ["project", "freio", "gorillatype", "preview", "portfolio"],
+    answer:
+      "Start with Freio for product, education, testing, analytics, and payment thinking. Then inspect GorillaType for a focused typing UX with accounts, leaderboards, clans, tournaments, and practice loops.",
+    links: ["Freio", "GorillaType", "Project architecture"],
+  },
+];
+
+export const terminalCommands = [
+  {
+    command: "whoami",
+    description: "Identity summary",
+    output: [
+      "danila@portfolio: Prague-based software developer",
+      "focus: AI systems, automation, infrastructure, DevOps, product software",
+      "languages: EN, CS, RU, DE, ES, FR",
+    ],
+  },
+  {
+    command: "skills --ai",
+    description: "AI engineering signal",
+    output: [
+      "LLM apps, AI automation, prompt systems, agents, vector search, tool use",
+      "model evaluation: correctness, reasoning, code quality, task quality",
+      "preferred style: practical systems that reduce manual work",
+    ],
+  },
+  {
+    command: "projects --best",
+    description: "Selected project index",
+    output: [
+      "Freio: EdTech test preparation with evaluation, progress flow, analytics, and payments",
+      "GorillaType: typing speed app with settings, leaderboards, tournaments, clans, and account flows",
+      "open: click any preview card to inspect the live product",
+    ],
+  },
+  {
+    command: "experience --devops",
+    description: "Infrastructure track",
+    output: [
+      "Cloudinfrastack: cloud infrastructure, Linux administration, Android delivery, AI automation",
+      "tooling: Linux, Kubernetes, AWS, Docker, CI/CD, Vercel, GitHub Actions",
+      "operating model: reliable systems, repeatable deployments, clear observability",
+    ],
+  },
+  {
+    command: "proof --show",
+    description: "Evidence mode",
+    output: [
+      "proof mode: project impact, work history, stack range, multilingual communication",
+      "sources: CV data, live projects, public repository, live deployed portfolio",
+      "signal: implementation first, not just presentation",
+    ],
+  },
+  {
+    command: "cv --interactive",
+    description: "CV explorer",
+    output: [
+      "interactive CV: filter by AI, frontend, infrastructure, product, teaching",
+      "pdf: /cv/danila-anikin-cv.pdf remains available for recruiters and offline review",
+      "best path: inspect filters, then download PDF if needed",
+    ],
+  },
+];
+
+export const proofSignals = [
+  {
+    label: "Live products",
+    value: "2 selected",
+    detail: "Freio and GorillaType are intentionally the highlighted projects because they show product judgment and real interaction quality.",
+    tags: ["Freio", "GorillaType", "Product"],
+  },
+  {
+    label: "Work range",
+    value: "5 roles",
+    detail: "Cloud infrastructure, AI evaluation, freelance delivery, frontend product work, and robotics teaching.",
+    tags: ["AI", "Linux", "Frontend", "Teaching"],
+  },
+  {
+    label: "Technical base",
+    value: "Math / Physics / Code",
+    detail: "Education and project work are grounded in mathematics, physics, programming, systems thinking, and practical delivery.",
+    tags: ["Systems", "Education", "Engineering"],
+  },
+  {
+    label: "Communication",
+    value: "6 languages",
+    detail: "The portfolio is built for multilingual communication across English, Czech, Russian, German, Spanish, and French.",
+    tags: ["EN", "CS", "RU", "DE", "ES", "FR"],
+  },
+];
+
+export const architectureViews = [
+  {
+    project: "Freio",
+    href: "https://www.freio.cz/",
+    summary:
+      "An EdTech product surface shaped around test discovery, realistic exam practice, immediate evaluation, user progress, and payment-ready product flow.",
+    layers: [
+      { name: "Product UX", detail: "Clear paths for students, parents, exam preparation, subjects, and conversion." },
+      { name: "Testing Core", detail: "Large test catalog, answer flows, evaluation states, and progress feedback." },
+      { name: "Content Model", detail: "Subjects, questions, lessons, SCIO-style preparation, and repeated practice loops." },
+      { name: "Growth Layer", detail: "First-test-free entry point, pricing clarity, and measurable student value." },
+    ],
+    flow: ["Choose preparation path", "Start realistic test", "Evaluate answers", "Track progress", "Continue learning"],
+    stack: ["Product", "Education", "Testing", "Analytics", "Payments"],
+  },
+  {
+    project: "GorillaType",
+    href: "https://gorilla-type-orpin.vercel.app/",
+    summary:
+      "A typing product designed around fast practice, configuration, competitive loops, profiles, rankings, tournaments, and social mechanics.",
+    layers: [
+      { name: "Practice Engine", detail: "Time modes, word modes, quote modes, restart flow, and fast typing feedback." },
+      { name: "Account Layer", detail: "User-facing flows for identity, history, settings, and persistent practice context." },
+      { name: "Competition", detail: "Leaderboards, tournaments, clans, and motivation loops for repeated sessions." },
+      { name: "Interface System", detail: "Keyboard-first interaction, clean typing focus, and immediate visual state changes." },
+    ],
+    flow: ["Pick mode", "Type session", "Measure result", "Compare ranking", "Repeat with settings"],
+    stack: ["Next.js", "Typing UX", "Gamification", "Auth", "Realtime UI"],
+  },
+];
+
+export const skillGraphNodes = [
+  {
+    id: "ai",
+    label: "AI Engineering",
+    detail: "LLM apps, AI automation, agents, prompt systems, model evaluation, and tool-based workflows.",
+    links: ["Automation", "Software", "Proof"],
+  },
+  {
+    id: "automation",
+    label: "Automation",
+    detail: "Scripts, integrations, bots, workflow design, and practical systems that remove repeated manual work.",
+    links: ["AI Engineering", "DevOps", "Linux"],
+  },
+  {
+    id: "software",
+    label: "Software",
+    detail: "TypeScript, React, Next.js, APIs, architecture, interfaces, and production web delivery.",
+    links: ["Projects", "Frontend", "Product"],
+  },
+  {
+    id: "linux",
+    label: "Linux",
+    detail: "Shell, systemd, networking, permissions, servers, hardening, and administrator-level problem solving.",
+    links: ["DevOps", "Automation", "Infrastructure"],
+  },
+  {
+    id: "devops",
+    label: "DevOps",
+    detail: "Docker, CI/CD, Vercel, GitHub Actions, deployments, monitoring, and repeatable release workflows.",
+    links: ["Linux", "Software", "Reliability"],
+  },
+  {
+    id: "product",
+    label: "Product",
+    detail: "Product thinking, user journeys, pricing clarity, learning loops, interface quality, and maintainable delivery.",
+    links: ["Freio", "GorillaType", "Frontend"],
+  },
+  {
+    id: "teaching",
+    label: "Teaching",
+    detail: "Robotics, programming fundamentals, communication, structured explanation, and practical exercises.",
+    links: ["Communication", "Programming", "Mentoring"],
+  },
+];
+
+export const cvFilters = [
+  {
+    id: "ai",
+    label: "AI",
+    summary: "AI training, evaluation, prompt systems, automation, and model-assisted engineering.",
+    experience: ["Cloudinfrastack", "Outlier"],
+    skills: ["LLM apps", "AI automation", "Prompt systems", "Agents", "Model evaluation", "Code review"],
+  },
+  {
+    id: "frontend",
+    label: "Frontend",
+    summary: "Modern UI engineering, TypeScript components, product surfaces, and interactive app flows.",
+    experience: ["Freelance", "DENEWY / juno.one"],
+    skills: ["TypeScript", "React", "Next.js", "Components", "Product UX", "Interface quality"],
+  },
+  {
+    id: "infra",
+    label: "Infrastructure",
+    summary: "Linux systems, cloud infrastructure, deployment workflows, and operational engineering.",
+    experience: ["Cloudinfrastack", "Freelance"],
+    skills: ["Linux", "Kubernetes", "AWS", "Docker", "CI/CD", "Monitoring"],
+  },
+  {
+    id: "product",
+    label: "Product",
+    summary: "Selected projects, client delivery, product decisions, UX clarity, and shipping discipline.",
+    experience: ["Freelance", "DENEWY / juno.one"],
+    skills: ["Freio", "GorillaType", "Product UX", "Requirements", "Delivery", "Maintainability"],
+  },
+  {
+    id: "teaching",
+    label: "Teaching",
+    summary: "Robotics teaching, communication, technical explanation, and hands-on learning.",
+    experience: ["Dům dětí a mládeže Stodůlky"],
+    skills: ["Robotics", "Programming", "Communication", "Exercises", "Mentoring", "Clarity"],
+  },
+];
+
 export const translations = {
   en: {
     nav: ["Profile", "Projects", "Experience", "Skills", "Path", "Contact"],

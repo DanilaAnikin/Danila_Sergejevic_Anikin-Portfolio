@@ -470,7 +470,7 @@ img {
 .role-window {
   position: relative;
   display: inline-grid;
-  min-width: min(100%, 420px);
+  min-width: 260px;
   min-height: 50px;
   align-items: center;
   overflow: hidden;
@@ -495,6 +495,8 @@ img {
 .role-window strong {
   position: relative;
   z-index: 1;
+  display: block;
+  width: 100%;
   color: var(--foreground);
   font-size: 1.42rem;
   line-height: 1.1;
@@ -728,6 +730,96 @@ img {
   padding: 76px 0 0;
 }
 
+.system-dashboard {
+  padding: 34px 0 0;
+}
+
+.system-dashboard .section-heading h2 {
+  max-width: 920px;
+  margin-top: 8px;
+  font-size: 2.5rem;
+  line-height: 1.04;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.status-card {
+  position: relative;
+  display: grid;
+  gap: 9px;
+  min-height: 190px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 11%, transparent), transparent 54%),
+    var(--panel);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.status-card::after {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  color: color-mix(in srgb, var(--accent) 26%, transparent);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 2.4rem;
+  line-height: 1;
+  content: "RUN";
+}
+
+.status-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.status-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--soft);
+  color: var(--accent);
+}
+
+.status-card span,
+.architecture-intro span,
+.cv-role span,
+.cv-results-head span,
+.proof-signal span {
+  color: var(--accent);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.status-card strong {
+  color: var(--foreground);
+  font-size: 1.18rem;
+  line-height: 1.15;
+}
+
+.status-card p,
+.lab-panel p,
+.architecture-map p,
+.architecture-layer p,
+.cv-results p,
+.cv-role p,
+.skill-node-detail p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.58;
+}
+
 .mode-deck {
   display: grid;
   grid-template-columns: minmax(220px, 0.35fr) 1fr;
@@ -813,6 +905,296 @@ img {
   font-family: var(--font-geist-mono), monospace;
 }
 
+.portfolio-lab {
+  position: relative;
+}
+
+.lab-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(340px, 1.25fr) minmax(280px, 0.95fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.lab-panel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--accent) 9%, transparent), transparent 46%),
+    var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.copilot-panel,
+.proof-panel {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+  padding: 18px;
+}
+
+.lab-panel-header,
+.cv-results-head {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.lab-panel-header svg,
+.cv-results-head svg,
+.cv-sidebar-title svg,
+.skill-hub svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+
+.lab-panel-header h3,
+.cv-results-head h3,
+.skill-node-detail h3 {
+  margin: 3px 0 0;
+  color: var(--foreground);
+  font-size: 1.3rem;
+  line-height: 1.15;
+}
+
+.copilot-search {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 9px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel-strong);
+  padding: 0 12px;
+  color: var(--accent);
+}
+
+.copilot-search input {
+  min-width: 0;
+  height: 46px;
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+  outline: none;
+}
+
+.copilot-search input::placeholder {
+  color: color-mix(in srgb, var(--muted) 72%, transparent);
+}
+
+.prompt-row,
+.architecture-tabs,
+.terminal-command-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.prompt-row button,
+.architecture-tabs button,
+.terminal-command-list button,
+.cv-sidebar button,
+.skill-node,
+.proof-toggle,
+.architecture-intro a {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--soft);
+  color: var(--foreground);
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.prompt-row button {
+  padding: 8px 10px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-align: left;
+}
+
+.prompt-row button:hover,
+.prompt-row button:focus-visible,
+.architecture-tabs button:hover,
+.architecture-tabs button:focus-visible,
+.architecture-tabs button.is-active,
+.terminal-command-list button:hover,
+.terminal-command-list button:focus-visible,
+.terminal-command-list button.is-active,
+.cv-sidebar button:hover,
+.cv-sidebar button:focus-visible,
+.cv-sidebar button.is-active,
+.skill-node:hover,
+.skill-node:focus-visible,
+.skill-node.is-active,
+.proof-toggle:hover,
+.proof-toggle:focus-visible,
+.proof-toggle.is-active,
+.architecture-intro a:hover,
+.architecture-intro a:focus-visible {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 13%, var(--soft));
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.copilot-answer {
+  display: grid;
+  gap: 10px;
+  border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--line));
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--panel-strong) 82%, transparent);
+  padding: 14px;
+}
+
+.copilot-answer > span,
+.terminal-prompt {
+  color: var(--accent);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.lab-window-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  border-bottom: 1px solid var(--line);
+  background: var(--soft);
+  padding: 0 12px;
+}
+
+.lab-window-bar span {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  background: var(--accent-3);
+}
+
+.lab-window-bar span:nth-child(2) {
+  background: var(--accent-2);
+}
+
+.lab-window-bar span:nth-child(3) {
+  background: var(--accent);
+}
+
+.lab-window-bar code {
+  margin-left: 6px;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.78rem;
+}
+
+.terminal-body {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.terminal-command-list button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  color: var(--muted);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.74rem;
+}
+
+.terminal-output {
+  display: grid;
+  gap: 9px;
+  min-height: 206px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel-strong);
+  padding: 14px;
+}
+
+.terminal-output small {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.terminal-output p {
+  color: color-mix(in srgb, var(--foreground) 84%, var(--muted));
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.proof-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 12px;
+}
+
+.proof-toggle span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.proof-toggle svg {
+  color: var(--accent);
+}
+
+.proof-toggle strong {
+  color: var(--accent);
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.proof-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.proof-signal {
+  display: grid;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--soft);
+  padding: 12px;
+}
+
+.proof-signal strong {
+  font-size: 1.02rem;
+}
+
+.proof-mode .project-card,
+.proof-mode .experience-card,
+.proof-mode .skill-card,
+.proof-mode .architecture-map,
+.proof-mode .cv-results {
+  border-color: color-mix(in srgb, var(--accent) 72%, var(--line));
+}
+
+.proof-mode .project-card::after,
+.proof-mode .experience-card::after {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  border: 1px solid color-mix(in srgb, var(--accent) 64%, var(--line));
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--panel-strong) 88%, transparent);
+  color: var(--accent);
+  padding: 5px 7px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  content: "proof";
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -820,6 +1202,7 @@ img {
 }
 
 .project-card {
+  position: relative;
   display: grid;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -945,6 +1328,110 @@ img {
   --accent: #f2c94c;
 }
 
+.architecture-shell {
+  display: grid;
+  gap: 12px;
+}
+
+.architecture-tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  font-weight: 760;
+}
+
+.architecture-map {
+  display: grid;
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, transparent), transparent 58%),
+    var(--panel);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.architecture-intro {
+  display: flex;
+  gap: 14px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.architecture-intro h3 {
+  margin: 4px 0 0;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.architecture-intro a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 0 11px;
+  font-size: 0.82rem;
+  font-weight: 760;
+}
+
+.architecture-layers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.architecture-layer {
+  display: grid;
+  gap: 9px;
+  min-height: 190px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--soft);
+  padding: 14px;
+}
+
+.architecture-layer svg {
+  color: var(--accent);
+}
+
+.architecture-layer h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.architecture-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.architecture-flow span {
+  display: grid;
+  gap: 6px;
+  min-height: 88px;
+  align-content: center;
+  border-right: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel-strong) 72%, transparent);
+  padding: 12px;
+  color: var(--foreground);
+  font-size: 0.86rem;
+}
+
+.architecture-flow span:last-child {
+  border-right: 0;
+}
+
+.architecture-flow small {
+  color: var(--accent);
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 800;
+}
+
 .experience-section {
   position: relative;
 }
@@ -1055,6 +1542,170 @@ img {
   background: var(--accent);
   box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 60%, transparent);
   content: "";
+}
+
+.cv-explorer {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.28fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.cv-sidebar,
+.cv-results,
+.skill-node-detail {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.cv-sidebar {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.cv-sidebar-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  color: var(--foreground);
+  font-weight: 800;
+}
+
+.cv-sidebar button {
+  min-height: 40px;
+  padding: 0 11px;
+  text-align: left;
+}
+
+.cv-sidebar .button-secondary {
+  margin-top: 8px;
+}
+
+.cv-results {
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+}
+
+.cv-role-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+}
+
+.cv-role {
+  display: grid;
+  gap: 7px;
+  min-height: 138px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--soft);
+  padding: 13px;
+}
+
+.cv-role h4 {
+  margin: 0;
+  font-size: 1.12rem;
+}
+
+.skill-graph-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.62fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.skill-graph {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  min-height: 430px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px),
+    var(--panel);
+  background-size: 34px 34px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.skill-graph::before {
+  position: absolute;
+  inset: 70px 12% auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.55;
+  content: "";
+}
+
+.skill-hub {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-column: span 4;
+  min-height: 112px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent) 60%, var(--line));
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--panel-strong) 86%, transparent);
+}
+
+.skill-hub strong {
+  font-size: 1.65rem;
+}
+
+.skill-node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 96px;
+  align-content: space-between;
+  padding: 12px;
+  text-align: left;
+  font-weight: 800;
+}
+
+.skill-node span {
+  color: var(--accent);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+}
+
+.skill-node-detail {
+  display: grid;
+  gap: 13px;
+  align-content: start;
+  padding: 18px;
+}
+
+.connection-list {
+  display: grid;
+  gap: 8px;
+}
+
+.connection-list span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--soft);
+  padding: 9px 10px;
+  color: var(--foreground);
+}
+
+.connection-list svg {
+  color: var(--accent);
 }
 
 .skills-grid {
@@ -1272,6 +1923,13 @@ a.contact-card:focus-visible {
 
 .mode-1980s .site-header,
 .mode-1980s .identity-panel,
+.mode-1980s .status-card,
+.mode-1980s .lab-panel,
+.mode-1980s .architecture-map,
+.mode-1980s .cv-sidebar,
+.mode-1980s .cv-results,
+.mode-1980s .skill-graph,
+.mode-1980s .skill-node-detail,
 .mode-1980s .project-card,
 .mode-1980s .skill-card,
 .mode-1980s .timeline-item,
@@ -1323,6 +1981,13 @@ a.contact-card:focus-visible {
 
 .mode-1990s .site-header,
 .mode-1990s .identity-panel,
+.mode-1990s .status-card,
+.mode-1990s .lab-panel,
+.mode-1990s .architecture-map,
+.mode-1990s .cv-sidebar,
+.mode-1990s .cv-results,
+.mode-1990s .skill-graph,
+.mode-1990s .skill-node-detail,
 .mode-1990s .project-card,
 .mode-1990s .skill-card,
 .mode-1990s .timeline-item,
@@ -1377,6 +2042,13 @@ a.contact-card:focus-visible {
 
 .mode-2000s .site-header,
 .mode-2000s .identity-panel,
+.mode-2000s .status-card,
+.mode-2000s .lab-panel,
+.mode-2000s .architecture-map,
+.mode-2000s .cv-sidebar,
+.mode-2000s .cv-results,
+.mode-2000s .skill-graph,
+.mode-2000s .skill-node-detail,
 .mode-2000s .project-card,
 .mode-2000s .skill-card,
 .mode-2000s .timeline-item,
@@ -1421,6 +2093,13 @@ a.contact-card:focus-visible {
 
 .mode-2010s .site-header,
 .mode-2010s .identity-panel,
+.mode-2010s .status-card,
+.mode-2010s .lab-panel,
+.mode-2010s .architecture-map,
+.mode-2010s .cv-sidebar,
+.mode-2010s .cv-results,
+.mode-2010s .skill-graph,
+.mode-2010s .skill-node-detail,
 .mode-2010s .project-card,
 .mode-2010s .skill-card,
 .mode-2010s .timeline-item,
@@ -1463,6 +2142,13 @@ a.contact-card:focus-visible {
 
 .mode-windows1 .site-header,
 .mode-windows1 .identity-panel,
+.mode-windows1 .status-card,
+.mode-windows1 .lab-panel,
+.mode-windows1 .architecture-map,
+.mode-windows1 .cv-sidebar,
+.mode-windows1 .cv-results,
+.mode-windows1 .skill-graph,
+.mode-windows1 .skill-node-detail,
 .mode-windows1 .project-card,
 .mode-windows1 .skill-card,
 .mode-windows1 .timeline-item,
@@ -1573,6 +2259,24 @@ a.contact-card:focus-visible {
     grid-template-columns: 1fr;
   }
 
+  .status-grid,
+  .architecture-layers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lab-grid,
+  .skill-graph-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .architecture-flow span:nth-child(3) {
+    border-right: 0;
+  }
+
   .mode-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1621,6 +2325,23 @@ a.contact-card:focus-visible {
   .skills-grid,
   .experience-grid {
     grid-template-columns: 1fr;
+  }
+
+  .cv-explorer {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-sidebar {
+    position: static;
+  }
+
+  .skill-graph {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: auto;
+  }
+
+  .skill-hub {
+    grid-column: span 2;
   }
 
   .experience-card,
@@ -1774,6 +2495,7 @@ a.contact-card:focus-visible {
   }
 
   .role-window {
+    min-width: 100%;
     min-height: 46px;
     justify-items: start;
     padding-inline: 18px;
@@ -1786,6 +2508,53 @@ a.contact-card:focus-visible {
   .section-heading h2,
   .contact-section h2 {
     font-size: 2.45rem;
+  }
+
+  .system-dashboard .section-heading h2 {
+    font-size: 2rem;
+  }
+
+  .status-grid,
+  .architecture-layers,
+  .architecture-flow,
+  .skill-graph {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-flow span,
+  .architecture-flow span:nth-child(3) {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .architecture-flow span:last-child {
+    border-bottom: 0;
+  }
+
+  .architecture-intro,
+  .proof-toggle {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .architecture-intro a,
+  .proof-toggle {
+    width: 100%;
+  }
+
+  .terminal-command-list,
+  .prompt-row,
+  .architecture-tabs {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .terminal-output {
+    min-height: auto;
+  }
+
+  .skill-hub {
+    grid-column: span 1;
   }
 
   .profile-card-core,

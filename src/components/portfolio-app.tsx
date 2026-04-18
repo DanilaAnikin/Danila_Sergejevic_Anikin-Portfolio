@@ -5,26 +5,49 @@ import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTheme } from "next-themes";
 import {
+  Activity,
   ArrowUpRight,
+  Bot,
   BriefcaseBusiness,
+  Braces,
   Check,
   ChevronDown,
   ChevronRight,
+  Command,
+  Database,
+  Eye,
   FileDown,
+  FileText,
+  Filter,
+  GitBranch,
   Globe2,
+  LayoutDashboard,
   MapPin,
   Moon,
+  MousePointer2,
+  Rocket,
+  Search,
+  Server,
+  ShieldCheck,
   Sparkles,
   Sun,
   ArrowUp,
   Layers3,
+  Terminal,
 } from "lucide-react";
 import {
+  architectureViews,
+  copilotPrompts,
+  cvFilters,
   experience,
   languages,
+  proofSignals,
   projects,
   skillGroups,
+  skillGraphNodes,
   socialLinks,
+  systemSignals,
+  terminalCommands,
   translations,
   visualModes,
   type Language,
@@ -82,6 +105,7 @@ export function PortfolioApp() {
   const { resolvedTheme, setTheme } = useTheme();
   const shouldReduceMotion = useReducedMotion();
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [proofMode, setProofMode] = useState(false);
 
   const updateLanguage = useCallback((nextLanguage: Language) => {
     setLanguage(nextLanguage);
@@ -127,7 +151,7 @@ export function PortfolioApp() {
   const theme = resolvedTheme ?? "dark";
 
   return (
-    <main className={cn("portfolio-root", `mode-${visualMode}`, theme === "light" && "theme-light")}>
+    <main className={cn("portfolio-root", `mode-${visualMode}`, theme === "light" && "theme-light", proofMode && "proof-mode")}>
       <BackgroundSystem visualMode={visualMode} reduceMotion={shouldReduceMotion ?? false} />
 
       <div className="site-frame">
@@ -145,11 +169,25 @@ export function PortfolioApp() {
 
         <CapabilityMarquee reduceMotion={shouldReduceMotion ?? false} />
 
+        <SystemDashboard reduceMotion={shouldReduceMotion ?? false} />
+
         <ModeDeck visualMode={visualMode} setVisualMode={updateVisualMode} copy={copy} />
+
+        <PortfolioLab
+          proofMode={proofMode}
+          setProofMode={setProofMode}
+          reduceMotion={shouldReduceMotion ?? false}
+        />
 
         <ProjectSection copy={copy} reduceMotion={shouldReduceMotion ?? false} />
 
+        <ArchitectureSection reduceMotion={shouldReduceMotion ?? false} />
+
         <ExperienceSection copy={copy} reduceMotion={shouldReduceMotion ?? false} />
+
+        <InteractiveCvSection reduceMotion={shouldReduceMotion ?? false} />
+
+        <SkillGraphSection reduceMotion={shouldReduceMotion ?? false} />
 
         <SkillsSection copy={copy} />
 
@@ -330,7 +368,7 @@ function Hero({
   const roleDirection = roleIndex % 2 === 0 ? 1 : -1;
   const roleMotion = isMobile
     ? {
-        initial: { x: roleDirection * 14, opacity: 0.34 },
+        initial: { x: roleDirection * 14, opacity: 0.7 },
         animate: { x: 0, opacity: 1 },
       }
     : {
@@ -508,6 +546,245 @@ function ModeDeck({
   );
 }
 
+function SystemDashboard({ reduceMotion }: { reduceMotion: boolean }) {
+  const icons = [LayoutDashboard, Rocket, Activity, Globe2];
+
+  return (
+    <Reveal as="section" className="system-dashboard" aria-label="System status dashboard">
+      <div className="section-heading compact">
+        <p className="eyebrow">System status</p>
+        <h2>Portfolio running as a live engineering surface.</h2>
+      </div>
+
+      <div className="status-grid">
+        {systemSignals.map((signal, index) => {
+          const Icon = icons[index % icons.length];
+
+          return (
+            <motion.article
+              className="status-card"
+              key={signal.label}
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.36, delay: index * 0.04, ease: "easeOut" }}
+            >
+              <div className="status-icon">
+                <Icon size={21} />
+              </div>
+              <span>{signal.label}</span>
+              <strong>{signal.value}</strong>
+              <p>{signal.detail}</p>
+            </motion.article>
+          );
+        })}
+      </div>
+    </Reveal>
+  );
+}
+
+function PortfolioLab({
+  proofMode,
+  setProofMode,
+  reduceMotion,
+}: {
+  proofMode: boolean;
+  setProofMode: (value: boolean) => void;
+  reduceMotion: boolean;
+}) {
+  return (
+    <Reveal as="section" className="content-section portfolio-lab" id="lab" aria-label="Interactive portfolio lab">
+      <div className="section-heading split-heading">
+        <div>
+          <p className="eyebrow">AI portfolio lab</p>
+          <h2>Ask, inspect, verify.</h2>
+        </div>
+        <p>
+          A portfolio should behave like software. This section adds a local copilot, terminal commands, and proof-first evidence so teams can inspect the signal faster.
+        </p>
+      </div>
+
+      <div className="lab-grid">
+        <CopilotPanel reduceMotion={reduceMotion} />
+        <TerminalPanel reduceMotion={reduceMotion} />
+        <ProofPanel proofMode={proofMode} setProofMode={setProofMode} reduceMotion={reduceMotion} />
+      </div>
+    </Reveal>
+  );
+}
+
+function CopilotPanel({ reduceMotion }: { reduceMotion: boolean }) {
+  const [query, setQuery] = useState(copilotPrompts[0].question);
+  const normalizedQuery = query.trim().toLowerCase();
+  const selectedPrompt =
+    copilotPrompts.find((prompt) => {
+      const questionMatches = prompt.question.toLowerCase().includes(normalizedQuery);
+      const keywordMatches = prompt.keywords.some((keyword) => normalizedQuery.includes(keyword));
+
+      return normalizedQuery.length > 1 && (questionMatches || keywordMatches);
+    }) ?? copilotPrompts[0];
+
+  return (
+    <motion.article
+      className="lab-panel copilot-panel"
+      whileHover={reduceMotion ? undefined : { y: -4 }}
+      transition={{ duration: 0.18, ease: "easeOut" }}
+    >
+      <div className="lab-panel-header">
+        <Bot size={22} />
+        <div>
+          <p className="panel-kicker">Local copilot</p>
+          <h3>Portfolio intelligence</h3>
+        </div>
+      </div>
+
+      <label className="copilot-search">
+        <Search size={17} />
+        <input
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Ask about AI, DevOps, projects, or experience"
+        />
+      </label>
+
+      <div className="prompt-row">
+        {copilotPrompts.map((prompt) => (
+          <button type="button" key={prompt.question} onClick={() => setQuery(prompt.question)}>
+            {prompt.question}
+          </button>
+        ))}
+      </div>
+
+      <motion.div
+        className="copilot-answer"
+        key={selectedPrompt.question}
+        initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+        animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.22, ease: "easeOut" }}
+      >
+        <span>Matched answer</span>
+        <p>{selectedPrompt.answer}</p>
+        <div className="tag-row">
+          {selectedPrompt.links.map((link) => (
+            <span key={link}>{link}</span>
+          ))}
+        </div>
+      </motion.div>
+    </motion.article>
+  );
+}
+
+function TerminalPanel({ reduceMotion }: { reduceMotion: boolean }) {
+  const [activeCommand, setActiveCommand] = useState(0);
+  const command = terminalCommands[activeCommand];
+
+  return (
+    <motion.article
+      className="lab-panel terminal-panel"
+      whileHover={reduceMotion ? undefined : { y: -4 }}
+      transition={{ duration: 0.18, ease: "easeOut" }}
+    >
+      <div className="lab-window-bar">
+        <span />
+        <span />
+        <span />
+        <code>portfolio.shell</code>
+      </div>
+
+      <div className="terminal-body">
+        <div className="terminal-command-list">
+          {terminalCommands.map((item, index) => (
+            <button
+              className={cn(index === activeCommand && "is-active")}
+              type="button"
+              key={item.command}
+              onClick={() => setActiveCommand(index)}
+            >
+              <Command size={14} />
+              <span>{item.command}</span>
+            </button>
+          ))}
+        </div>
+
+        <motion.div
+          className="terminal-output"
+          key={command.command}
+          initial={reduceMotion ? false : { opacity: 0, x: 14 }}
+          animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+          transition={{ duration: 0.22, ease: "easeOut" }}
+        >
+          <span className="terminal-prompt">$ {command.command}</span>
+          <small>{command.description}</small>
+          {command.output.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </motion.div>
+      </div>
+    </motion.article>
+  );
+}
+
+function ProofPanel({
+  proofMode,
+  setProofMode,
+  reduceMotion,
+}: {
+  proofMode: boolean;
+  setProofMode: (value: boolean) => void;
+  reduceMotion: boolean;
+}) {
+  return (
+    <motion.article
+      className="lab-panel proof-panel"
+      whileHover={reduceMotion ? undefined : { y: -4 }}
+      transition={{ duration: 0.18, ease: "easeOut" }}
+    >
+      <div className="lab-panel-header">
+        <ShieldCheck size={22} />
+        <div>
+          <p className="panel-kicker">Proof mode</p>
+          <h3>Evidence overlay</h3>
+        </div>
+      </div>
+
+      <button
+        className={cn("proof-toggle", proofMode && "is-active")}
+        type="button"
+        aria-pressed={proofMode}
+        onClick={() => setProofMode(!proofMode)}
+      >
+        <span>
+          <Eye size={17} />
+          {proofMode ? "Proof mode active" : "Activate proof mode"}
+        </span>
+        <strong>{proofMode ? "ON" : "OFF"}</strong>
+      </button>
+
+      <div className="proof-stack">
+        {proofSignals.map((signal, index) => (
+          <motion.div
+            className="proof-signal"
+            key={signal.label}
+            initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.4 }}
+            transition={{ duration: 0.28, delay: index * 0.03, ease: "easeOut" }}
+          >
+            <span>{signal.label}</span>
+            <strong>{signal.value}</strong>
+            {proofMode ? <p>{signal.detail}</p> : null}
+            <div className="tag-row">
+              {signal.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.article>
+  );
+}
+
 function ProjectSection({
   copy,
   reduceMotion,
@@ -572,6 +849,238 @@ function ProjectSection({
             </div>
           </motion.a>
         ))}
+      </div>
+    </Reveal>
+  );
+}
+
+function ArchitectureSection({ reduceMotion }: { reduceMotion: boolean }) {
+  const [activeProject, setActiveProject] = useState(0);
+  const active = architectureViews[activeProject];
+  const layerIcons = [MousePointer2, Database, Server, GitBranch];
+
+  return (
+    <Reveal as="section" className="content-section architecture-section" id="architecture" aria-label="Project architecture">
+      <div className="section-heading split-heading">
+        <div>
+          <p className="eyebrow">Architecture view</p>
+          <h2>Project thinking, not only screenshots.</h2>
+        </div>
+        <p>
+          The strongest portfolio projects are mapped as systems: user path, core engine, content model, growth layer, and delivery flow.
+        </p>
+      </div>
+
+      <div className="architecture-shell">
+        <div className="architecture-tabs" role="tablist" aria-label="Select project architecture">
+          {architectureViews.map((view, index) => (
+            <button
+              className={cn(index === activeProject && "is-active")}
+              type="button"
+              role="tab"
+              aria-selected={index === activeProject}
+              key={view.project}
+              onClick={() => setActiveProject(index)}
+            >
+              <Braces size={16} />
+              {view.project}
+            </button>
+          ))}
+        </div>
+
+        <motion.div
+          className="architecture-map"
+          key={active.project}
+          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.28, ease: "easeOut" }}
+        >
+          <div className="architecture-intro">
+            <div>
+              <span>Selected system</span>
+              <h3>{active.project}</h3>
+            </div>
+            <a href={active.href} target="_blank" rel="noreferrer">
+              Open live
+              <ArrowUpRight size={15} />
+            </a>
+          </div>
+          <p>{active.summary}</p>
+
+          <div className="architecture-layers">
+            {active.layers.map((layer, index) => {
+              const Icon = layerIcons[index % layerIcons.length];
+
+              return (
+                <motion.article
+                  className="architecture-layer"
+                  key={layer.name}
+                  initial={reduceMotion ? false : { opacity: 0, x: -16 }}
+                  whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+                  viewport={{ once: false, amount: 0.35 }}
+                  transition={{ duration: 0.26, delay: index * 0.04, ease: "easeOut" }}
+                >
+                  <Icon size={20} />
+                  <h4>{layer.name}</h4>
+                  <p>{layer.detail}</p>
+                </motion.article>
+              );
+            })}
+          </div>
+
+          <div className="architecture-flow">
+            {active.flow.map((step, index) => (
+              <span key={step}>
+                <small>{String(index + 1).padStart(2, "0")}</small>
+                {step}
+              </span>
+            ))}
+          </div>
+
+          <div className="tag-row">
+            {active.stack.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </Reveal>
+  );
+}
+
+function InteractiveCvSection({ reduceMotion }: { reduceMotion: boolean }) {
+  const [activeFilter, setActiveFilter] = useState(cvFilters[0].id);
+  const selectedFilter = cvFilters.find((filter) => filter.id === activeFilter) ?? cvFilters[0];
+  const filteredExperience = experience.filter((item) => selectedFilter.experience.includes(item.company));
+
+  return (
+    <Reveal as="section" className="content-section cv-section" id="cv" aria-label="Interactive CV">
+      <div className="section-heading split-heading">
+        <div>
+          <p className="eyebrow">Interactive CV</p>
+          <h2>Filter the strongest signal.</h2>
+        </div>
+        <p>
+          Recruiters can keep the PDF, while technical readers can filter the experience by AI, frontend, infrastructure, product, or teaching.
+        </p>
+      </div>
+
+      <div className="cv-explorer">
+        <div className="cv-sidebar">
+          <div className="cv-sidebar-title">
+            <Filter size={18} />
+            <span>Choose track</span>
+          </div>
+          {cvFilters.map((filter) => (
+            <button
+              className={cn(filter.id === activeFilter && "is-active")}
+              type="button"
+              key={filter.id}
+              onClick={() => setActiveFilter(filter.id)}
+            >
+              {filter.label}
+            </button>
+          ))}
+          <a className="button-secondary" href="/cv/danila-anikin-cv.pdf">
+            Download PDF
+            <FileDown size={16} />
+          </a>
+        </div>
+
+        <motion.div
+          className="cv-results"
+          key={selectedFilter.id}
+          initial={reduceMotion ? false : { opacity: 0, x: 20 }}
+          animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+          transition={{ duration: 0.26, ease: "easeOut" }}
+        >
+          <div className="cv-results-head">
+            <FileText size={22} />
+            <div>
+              <span>{selectedFilter.label} track</span>
+              <h3>{selectedFilter.summary}</h3>
+            </div>
+          </div>
+
+          <div className="cv-role-grid">
+            {filteredExperience.map((item) => (
+              <article className="cv-role" key={item.company}>
+                <span>{item.kind}</span>
+                <h4>{item.company}</h4>
+                <p>{item.role}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="tag-row">
+            {selectedFilter.skills.map((skill) => (
+              <span key={skill}>{skill}</span>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </Reveal>
+  );
+}
+
+function SkillGraphSection({ reduceMotion }: { reduceMotion: boolean }) {
+  const [activeNode, setActiveNode] = useState(skillGraphNodes[0].id);
+  const selectedNode = skillGraphNodes.find((node) => node.id === activeNode) ?? skillGraphNodes[0];
+
+  return (
+    <Reveal as="section" className="content-section skill-graph-section" id="skill-graph" aria-label="Interactive skill graph">
+      <div className="section-heading split-heading">
+        <div>
+          <p className="eyebrow">Skill graph</p>
+          <h2>Connected engineering range.</h2>
+        </div>
+        <p>
+          The graph connects AI, automation, Linux, DevOps, software, product thinking, and teaching into one coherent engineering profile.
+        </p>
+      </div>
+
+      <div className="skill-graph-layout">
+        <div className="skill-graph" aria-label="Skill graph nodes">
+          <div className="skill-hub">
+            <Terminal size={23} />
+            <strong>Danila</strong>
+          </div>
+          {skillGraphNodes.map((node, index) => (
+            <motion.button
+              className={cn("skill-node", node.id === activeNode && "is-active")}
+              type="button"
+              key={node.id}
+              onClick={() => setActiveNode(node.id)}
+              initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+              viewport={{ once: false, amount: 0.32 }}
+              transition={{ duration: 0.28, delay: index * 0.03, ease: "easeOut" }}
+            >
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              {node.label}
+            </motion.button>
+          ))}
+        </div>
+
+        <motion.article
+          className="skill-node-detail"
+          key={selectedNode.id}
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+          animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.24, ease: "easeOut" }}
+        >
+          <p className="panel-kicker">Selected node</p>
+          <h3>{selectedNode.label}</h3>
+          <p>{selectedNode.detail}</p>
+          <div className="connection-list">
+            {selectedNode.links.map((link) => (
+              <span key={link}>
+                <GitBranch size={14} />
+                {link}
+              </span>
+            ))}
+          </div>
+        </motion.article>
       </div>
     </Reveal>
   );
