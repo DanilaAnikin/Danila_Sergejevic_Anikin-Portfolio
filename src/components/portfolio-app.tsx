@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useTheme } from "next-themes";
 import {
@@ -20,7 +20,6 @@ import {
   Layers3,
 } from "lucide-react";
 import {
-  capabilityIcons,
   experience,
   languages,
   projects,
@@ -125,10 +124,6 @@ export function PortfolioApp() {
   }, []);
 
   const copy = translations[language];
-  const activeMode = useMemo(
-    () => visualModes.find((mode) => mode.id === visualMode) ?? visualModes[0],
-    [visualMode],
-  );
   const theme = resolvedTheme ?? "dark";
 
   return (
@@ -146,7 +141,7 @@ export function PortfolioApp() {
           copy={copy}
         />
 
-        <Hero copy={copy} activeMode={activeMode} reduceMotion={shouldReduceMotion ?? false} />
+        <Hero copy={copy} reduceMotion={shouldReduceMotion ?? false} />
 
         <CapabilityMarquee reduceMotion={shouldReduceMotion ?? false} />
 
@@ -324,11 +319,9 @@ function CustomSelect({
 
 function Hero({
   copy,
-  activeMode,
   reduceMotion,
 }: {
   copy: (typeof translations)[Language];
-  activeMode: (typeof visualModes)[number];
   reduceMotion: boolean;
 }) {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -360,10 +353,6 @@ function Hero({
   return (
     <section className="hero-section" id="profile">
       <div className="hero-copy">
-        <div className="status-line">
-          <span className="status-dot" />
-          {copy.availability}
-        </div>
         <p className="eyebrow">{copy.kicker}</p>
         <h1>{copy.title}</h1>
         <div className="role-rotator" aria-live="polite">
@@ -394,55 +383,6 @@ function Hero({
 
         <p className="cv-note">{copy.cvNote}</p>
       </div>
-
-      <motion.div
-        className="identity-panel"
-        whileHover={reduceMotion ? undefined : { y: -4 }}
-        transition={{ duration: 0.22, ease: "easeOut" }}
-      >
-        <div className="window-bar">
-          <span />
-          <span />
-          <span />
-          <strong>danila.system</strong>
-        </div>
-        <div className="profile-card-core">
-          <LogoMark large />
-          <div>
-            <p className="panel-kicker">Current mode</p>
-            <h2>{activeMode.label}</h2>
-            <p>{activeMode.description}</p>
-          </div>
-        </div>
-
-        <div className="system-grid">
-          {capabilityIcons.map((Icon, index) => (
-            <div className="system-cell" key={index}>
-              <Icon size={20} />
-              <span>0{index + 1}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="terminal-strip" aria-label="Portfolio command line">
-          <span>$</span>
-          <code>run portfolio --mode={activeMode.id} --city=prague</code>
-        </div>
-
-        <div className="code-rain" aria-hidden="true">
-          {["model.pipeline()", "docker compose up", "git push origin main", "systemctl status ai"].map(
-            (line, index) => (
-              <motion.span
-                key={line}
-                animate={{ x: ["0%", "-8%", "0%"], opacity: [0.42, 0.88, 0.42] }}
-                transition={{ duration: 5 + index, repeat: Infinity, ease: "easeInOut" }}
-              >
-                {line}
-              </motion.span>
-            ),
-          )}
-        </div>
-      </motion.div>
     </section>
   );
 }

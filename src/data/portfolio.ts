@@ -1,17 +1,11 @@
 import {
-  Bot,
   BrainCircuit,
   Code2,
   Container,
   Cpu,
-  Database,
   Globe2,
-  Languages,
   Mail,
   Network,
-  Server,
-  Settings2,
-  ShieldCheck,
   TerminalSquare,
   Workflow,
 } from "lucide-react";
@@ -217,16 +211,6 @@ export const skillGroups = [
     icon: Cpu,
     skills: ["Debugging", "Performance", "Security", "Databases", "Reliability", "Documentation"],
   },
-];
-
-export const capabilityIcons = [
-  Bot,
-  Server,
-  Database,
-  Network,
-  ShieldCheck,
-  Settings2,
-  Languages,
 ];
 
 export const translations = {
