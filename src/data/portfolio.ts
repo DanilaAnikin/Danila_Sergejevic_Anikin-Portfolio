@@ -132,9 +132,7 @@ export const experience = [
     role: "Software Engineer, Android Developer & Linux System Administrator",
     kind: "Cloud / Linux / AI",
     points: [
-      "Cloud infrastructure, deployment workflows, and Linux-based system administration.",
-      "Android development and cross-functional software delivery.",
-      "AI-driven solutions, code-generation workflows, and domain-specific automation.",
+      "Cloud infrastructure, Android delivery, Linux administration, and AI automation.",
     ],
     stack: ["Linux", "Kubernetes", "AWS", "Android", "AI automation"],
   },
@@ -143,8 +141,7 @@ export const experience = [
     role: "AI Training & Software Developer",
     kind: "AI evaluation",
     points: [
-      "AI model training and evaluation with a focus on correctness, reasoning, and code quality.",
-      "Software-development judgment applied to technical model behavior and task quality.",
+      "AI model evaluation focused on correctness, reasoning, and code quality.",
     ],
     stack: ["AI training", "Code review", "Evaluation", "Reasoning"],
   },
@@ -153,8 +150,7 @@ export const experience = [
     role: "Software Developer",
     kind: "Client delivery",
     points: [
-      "Full-stack web applications delivered from requirements to deployment.",
-      "Client communication, interface quality, maintainability, and business-focused iteration.",
+      "Full-stack client work from requirements to deployment.",
     ],
     stack: ["React", "TypeScript", "Node.js", "Product UX"],
   },
@@ -163,8 +159,7 @@ export const experience = [
     role: "Frontend Developer",
     kind: "Product frontend",
     points: [
-      "Frontend features built with TypeScript and component-based architecture.",
-      "Product UI implementation with attention to maintainability and delivery speed.",
+      "TypeScript product UI built with maintainable component architecture.",
     ],
     stack: ["TypeScript", "Frontend", "Components", "Product"],
   },
@@ -173,8 +168,7 @@ export const experience = [
     role: "Robotics Lector",
     kind: "Teaching",
     points: [
-      "Programming and robotics fundamentals taught through practical exercises.",
-      "Technical communication with younger students and hands-on learning groups.",
+      "Programming and robotics taught through practical exercises.",
     ],
     stack: ["Robotics", "Programming", "Teaching", "Communication"],
   },
