@@ -279,6 +279,7 @@ function CustomSelect({
       <button
         className="custom-select-trigger"
         type="button"
+        aria-label={label}
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
