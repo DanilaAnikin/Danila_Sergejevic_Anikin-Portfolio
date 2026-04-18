@@ -854,26 +854,15 @@ img {
 .role-window {
   position: relative;
   display: inline-grid;
-  min-width: 260px;
-  min-height: 50px;
+  min-width: 240px;
+  min-height: 1.3em;
   align-items: center;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line));
-  border-radius: var(--radius);
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--accent) 14%, transparent), transparent),
-    var(--soft);
-  padding: 3px 14px;
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--foreground) 5%, transparent);
+  padding: 0;
 }
 
 .role-window::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 12%, transparent), transparent);
-  transform: translateX(-100%);
-  animation: roleSweep 4s ease-in-out infinite;
-  content: "";
+  display: none;
 }
 
 .role-static,
@@ -882,11 +871,12 @@ img {
   z-index: 1;
   display: block;
   width: 100%;
-  color: var(--foreground);
+  color: var(--accent);
   font-size: 1.42rem;
   font-weight: 850;
   line-height: 1.1;
   overflow-wrap: anywhere;
+  text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 28%, transparent);
 }
 
 .role-static {
@@ -2919,9 +2909,9 @@ a.contact-card:focus-visible {
 
   .role-window {
     min-width: 100%;
-    min-height: 46px;
+    min-height: 1.3em;
     justify-items: start;
-    padding-inline: 18px;
+    padding-inline: 0;
   }
 
   .role-window strong {
