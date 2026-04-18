@@ -323,13 +323,13 @@ export const proofSignals = [
     label: "Live products",
     value: "2 selected",
     detail: "Freio and GorillaType are intentionally the highlighted projects because they show product judgment and real interaction quality.",
-    tags: ["Freio", "GorillaType", "Product"],
+    tags: ["Freio", "GorillaType"],
   },
   {
     label: "Work range",
     value: "5 roles",
     detail: "Cloud infrastructure, AI evaluation, freelance delivery, frontend product work, and robotics teaching.",
-    tags: ["AI", "Linux", "Frontend", "Teaching"],
+    tags: ["AI", "Linux", "Frontend", "Product", "Teaching"],
   },
   {
     label: "Technical base",
