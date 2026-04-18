@@ -69,6 +69,21 @@ const modeShortcuts: Record<string, VisualMode> = {
   "6": "windows1",
 };
 
+const navTargets = [
+  "#profile",
+  "#system",
+  "#modes",
+  "#lab",
+  "#projects",
+  "#architecture",
+  "#experience",
+  "#cv",
+  "#skill-graph",
+  "#skills",
+  "#timeline",
+  "#contact",
+];
+
 function useMediaQuery(query: string) {
   const subscribe = useCallback(
     (onStoreChange: () => void) => {
@@ -242,15 +257,11 @@ function Header({
       </a>
 
       <nav className="primary-nav" aria-label="Primary navigation">
-        {copy.nav.map((item, index) => {
-          const targets = ["#profile", "#projects", "#experience", "#skills", "#timeline", "#contact"];
-
-          return (
-            <a href={targets[index]} key={item}>
-              {item}
-            </a>
-          );
-        })}
+        {copy.nav.map((item, index) => (
+          <a href={navTargets[index] ?? "#profile"} key={item}>
+            {item}
+          </a>
+        ))}
       </nav>
 
       <div className="header-controls">
@@ -720,7 +731,7 @@ function ModeDeck({
   copy: (typeof translations)[Language];
 }) {
   return (
-    <Reveal as="section" className="mode-deck" aria-label={copy.modeLabel}>
+    <Reveal as="section" className="mode-deck" id="modes" aria-label={copy.modeLabel}>
       <div className="section-heading compact">
         <p className="eyebrow">{copy.modeLabel}</p>
         <h2>{copy.command}</h2>
@@ -749,7 +760,7 @@ function SystemDashboard({ reduceMotion }: { reduceMotion: boolean }) {
   const icons = [LayoutDashboard, Rocket, Activity, Globe2];
 
   return (
-    <Reveal as="section" className="system-dashboard" aria-label="System status dashboard">
+    <Reveal as="section" className="system-dashboard" id="system" aria-label="System status dashboard">
       <div className="section-heading compact">
         <p className="eyebrow">System status</p>
         <h2>Portfolio running as a live engineering surface.</h2>

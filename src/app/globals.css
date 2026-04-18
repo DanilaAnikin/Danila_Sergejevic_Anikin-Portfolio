@@ -247,8 +247,15 @@ img {
 
 .primary-nav {
   display: flex;
+  min-width: 0;
   justify-content: center;
   gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.primary-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .primary-nav a,
@@ -262,9 +269,10 @@ img {
 }
 
 .primary-nav a {
-  padding: 7px 10px;
+  flex: 0 0 auto;
+  padding: 6px 8px;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   transition: background 180ms ease, color 180ms ease;
 }
 

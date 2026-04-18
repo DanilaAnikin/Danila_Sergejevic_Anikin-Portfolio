@@ -461,7 +461,7 @@ export const cvFilters = [
 
 export const translations = {
   en: {
-    nav: ["Profile", "Projects", "Experience", "Skills", "Path", "Contact"],
+    nav: ["Profile", "Status", "Modes", "Lab", "Projects", "Architecture", "Experience", "CV", "Graph", "Skills", "Path", "Contact"],
     availability: "Open to internships, junior roles, freelance work, AI automation, DevOps, and collaboration.",
     kicker: "Prague-based software developer",
     title: "Danila Sergejevič Anikin",
@@ -508,7 +508,7 @@ export const translations = {
     ],
   },
   cs: {
-    nav: ["Profil", "Projekty", "Praxe", "Dovednosti", "Cesta", "Kontakt"],
+    nav: ["Profil", "Stav", "Režimy", "Lab", "Projekty", "Architektura", "Praxe", "CV", "Graf", "Dovednosti", "Cesta", "Kontakt"],
     availability: "Otevřený stážím, junior rolím, freelance práci, AI automatizaci, DevOps a spolupráci.",
     kicker: "Softwarový vývojář z Prahy",
     title: "Danila Sergejevič Anikin",
@@ -554,7 +554,7 @@ export const translations = {
     ],
   },
   ru: {
-    nav: ["Профиль", "Проекты", "Опыт", "Навыки", "Путь", "Контакты"],
+    nav: ["Профиль", "Статус", "Режимы", "Лаб", "Проекты", "Архитектура", "Опыт", "CV", "Граф", "Навыки", "Путь", "Контакты"],
     availability: "Открыт к стажировкам, junior-ролям, freelance, AI-автоматизации, DevOps и сотрудничеству.",
     kicker: "Software developer в Праге",
     title: "Данила Сергеевич Аникин",
@@ -600,7 +600,7 @@ export const translations = {
     ],
   },
   de: {
-    nav: ["Profil", "Projekte", "Erfahrung", "Skills", "Weg", "Kontakt"],
+    nav: ["Profil", "Status", "Modi", "Lab", "Projekte", "Architektur", "Erfahrung", "CV", "Graph", "Skills", "Weg", "Kontakt"],
     availability: "Offen für Praktika, Junior-Rollen, Freelance-Arbeit, AI-Automation, DevOps und Zusammenarbeit.",
     kicker: "Softwareentwickler in Prag",
     title: "Danila Sergejevič Anikin",
@@ -646,7 +646,7 @@ export const translations = {
     ],
   },
   es: {
-    nav: ["Perfil", "Proyectos", "Experiencia", "Skills", "Ruta", "Contacto"],
+    nav: ["Perfil", "Estado", "Modos", "Lab", "Proyectos", "Arquitectura", "Experiencia", "CV", "Grafo", "Skills", "Ruta", "Contacto"],
     availability: "Abierto a prácticas, roles junior, freelance, automatización con AI, DevOps y colaboración.",
     kicker: "Desarrollador de software en Praga",
     title: "Danila Sergejevič Anikin",
@@ -692,7 +692,7 @@ export const translations = {
     ],
   },
   fr: {
-    nav: ["Profil", "Projets", "Expérience", "Skills", "Parcours", "Contact"],
+    nav: ["Profil", "Statut", "Modes", "Lab", "Projets", "Architecture", "Expérience", "CV", "Graphe", "Skills", "Parcours", "Contact"],
     availability: "Ouvert aux stages, postes junior, freelance, automatisation AI, DevOps et collaboration.",
     kicker: "Développeur logiciel à Prague",
     title: "Danila Sergejevič Anikin",
