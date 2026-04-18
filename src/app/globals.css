@@ -51,13 +51,11 @@ body {
 }
 
 button,
-select,
 a {
   -webkit-tap-highlight-color: transparent;
 }
 
-button,
-select {
+button {
   font: inherit;
 }
 
@@ -180,13 +178,11 @@ img {
 
 .logo-mark {
   position: relative;
-  display: grid;
+  display: inline-grid;
   width: 42px;
   height: 42px;
   flex: 0 0 auto;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  justify-items: center;
+  place-items: center;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background:
@@ -194,10 +190,17 @@ img {
     linear-gradient(315deg, var(--accent-2), transparent 45%),
     var(--panel-strong);
   color: var(--foreground);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.86rem;
-  font-weight: 800;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.logo-mark::before {
+  position: absolute;
+  inset: -35%;
+  background: conic-gradient(from 180deg, transparent, var(--accent), transparent, var(--accent-2), transparent);
+  opacity: 0.34;
+  animation: logoSweep 8s linear infinite;
+  content: "";
 }
 
 .logo-mark::after {
@@ -208,10 +211,38 @@ img {
   content: "";
 }
 
+.logo-mark svg {
+  position: relative;
+  z-index: 1;
+  width: 74%;
+  height: 74%;
+}
+
+.logo-track {
+  fill: var(--foreground);
+}
+
+.logo-core {
+  fill: var(--panel-strong);
+}
+
+.logo-signal {
+  fill: none;
+  stroke: var(--accent-2);
+  stroke-linecap: square;
+  stroke-linejoin: bevel;
+  stroke-width: 10;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--accent-2) 55%, transparent));
+}
+
+.logo-signal.thin {
+  stroke: var(--accent);
+  stroke-width: 7;
+}
+
 .logo-mark.large {
   width: 86px;
   height: 86px;
-  font-size: 1.5rem;
 }
 
 .primary-nav {
@@ -225,7 +256,8 @@ img {
 .button-primary,
 .button-secondary,
 .mode-tile,
-.control-select select {
+.custom-select-trigger,
+.custom-select-menu {
   border-radius: var(--radius);
 }
 
@@ -250,23 +282,106 @@ img {
   gap: 8px;
 }
 
-.control-select {
+.custom-select {
+  position: relative;
   display: grid;
-  gap: 3px;
+  min-width: 122px;
+  gap: 4px;
   color: var(--muted);
   font-size: 0.7rem;
 }
 
-.control-select select {
-  min-width: 112px;
-  border: 1px solid var(--line);
-  background: var(--panel-strong);
-  color: var(--foreground);
-  padding: 8px 26px 8px 9px;
+.custom-select.wide {
+  min-width: 138px;
 }
 
-.mode-select select {
-  min-width: 118px;
+.custom-select-trigger {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--panel-strong) 94%, var(--foreground)), var(--panel-strong));
+  color: var(--foreground);
+  padding: 7px 10px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--foreground) 9%, transparent);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.custom-select-trigger:hover,
+.custom-select-trigger:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.custom-select-trigger span {
+  display: grid;
+  min-width: 0;
+}
+
+.custom-select-trigger strong,
+.custom-select-menu span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-select-trigger strong {
+  color: var(--foreground);
+  font-size: 0.84rem;
+  font-weight: 720;
+}
+
+.custom-select-trigger small {
+  color: var(--muted);
+  font-size: 0.66rem;
+}
+
+.custom-select-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 40;
+  display: grid;
+  width: max(100%, 180px);
+  max-height: 320px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel-strong) 96%, transparent);
+  box-shadow: var(--shadow);
+  padding: 6px;
+  backdrop-filter: blur(18px);
+}
+
+.custom-select-menu button {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--foreground);
+  padding: 9px 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.custom-select-menu button:hover,
+.custom-select-menu button:focus-visible,
+.custom-select-menu button.is-selected {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  outline: none;
+}
+
+.custom-select-menu small {
+  color: var(--muted);
+  font-size: 0.68rem;
 }
 
 .icon-button {
@@ -425,6 +540,7 @@ img {
 }
 
 .identity-panel {
+  position: relative;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--panel);
@@ -527,6 +643,58 @@ img {
 
 .terminal-strip code {
   color: var(--foreground);
+}
+
+.code-rain {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  gap: 5px;
+  padding: 16px 18px;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+  pointer-events: none;
+}
+
+.code-rain span {
+  color: color-mix(in srgb, var(--accent) 72%, transparent);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  opacity: 0.36;
+}
+
+.capability-marquee {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  box-shadow: var(--shadow);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 10px;
+  padding: 12px 10px;
+}
+
+.marquee-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: max-content;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--soft);
+  color: var(--foreground);
+  padding: 8px 12px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.marquee-track svg {
+  color: var(--accent);
 }
 
 .mode-deck,
@@ -652,6 +820,44 @@ img {
 
 .project-card:hover .project-preview img {
   transform: scale(1.035);
+}
+
+.preview-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 0 38%, rgba(255, 255, 255, 0.32) 45%, transparent 55% 100%);
+  transform: translateX(-115%);
+  pointer-events: none;
+}
+
+.project-card:hover .preview-shine {
+  animation: previewShine 900ms ease;
+}
+
+.preview-badge {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--panel-strong) 86%, transparent);
+  color: var(--foreground);
+  padding: 8px 10px;
+  font-size: 0.78rem;
+  font-weight: 720;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  backdrop-filter: blur(12px);
+}
+
+.project-card:hover .preview-badge,
+.project-card:focus-visible .preview-badge {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .project-body {
@@ -823,6 +1029,49 @@ a.contact-card:focus-visible {
   transform: translateX(3px);
 }
 
+.scroll-top-button {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--panel-strong) 92%, transparent);
+  color: var(--foreground);
+  padding: 0 14px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.scroll-top-button:hover,
+.scroll-top-button:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+  transform: translateY(-3px);
+}
+
+.scroll-top-button svg {
+  color: var(--accent);
+}
+
+@keyframes previewShine {
+  to {
+    transform: translateX(115%);
+  }
+}
+
+@keyframes logoSweep {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
 .mode-1980s {
   --background: #030704;
   --foreground: #bcffb8;
@@ -835,6 +1084,20 @@ a.contact-card:focus-visible {
   --accent-2: #f4d35e;
   --accent-3: #ff6b6b;
   font-family: var(--font-geist-mono), monospace;
+}
+
+.theme-light.mode-1980s {
+  --background: #f6f1d8;
+  --foreground: #163d18;
+  --panel: rgba(255, 249, 220, 0.9);
+  --panel-strong: #fff7cf;
+  --muted: #496b35;
+  --soft: rgba(22, 61, 24, 0.08);
+  --line: rgba(22, 61, 24, 0.28);
+  --accent: #147d38;
+  --accent-2: #bc7a14;
+  --accent-3: #b4322d;
+  text-shadow: none;
 }
 
 .mode-1980s .portfolio-root,
@@ -865,6 +1128,20 @@ a.contact-card:focus-visible {
 }
 
 .mode-1990s {
+  --background: #111111;
+  --foreground: #f7f7f7;
+  --panel: #202020;
+  --panel-strong: #0b0b0b;
+  --muted: #c9c9c9;
+  --soft: rgba(255, 255, 255, 0.08);
+  --line: #777777;
+  --accent: #77a8ff;
+  --accent-2: #ffcc00;
+  --accent-3: #ff5a5a;
+  background-color: #111111;
+}
+
+.theme-light.mode-1990s {
   --background: #c9c9c9;
   --foreground: #000000;
   --panel: #f1f1f1;
@@ -906,11 +1183,24 @@ a.contact-card:focus-visible {
 .mode-1990s .button-primary,
 .mode-1990s .button-secondary,
 .mode-1990s .icon-button,
-.mode-1990s .control-select select {
+.mode-1990s .custom-select-trigger {
   box-shadow: inset 2px 2px 0 #fff, inset -2px -2px 0 #666;
 }
 
 .mode-2000s {
+  --background: #12181b;
+  --foreground: #f5fbff;
+  --panel: rgba(24, 34, 38, 0.92);
+  --panel-strong: #111b20;
+  --muted: #afc0c8;
+  --soft: rgba(118, 202, 227, 0.1);
+  --line: rgba(245, 251, 255, 0.2);
+  --accent: #35c48d;
+  --accent-2: #ffcb05;
+  --accent-3: #ff6262;
+}
+
+.theme-light.mode-2000s {
   --background: #f0f7fb;
   --foreground: #141414;
   --panel: rgba(255, 255, 255, 0.92);
@@ -923,8 +1213,7 @@ a.contact-card:focus-visible {
   --accent-3: #e84343;
 }
 
-.mode-2000s .portfolio-root,
-.mode-2000s {
+.theme-light.mode-2000s {
   background:
     linear-gradient(180deg, #ffffff 0%, #e4f6fb 38%, #f7fbff 100%);
 }
@@ -946,6 +1235,19 @@ a.contact-card:focus-visible {
 }
 
 .mode-2010s {
+  --background: #111111;
+  --foreground: #f4f4f4;
+  --panel: #181818;
+  --panel-strong: #101010;
+  --muted: #b6b6b6;
+  --soft: #222222;
+  --line: #333333;
+  --accent: #0f9f6e;
+  --accent-2: #f4b400;
+  --accent-3: #db4437;
+}
+
+.theme-light.mode-2010s {
   --background: #fafafa;
   --foreground: #171717;
   --panel: #ffffff;
@@ -953,9 +1255,6 @@ a.contact-card:focus-visible {
   --muted: #606060;
   --soft: #f1f1f1;
   --line: #e0e0e0;
-  --accent: #0f9f6e;
-  --accent-2: #f4b400;
-  --accent-3: #db4437;
 }
 
 .mode-2010s .grid-layer,
@@ -974,6 +1273,20 @@ a.contact-card:focus-visible {
 }
 
 .mode-windows1 {
+  --background: #000000;
+  --foreground: #ffffff;
+  --panel: #000000;
+  --panel-strong: #000000;
+  --muted: #ffffff;
+  --soft: #111111;
+  --line: #ffffff;
+  --accent: #ffffff;
+  --accent-2: #aaaaaa;
+  --accent-3: #ffffff;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.theme-light.mode-windows1 {
   --background: #ffffff;
   --foreground: #000000;
   --panel: #ffffff;
@@ -984,7 +1297,6 @@ a.contact-card:focus-visible {
   --accent: #000000;
   --accent-2: #777777;
   --accent-3: #000000;
-  font-family: var(--font-geist-mono), monospace;
 }
 
 .mode-windows1 .grid-layer,
@@ -1002,36 +1314,37 @@ a.contact-card:focus-visible {
 .mode-windows1 .button-primary,
 .mode-windows1 .button-secondary,
 .mode-windows1 .icon-button,
-.mode-windows1 .control-select select {
-  border: 2px solid #000;
-  box-shadow: 5px 5px 0 #000;
+.mode-windows1 .custom-select-trigger,
+.mode-windows1 .custom-select-menu {
+  border: 2px solid var(--line);
+  box-shadow: 5px 5px 0 color-mix(in srgb, var(--line) 88%, transparent);
 }
 
 .mode-windows1 .window-bar,
 .mode-windows1 .browser-bar {
-  background: #000;
-  color: #fff;
+  background: var(--foreground);
+  color: var(--background);
 }
 
 .mode-windows1 .window-bar strong,
 .mode-windows1 .browser-bar code {
-  color: #fff;
+  color: var(--background);
 }
 
 .mode-windows1 .window-bar span,
 .mode-windows1 .browser-bar span {
-  border: 1px solid #fff;
-  background: #000;
+  border: 1px solid var(--background);
+  background: var(--foreground);
 }
 
 .mode-windows1 .button-primary {
-  background: #000;
-  color: #fff;
+  background: var(--foreground);
+  color: var(--background);
 }
 
 .mode-windows1 .logo-mark {
-  background: #fff;
-  color: #000;
+  background: var(--panel-strong);
+  color: var(--foreground);
 }
 
 @media (max-width: 1080px) {
@@ -1144,9 +1457,16 @@ a.contact-card:focus-visible {
     text-align: center;
   }
 
-  .control-select select,
+  .custom-select,
+  .custom-select-trigger,
   .button-primary,
   .button-secondary {
+    width: 100%;
+  }
+
+  .custom-select-menu {
+    left: 0;
+    right: auto;
     width: 100%;
   }
 

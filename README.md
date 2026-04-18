@@ -39,6 +39,9 @@ Interactive developer portfolio with modern, retro, and Windows 1-inspired desig
 - Real project previews for:
   - Freio
   - GorillaType
+- Custom-designed language and design-mode controls
+- Scroll-triggered section reveals and animated project preview treatments
+- Floating scroll-to-top control
 - Keyboard shortcuts for visual modes:
   - `1` Modern
   - `2` 1980s
@@ -81,6 +84,8 @@ src/
     utils.ts
 public/
   cv/
+    danila-anikin-cv.html
+    danila-anikin-cv.pdf
   logo.svg
   projects/
     freio.png
@@ -121,13 +126,19 @@ npm run build
 
 ## CV File
 
-Add the CV PDF here:
+The polished CV PDF is available here:
 
 ```txt
 public/cv/danila-anikin-cv.pdf
 ```
 
-The portfolio already links to that path from the hero section.
+The editable source for the PDF is:
+
+```txt
+public/cv/danila-anikin-cv.html
+```
+
+The portfolio links to the PDF from the hero section.
 
 ## Content Editing
 

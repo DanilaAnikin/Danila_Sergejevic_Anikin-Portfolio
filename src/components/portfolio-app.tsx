@@ -8,6 +8,7 @@ import {
   ArrowUpRight,
   BriefcaseBusiness,
   Check,
+  ChevronDown,
   ChevronRight,
   FileDown,
   Globe2,
@@ -15,6 +16,7 @@ import {
   Moon,
   Sparkles,
   Sun,
+  ArrowUp,
 } from "lucide-react";
 import {
   capabilityIcons,
@@ -62,6 +64,7 @@ export function PortfolioApp() {
   });
   const { resolvedTheme, setTheme } = useTheme();
   const shouldReduceMotion = useReducedMotion();
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const updateLanguage = useCallback((nextLanguage: Language) => {
     setLanguage(nextLanguage);
@@ -93,6 +96,16 @@ export function PortfolioApp() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [updateVisualMode]);
 
+  useEffect(() => {
+    function handleScroll() {
+      setShowScrollTop(window.scrollY > 560);
+    }
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const copy = translations[language];
   const activeMode = useMemo(
     () => visualModes.find((mode) => mode.id === visualMode) ?? visualModes[0],
@@ -117,6 +130,8 @@ export function PortfolioApp() {
 
         <Hero copy={copy} activeMode={activeMode} reduceMotion={shouldReduceMotion ?? false} />
 
+        <CapabilityMarquee reduceMotion={shouldReduceMotion ?? false} />
+
         <ModeDeck visualMode={visualMode} setVisualMode={updateVisualMode} copy={copy} />
 
         <ProjectSection copy={copy} reduceMotion={shouldReduceMotion ?? false} />
@@ -127,6 +142,21 @@ export function PortfolioApp() {
 
         <ContactSection copy={copy} />
       </div>
+
+      {showScrollTop ? (
+        <motion.button
+          className="scroll-top-button"
+          type="button"
+          aria-label="Scroll to top"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+          animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+          exit={shouldReduceMotion ? undefined : { opacity: 0, y: 18 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <ArrowUp size={18} />
+          <span>Top</span>
+        </motion.button>
+      ) : null}
     </main>
   );
 }
@@ -171,27 +201,28 @@ function Header({
       </nav>
 
       <div className="header-controls">
-        <label className="control-select">
-          <span>{copy.languageLabel}</span>
-          <select value={language} onChange={(event) => setLanguage(event.target.value as Language)}>
-            {languages.map((item) => (
-              <option key={item.code} value={item.code}>
-                {item.native}
-              </option>
-            ))}
-          </select>
-        </label>
+        <CustomSelect
+          label={copy.languageLabel}
+          value={language}
+          options={languages.map((item) => ({
+            value: item.code,
+            label: item.native,
+            meta: item.label,
+          }))}
+          onChange={(value) => setLanguage(value as Language)}
+        />
 
-        <label className="control-select mode-select">
-          <span>{copy.modeLabel}</span>
-          <select value={visualMode} onChange={(event) => setVisualMode(event.target.value as VisualMode)}>
-            {visualModes.map((mode) => (
-              <option key={mode.id} value={mode.id}>
-                {mode.label}
-              </option>
-            ))}
-          </select>
-        </label>
+        <CustomSelect
+          label={copy.modeLabel}
+          value={visualMode}
+          options={visualModes.map((mode) => ({
+            value: mode.id,
+            label: mode.label,
+            meta: mode.short,
+          }))}
+          onChange={(value) => setVisualMode(value as VisualMode)}
+          wide
+        />
 
         <button
           className="icon-button"
@@ -203,6 +234,70 @@ function Header({
         </button>
       </div>
     </header>
+  );
+}
+
+function CustomSelect({
+  label,
+  value,
+  options,
+  onChange,
+  wide = false,
+}: {
+  label: string;
+  value: string;
+  options: Array<{ value: string; label: string; meta: string }>;
+  onChange: (value: string) => void;
+  wide?: boolean;
+}) {
+  const [open, setOpen] = useState(false);
+  const selected = options.find((option) => option.value === value) ?? options[0];
+
+  return (
+    <div className={cn("custom-select", wide && "wide")} onBlur={() => setOpen(false)}>
+      <span>{label}</span>
+      <button
+        className="custom-select-trigger"
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpen((current) => !current)}
+      >
+        <span>
+          <strong>{selected.label}</strong>
+          <small>{selected.meta}</small>
+        </span>
+        <ChevronDown size={16} />
+      </button>
+
+      {open ? (
+        <motion.div
+          className="custom-select-menu"
+          role="listbox"
+          initial={{ opacity: 0, y: 8, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.16, ease: "easeOut" }}
+        >
+          {options.map((option) => (
+            <button
+              type="button"
+              role="option"
+              aria-selected={option.value === value}
+              className={cn(option.value === value && "is-selected")}
+              key={option.value}
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => {
+                onChange(option.value);
+                setOpen(false);
+              }}
+            >
+              <span>{option.label}</span>
+              <small>{option.meta}</small>
+            </button>
+          ))}
+        </motion.div>
+      ) : null}
+    </div>
   );
 }
 
@@ -274,6 +369,50 @@ function Hero({
           <span>$</span>
           <code>run portfolio --mode={activeMode.id} --city=prague</code>
         </div>
+
+        <div className="code-rain" aria-hidden="true">
+          {["model.pipeline()", "docker compose up", "git push origin main", "systemctl status ai"].map(
+            (line, index) => (
+              <motion.span
+                key={line}
+                animate={{ x: ["0%", "-8%", "0%"], opacity: [0.42, 0.88, 0.42] }}
+                transition={{ duration: 5 + index, repeat: Infinity, ease: "easeInOut" }}
+              >
+                {line}
+              </motion.span>
+            ),
+          )}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+function CapabilityMarquee({ reduceMotion }: { reduceMotion: boolean }) {
+  const items = [
+    "AI engineering",
+    "Automation systems",
+    "Linux administration",
+    "DevOps delivery",
+    "Full-stack software",
+    "Applied product work",
+    "Infrastructure",
+    "Clean interfaces",
+  ];
+
+  return (
+    <section className="capability-marquee" aria-label="Capabilities">
+      <motion.div
+        className="marquee-track"
+        animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
+        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+      >
+        {[...items, ...items].map((item, index) => (
+          <span key={`${item}-${index}`}>
+            <Sparkles size={15} />
+            {item}
+          </span>
+        ))}
       </motion.div>
     </section>
   );
@@ -289,7 +428,7 @@ function ModeDeck({
   copy: (typeof translations)[Language];
 }) {
   return (
-    <section className="mode-deck" aria-label={copy.modeLabel}>
+    <Reveal as="section" className="mode-deck" aria-label={copy.modeLabel}>
       <div className="section-heading compact">
         <p className="eyebrow">{copy.modeLabel}</p>
         <h2>{copy.command}</h2>
@@ -310,7 +449,7 @@ function ModeDeck({
           </button>
         ))}
       </div>
-    </section>
+    </Reveal>
   );
 }
 
@@ -322,7 +461,7 @@ function ProjectSection({
   reduceMotion: boolean;
 }) {
   return (
-    <section className="content-section" id="projects">
+    <Reveal as="section" className="content-section" id="projects">
       <div className="section-heading">
         <p className="eyebrow">Portfolio</p>
         <h2>{copy.projectsTitle}</h2>
@@ -355,6 +494,11 @@ function ProjectSection({
                 sizes="(max-width: 900px) 100vw, 50vw"
                 priority={index === 0}
               />
+              <span className="preview-shine" />
+              <div className="preview-badge">
+                <span>{copy.openProject}</span>
+                <ArrowUpRight size={14} />
+              </div>
             </div>
 
             <div className="project-body">
@@ -374,13 +518,13 @@ function ProjectSection({
           </motion.a>
         ))}
       </div>
-    </section>
+    </Reveal>
   );
 }
 
 function SkillsSection({ copy }: { copy: (typeof translations)[Language] }) {
   return (
-    <section className="content-section" id="skills">
+    <Reveal as="section" className="content-section" id="skills">
       <div className="section-heading">
         <p className="eyebrow">Stack</p>
         <h2>{copy.skillsTitle}</h2>
@@ -392,7 +536,12 @@ function SkillsSection({ copy }: { copy: (typeof translations)[Language] }) {
           const Icon = group.icon;
 
           return (
-            <article className="skill-card" key={group.title}>
+            <motion.article
+              className="skill-card"
+              key={group.title}
+              whileHover={{ y: -4, borderColor: "var(--accent)" }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+            >
               <div className="skill-title">
                 <Icon size={22} />
                 <h3>{group.title}</h3>
@@ -405,17 +554,17 @@ function SkillsSection({ copy }: { copy: (typeof translations)[Language] }) {
                   </span>
                 ))}
               </div>
-            </article>
+            </motion.article>
           );
         })}
       </div>
-    </section>
+    </Reveal>
   );
 }
 
 function TimelineSection({ copy }: { copy: (typeof translations)[Language] }) {
   return (
-    <section className="content-section" id="timeline">
+    <Reveal as="section" className="content-section" id="timeline">
       <div className="section-heading">
         <p className="eyebrow">Education</p>
         <h2>{copy.timelineTitle}</h2>
@@ -424,22 +573,29 @@ function TimelineSection({ copy }: { copy: (typeof translations)[Language] }) {
 
       <div className="timeline">
         {copy.timeline.map(([title, text], index) => (
-          <article className="timeline-item" key={`${title}-${index}`}>
+          <motion.article
+            className="timeline-item"
+            key={`${title}-${index}`}
+            initial={{ opacity: 0, x: index % 2 === 0 ? -28 : 28 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.38, ease: "easeOut" }}
+          >
             <span className="timeline-index">{String(index + 1).padStart(2, "0")}</span>
             <div>
               <h3>{title}</h3>
               <p>{text}</p>
             </div>
-          </article>
+          </motion.article>
         ))}
       </div>
-    </section>
+    </Reveal>
   );
 }
 
 function ContactSection({ copy }: { copy: (typeof translations)[Language] }) {
   return (
-    <section className="contact-section" id="contact">
+    <Reveal as="section" className="contact-section" id="contact">
       <div>
         <p className="eyebrow">Contact</p>
         <h2>{copy.contactTitle}</h2>
@@ -467,16 +623,48 @@ function ContactSection({ copy }: { copy: (typeof translations)[Language] }) {
           );
         })}
       </div>
-    </section>
+    </Reveal>
   );
 }
 
 function LogoMark({ large = false }: { large?: boolean }) {
   return (
     <span className={cn("logo-mark", large && "large")} aria-hidden="true">
-      <span>D</span>
-      <span>A</span>
+      <svg viewBox="0 0 96 96" focusable="false">
+        <path className="logo-track" d="M24 73V23h23c17 0 28 10 28 25S64 73 47 73H24Z" />
+        <path className="logo-core" d="M35 62V34h12c10 0 16 5 16 14s-6 14-16 14H35Z" />
+        <path className="logo-signal" d="M54 74 72 22l18 52" />
+        <path className="logo-signal thin" d="M62 58h20" />
+      </svg>
     </span>
+  );
+}
+
+function Reveal({
+  as = "div",
+  className,
+  children,
+  ...props
+}: {
+  as?: "div" | "section";
+  className?: string;
+  children: React.ReactNode;
+  id?: string;
+  "aria-label"?: string;
+}) {
+  const Component = motion[as];
+
+  return (
+    <Component
+      className={className}
+      initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: false, amount: 0.16 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      {...props}
+    >
+      {children}
+    </Component>
   );
 }
 
