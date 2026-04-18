@@ -1177,8 +1177,7 @@ img {
   border-color: color-mix(in srgb, var(--accent) 72%, var(--line));
 }
 
-.proof-mode .project-card::after,
-.proof-mode .experience-card::after {
+.proof-mode .project-card::after {
   position: absolute;
   top: 10px;
   right: 10px;
