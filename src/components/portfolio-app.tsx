@@ -374,8 +374,8 @@ function Hero({
         animate: { x: 0, opacity: 1 },
       }
     : {
-        initial: { y: 24, opacity: 0.24, filter: "blur(7px)" },
-        animate: { y: 0, opacity: 1, filter: "blur(0px)" },
+        initial: { y: 24, opacity: 1 },
+        animate: { y: 0, opacity: 1 },
       };
 
   useEffect(() => {
@@ -398,7 +398,6 @@ function Hero({
         <div className="role-rotator" aria-live="polite">
           <span>{copy.subtitle}</span>
           <span className="role-window">
-            <span className="role-static">{activeRole}</span>
             <motion.strong
               key={activeRole}
               initial={reduceMotion ? false : roleMotion.initial}

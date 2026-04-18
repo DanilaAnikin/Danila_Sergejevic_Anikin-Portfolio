@@ -865,7 +865,6 @@ img {
   display: none;
 }
 
-.role-static,
 .role-window strong {
   position: relative;
   z-index: 1;
@@ -877,11 +876,6 @@ img {
   line-height: 1.1;
   overflow-wrap: anywhere;
   text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 28%, transparent);
-}
-
-.role-static {
-  grid-area: 1 / 1;
-  opacity: 0.76;
 }
 
 .role-window strong {
