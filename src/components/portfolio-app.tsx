@@ -200,7 +200,7 @@ function Header({
 }) {
   return (
     <header className="site-header">
-      <a className="brand" href="#profile" aria-label="Danila Sergejevic Anikin">
+      <a className="brand" href="#profile" aria-label="Danila Sergejevič Anikin">
         <LogoMark />
         <span>
           <strong>Danila</strong>

@@ -4,7 +4,7 @@ export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Danila Sergejevic Anikin",
+    name: "Danila Sergejevič Anikin",
     alternateName: "Danila Sergejevič Anikin",
     jobTitle: [
       "Software Developer",

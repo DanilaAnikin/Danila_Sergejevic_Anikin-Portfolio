@@ -1,6 +1,6 @@
-# Danila Sergejevic Anikin Portfolio
+# Danila Sergejevič Anikin Portfolio
 
-Interactive developer portfolio for Danila Sergejevic Anikin, a Prague-based software developer focused on AI engineering, automation, Linux systems, DevOps, and modern web applications.
+Interactive developer portfolio for Danila Sergejevič Anikin, a Prague-based software developer focused on AI engineering, automation, Linux systems, DevOps, and modern web applications.
 
 The site is built as a single polished portfolio experience with multilingual content, dark/light themes, real project previews, and multiple visual modes inspired by different eras of computing and web design.
 
@@ -199,4 +199,4 @@ The Windows 1 mode is a custom Windows 1-inspired interface. It avoids using pro
 
 ## License
 
-Personal portfolio project. All personal content and project previews belong to Danila Sergejevic Anikin unless stated otherwise.
+Personal portfolio project. All personal content and project previews belong to Danila Sergejevič Anikin unless stated otherwise.

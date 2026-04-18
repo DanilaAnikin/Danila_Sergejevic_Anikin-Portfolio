@@ -5,22 +5,22 @@ import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://danila-sergejevic-anikin-portfolio.vercel.app"),
   title: {
-    default: "Danila Sergejevic Anikin | Software Developer & AI Engineer",
-    template: "%s | Danila Sergejevic Anikin",
+    default: "Danila Sergejevič Anikin | Software Developer & AI Engineer",
+    template: "%s | Danila Sergejevič Anikin",
   },
   description:
-    "Interactive portfolio of Danila Sergejevic Anikin, a Prague-based software developer focused on AI engineering, automation, Linux systems, DevOps, and modern web applications.",
+    "Interactive portfolio of Danila Sergejevič Anikin, a Prague-based software developer focused on AI engineering, automation, Linux systems, DevOps, and modern web applications.",
   keywords: [
     "Danila Anikin",
     "Software Developer",
@@ -30,20 +30,20 @@ export const metadata: Metadata = {
     "Prague developer",
     "portfolio",
   ],
-  authors: [{ name: "Danila Sergejevic Anikin" }],
-  creator: "Danila Sergejevic Anikin",
+  authors: [{ name: "Danila Sergejevič Anikin" }],
+  creator: "Danila Sergejevič Anikin",
   openGraph: {
-    title: "Danila Sergejevic Anikin | Software Developer & AI Engineer",
+    title: "Danila Sergejevič Anikin | Software Developer & AI Engineer",
     description:
       "AI engineering, automation, Linux systems, DevOps, and modern web software from Prague.",
     url: "https://danila-sergejevic-anikin-portfolio.vercel.app",
-    siteName: "Danila Sergejevic Anikin Portfolio",
+    siteName: "Danila Sergejevič Anikin Portfolio",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Danila Sergejevic Anikin | Software Developer & AI Engineer",
+    title: "Danila Sergejevič Anikin | Software Developer & AI Engineer",
     description:
       "Interactive developer portfolio with modern, retro, and Windows 1-inspired design modes.",
   },
