@@ -155,7 +155,7 @@ export const experience = [
     stack: ["React", "TypeScript", "Node.js", "Product UX"],
   },
   {
-    company: "DENEWY / juno.one",
+    company: "DENEVY / juno.one",
     role: "Frontend Developer",
     kind: "Product frontend",
     points: [
@@ -433,7 +433,7 @@ export const cvFilters = [
     id: "frontend",
     label: "Frontend",
     summary: "Modern UI engineering, TypeScript components, product surfaces, and interactive app flows.",
-    experience: ["Freelance", "DENEWY / juno.one"],
+    experience: ["Freelance", "DENEVY / juno.one"],
     skills: ["TypeScript", "React", "Next.js", "Components", "Product UX", "Interface quality"],
   },
   {
@@ -447,7 +447,7 @@ export const cvFilters = [
     id: "product",
     label: "Product",
     summary: "Selected projects, client delivery, product decisions, UX clarity, and shipping discipline.",
-    experience: ["Freelance", "DENEWY / juno.one"],
+    experience: ["Freelance", "DENEVY / juno.one"],
     skills: ["Freio", "GorillaType", "Product UX", "Requirements", "Delivery", "Maintainability"],
   },
   {

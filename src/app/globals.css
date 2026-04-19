@@ -2946,8 +2946,7 @@ a.contact-card:focus-visible {
     border-bottom: 0;
   }
 
-  .architecture-intro,
-  .proof-toggle {
+  .architecture-intro {
     align-items: stretch;
     flex-direction: column;
   }
@@ -2955,6 +2954,12 @@ a.contact-card:focus-visible {
   .architecture-intro a,
   .proof-toggle {
     width: 100%;
+  }
+
+  .proof-toggle {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .terminal-command-list,
