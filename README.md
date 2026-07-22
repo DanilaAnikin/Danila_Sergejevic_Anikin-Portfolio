@@ -29,7 +29,7 @@ Interactive AI-era developer portfolio with multilingual content, proof mode, pr
   - Windows 1-inspired desktop
 - Mode-specific hero showcase on the right side of the hero section
 - Animated rotating role text
-- Selected project previews for Freio and GorillaType
+- Selected project previews for Ripieno, Freio, Lokwave, the NicheLocal suite, GorillaType, and Daylink
 - System status dashboard
 - AI portfolio lab with local prompt matching
 - Terminal mode with portfolio commands
@@ -99,6 +99,8 @@ An evidence-first toggle that surfaces proof signals such as:
 
 System-style breakdowns for:
 
+- Ripieno
+- Lokwave
 - Freio
 - GorillaType
 
@@ -128,6 +130,14 @@ An interactive graph connecting:
 
 ## Selected Projects
 
+### Ripieno
+
+```txt
+https://www.ripieno.xyz/
+```
+
+Commercial multi-agent AI orchestration platform that turns a project brief into a production-ready GitHub repository, with an evaluation harness, per-role model selection, quality gates, and live cost metering.
+
 ### Freio
 
 ```txt
@@ -136,6 +146,23 @@ https://www.freio.cz/
 
 EdTech platform for entrance-exam and SCIO preparation with realistic tests, instant evaluation, student onboarding, analytics, and product flow.
 
+### Lokwave
+
+```txt
+https://www.lokwave.cz/
+```
+
+One multi-tenant engine for local visibility: AI-managed Google Business profiles, review responses, posts, and daily rank tracking behind the whole NicheLocal family.
+
+### NicheLocal Suite
+
+```txt
+https://dentallocal.cz/  https://autolocal.cz/  https://vetlocal.cz/
+https://bistrolocal.cz/  https://salonlocal.cz/ https://fitlocal.cz/
+```
+
+Six vertical SaaS brands on the Lokwave engine, each an AI Google-profile manager tailored to one Czech industry.
+
 ### GorillaType
 
 ```txt
@@ -143,6 +170,14 @@ https://gorilla-type-orpin.vercel.app/
 ```
 
 Typing-speed application with practice modes, settings, leaderboards, tournaments, clans, accounts, and competitive product mechanics.
+
+### Daylink
+
+```txt
+https://github.com/DanilaAnikin/Daylink_android_app
+```
+
+Android AI voice assistant with offline text-to-speech and AES-256-GCM encrypted data, built in Kotlin (Jetpack Compose, MVVM) as a secondary-school thesis project.
 
 ## Tech Stack
 

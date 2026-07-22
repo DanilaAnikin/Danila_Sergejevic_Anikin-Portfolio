@@ -21,7 +21,7 @@ export default function Home() {
     url: "https://danila-sergejevic-anikin-portfolio.vercel.app",
     sameAs: [
       "https://github.com/DanilaAnikin",
-      "https://linkedin.com/danila-anikin",
+      "https://www.linkedin.com/in/danila-anikin-7aa950258",
       "https://instagram.com/danila.s.anikin",
     ],
     email: "mailto:danila.s.anikin@gmail.com",

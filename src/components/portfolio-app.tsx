@@ -49,6 +49,7 @@ import {
   systemSignals,
   terminalCommands,
   translations,
+  uiText,
   visualModes,
   type Language,
   type VisualMode,
@@ -180,35 +181,36 @@ export function PortfolioApp() {
           copy={copy}
         />
 
-        <Hero copy={copy} visualMode={visualMode} reduceMotion={shouldReduceMotion ?? false} />
+        <Hero copy={copy} language={language} visualMode={visualMode} reduceMotion={shouldReduceMotion ?? false} />
 
-        <CapabilityMarquee reduceMotion={shouldReduceMotion ?? false} />
+        <CapabilityMarquee language={language} reduceMotion={shouldReduceMotion ?? false} />
 
-        <SystemDashboard reduceMotion={shouldReduceMotion ?? false} />
+        <SystemDashboard language={language} reduceMotion={shouldReduceMotion ?? false} />
 
         <ModeDeck visualMode={visualMode} setVisualMode={updateVisualMode} copy={copy} />
 
         <PortfolioLab
+          language={language}
           proofMode={proofMode}
           setProofMode={setProofMode}
           reduceMotion={shouldReduceMotion ?? false}
         />
 
-        <ProjectSection copy={copy} reduceMotion={shouldReduceMotion ?? false} />
+        <ProjectSection copy={copy} language={language} reduceMotion={shouldReduceMotion ?? false} />
 
-        <ArchitectureSection reduceMotion={shouldReduceMotion ?? false} />
+        <ArchitectureSection language={language} reduceMotion={shouldReduceMotion ?? false} />
 
-        <ExperienceSection copy={copy} reduceMotion={shouldReduceMotion ?? false} />
+        <ExperienceSection copy={copy} language={language} reduceMotion={shouldReduceMotion ?? false} />
 
-        <InteractiveCvSection reduceMotion={shouldReduceMotion ?? false} />
+        <InteractiveCvSection language={language} reduceMotion={shouldReduceMotion ?? false} />
 
-        <SkillGraphSection reduceMotion={shouldReduceMotion ?? false} />
+        <SkillGraphSection language={language} reduceMotion={shouldReduceMotion ?? false} />
 
-        <SkillsSection copy={copy} />
+        <SkillsSection copy={copy} language={language} />
 
-        <TimelineSection copy={copy} />
+        <TimelineSection copy={copy} language={language} />
 
-        <ContactSection copy={copy} />
+        <ContactSection copy={copy} language={language} />
       </div>
 
       {showScrollTop ? (
@@ -222,7 +224,7 @@ export function PortfolioApp() {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <ArrowUp size={18} />
-          <span>Top</span>
+          <span>{uiText.top[language]}</span>
         </motion.button>
       ) : null}
     </main>
@@ -368,10 +370,12 @@ function CustomSelect({
 
 function Hero({
   copy,
+  language,
   visualMode,
   reduceMotion,
 }: {
   copy: (typeof translations)[Language];
+  language: Language;
   visualMode: VisualMode;
   reduceMotion: boolean;
 }) {
@@ -435,15 +439,17 @@ function Hero({
         <p className="cv-note">{copy.cvNote}</p>
       </div>
 
-      <HeroShowcase visualMode={visualMode} reduceMotion={reduceMotion} />
+      <HeroShowcase language={language} visualMode={visualMode} reduceMotion={reduceMotion} />
     </section>
   );
 }
 
 function HeroShowcase({
+  language,
   visualMode,
   reduceMotion,
 }: {
+  language: Language;
   visualMode: VisualMode;
   reduceMotion: boolean;
 }) {
@@ -458,17 +464,17 @@ function HeroShowcase({
       transition={{ duration: 0.5, ease: "easeOut" }}
       aria-label={`${visualMode} hero panel`}
     >
-      {visualMode === "modern" ? <ModernHeroPanel reduceMotion={reduceMotion} /> : null}
+      {visualMode === "modern" ? <ModernHeroPanel language={language} reduceMotion={reduceMotion} /> : null}
       {visualMode === "1980s" ? <EightiesHeroPanel reduceMotion={reduceMotion} /> : null}
-      {visualMode === "1990s" ? <NinetiesHeroPanel /> : null}
-      {visualMode === "2000s" ? <TwoThousandsHeroPanel reduceMotion={reduceMotion} /> : null}
-      {visualMode === "2010s" ? <TwentyTensHeroPanel /> : null}
+      {visualMode === "1990s" ? <NinetiesHeroPanel language={language} /> : null}
+      {visualMode === "2000s" ? <TwoThousandsHeroPanel language={language} reduceMotion={reduceMotion} /> : null}
+      {visualMode === "2010s" ? <TwentyTensHeroPanel language={language} /> : null}
       {visualMode === "windows1" ? <WindowsOneHeroPanel /> : null}
     </motion.div>
   );
 }
 
-function ModernHeroPanel({ reduceMotion }: { reduceMotion: boolean }) {
+function ModernHeroPanel({ language, reduceMotion }: { language: Language; reduceMotion: boolean }) {
   return (
     <div className="hero-console">
       <div className="lab-window-bar">
@@ -481,26 +487,26 @@ function ModernHeroPanel({ reduceMotion }: { reduceMotion: boolean }) {
         <div className="console-status">
           <LayoutDashboard size={20} />
           <div>
-            <small>Live engineering console</small>
+            <small>{uiText.consoleKicker[language]}</small>
             <strong>AI / DevOps / Software</strong>
           </div>
         </div>
         <div className="console-grid">
-          {["AI workflows", "Linux systems", "Deployments", "Product UI"].map((item, index) => (
+          {uiText.consoleItems.map((item, index) => (
             <motion.span
-              key={item}
+              key={item.en}
               animate={reduceMotion ? undefined : { opacity: [0.62, 1, 0.62] }}
               transition={{ duration: 2.4, delay: index * 0.28, repeat: Infinity, ease: "easeInOut" }}
             >
               <Check size={14} />
-              {item}
+              {item[language]}
             </motion.span>
           ))}
         </div>
         <div className="console-command">
           <code>$ run portfolio --proof --mode=modern</code>
           <a href="#lab">
-            Open lab
+            {uiText.openLab[language]}
             <ArrowUpRight size={15} />
           </a>
         </div>
@@ -535,12 +541,12 @@ function EightiesHeroPanel({ reduceMotion }: { reduceMotion: boolean }) {
   );
 }
 
-function NinetiesHeroPanel() {
+function NinetiesHeroPanel({ language }: { language: Language }) {
   return (
     <div className="web-directory">
       <div className="web-directory-title">
-        <strong>Danila&apos;s Web Engineering Index</strong>
-        <small>Best viewed with ambition</small>
+        <strong>{uiText.ninetiesTitle[language]}</strong>
+        <small>{uiText.ninetiesTagline[language]}</small>
       </div>
       <div className="directory-links">
         {["AI.htm", "LINUX.htm", "PROJECTS.htm", "CV.pdf"].map((item) => (
@@ -558,7 +564,7 @@ function NinetiesHeroPanel() {
   );
 }
 
-function TwoThousandsHeroPanel({ reduceMotion }: { reduceMotion: boolean }) {
+function TwoThousandsHeroPanel({ language, reduceMotion }: { language: Language; reduceMotion: boolean }) {
   return (
     <div className="glossy-launcher">
       <div className="launcher-tabs">
@@ -569,8 +575,8 @@ function TwoThousandsHeroPanel({ reduceMotion }: { reduceMotion: boolean }) {
       <div className="launcher-core">
         <Rocket size={34} />
         <div>
-          <small>Product launch panel</small>
-          <strong>Freio + GorillaType + automation</strong>
+          <small>{uiText.launchKicker[language]}</small>
+          <strong>Ripieno + Lokwave + Freio</strong>
         </div>
       </div>
       <motion.div
@@ -580,20 +586,20 @@ function TwoThousandsHeroPanel({ reduceMotion }: { reduceMotion: boolean }) {
       />
       <div className="launcher-badges">
         <span>Web 2.0</span>
-        <span>Fast</span>
-        <span>Shipped</span>
+        <span>{uiText.launchBadgeFast[language]}</span>
+        <span>{uiText.launchBadgeShipped[language]}</span>
       </div>
     </div>
   );
 }
 
-function TwentyTensHeroPanel() {
+function TwentyTensHeroPanel({ language }: { language: Language }) {
   return (
     <div className="flat-dashboard">
       <div className="flat-card primary">
         <Activity size={22} />
-        <span>Delivery</span>
-        <strong>Production-ready</strong>
+        <span>{uiText.flatDelivery[language]}</span>
+        <strong>{uiText.flatReady[language]}</strong>
       </div>
       <div className="flat-bars">
         {["AI", "Web", "Linux", "DevOps"].map((item, index) => (
@@ -604,9 +610,9 @@ function TwentyTensHeroPanel() {
         ))}
       </div>
       <div className="flat-stat-row">
-        <span>2 projects</span>
-        <span>5 roles</span>
-        <span>6 languages</span>
+        <span>{`${projects.length} ${uiText.flatProjects[language]}`}</span>
+        <span>{uiText.flatRoles[language]}</span>
+        <span>{uiText.flatLanguages[language]}</span>
       </div>
     </div>
   );
@@ -637,16 +643,18 @@ function WindowsOneHeroPanel() {
 
 function ExperienceSection({
   copy,
+  language,
   reduceMotion,
 }: {
   copy: (typeof translations)[Language];
+  language: Language;
   reduceMotion: boolean;
 }) {
   return (
     <Reveal as="section" className="content-section experience-section" id="experience">
       <div className="section-heading split-heading">
         <div>
-          <p className="eyebrow">CV signal</p>
+          <p className="eyebrow">{uiText.experienceEyebrow[language]}</p>
           <h2>{copy.experienceTitle}</h2>
         </div>
         <p>{copy.experienceIntro}</p>
@@ -665,18 +673,18 @@ function ExperienceSection({
           >
             <div className="experience-topline">
               <span>{String(index + 1).padStart(2, "0")}</span>
-              <small>{item.kind}</small>
+              <small>{item.kind[language]}</small>
             </div>
             <div className="experience-title">
               <Layers3 size={22} />
               <div>
                 <h3>{item.company}</h3>
-                <p>{item.role}</p>
+                <p>{item.role[language]}</p>
               </div>
             </div>
             <ul>
               {item.points.map((point) => (
-                <li key={point}>{point}</li>
+                <li key={point.en}>{point[language]}</li>
               ))}
             </ul>
             <div className="tag-row">
@@ -691,17 +699,8 @@ function ExperienceSection({
   );
 }
 
-function CapabilityMarquee({ reduceMotion }: { reduceMotion: boolean }) {
-  const items = [
-    "AI engineering",
-    "Automation systems",
-    "Linux administration",
-    "DevOps delivery",
-    "Full-stack software",
-    "Applied product work",
-    "Infrastructure",
-    "Clean interfaces",
-  ];
+function CapabilityMarquee({ language, reduceMotion }: { language: Language; reduceMotion: boolean }) {
+  const items = uiText.marquee.map((item) => item[language]);
 
   return (
     <section className="capability-marquee" aria-label="Capabilities">
@@ -756,14 +755,14 @@ function ModeDeck({
   );
 }
 
-function SystemDashboard({ reduceMotion }: { reduceMotion: boolean }) {
+function SystemDashboard({ language, reduceMotion }: { language: Language; reduceMotion: boolean }) {
   const icons = [LayoutDashboard, Rocket, Activity, Globe2];
 
   return (
     <Reveal as="section" className="system-dashboard" id="system" aria-label="System status dashboard">
       <div className="section-heading compact">
-        <p className="eyebrow">System status</p>
-        <h2>Portfolio running as a live engineering surface.</h2>
+        <p className="eyebrow">{uiText.systemEyebrow[language]}</p>
+        <h2>{uiText.systemTitle[language]}</h2>
       </div>
 
       <div className="status-grid">
@@ -773,7 +772,7 @@ function SystemDashboard({ reduceMotion }: { reduceMotion: boolean }) {
           return (
             <motion.article
               className="status-card"
-              key={signal.label}
+              key={signal.label.en}
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.3 }}
@@ -782,9 +781,9 @@ function SystemDashboard({ reduceMotion }: { reduceMotion: boolean }) {
               <div className="status-icon">
                 <Icon size={21} />
               </div>
-              <span>{signal.label}</span>
-              <strong>{signal.value}</strong>
-              <p>{signal.detail}</p>
+              <span>{signal.label[language]}</span>
+              <strong>{signal.value[language]}</strong>
+              <p>{signal.detail[language]}</p>
             </motion.article>
           );
         })}
@@ -794,10 +793,12 @@ function SystemDashboard({ reduceMotion }: { reduceMotion: boolean }) {
 }
 
 function PortfolioLab({
+  language,
   proofMode,
   setProofMode,
   reduceMotion,
 }: {
+  language: Language;
   proofMode: boolean;
   setProofMode: (value: boolean) => void;
   reduceMotion: boolean;
@@ -806,29 +807,34 @@ function PortfolioLab({
     <Reveal as="section" className="content-section portfolio-lab" id="lab" aria-label="Interactive portfolio lab">
       <div className="section-heading split-heading">
         <div>
-          <p className="eyebrow">AI portfolio lab</p>
-          <h2>Ask, inspect, verify.</h2>
+          <p className="eyebrow">{uiText.labEyebrow[language]}</p>
+          <h2>{uiText.labTitle[language]}</h2>
         </div>
-        <p>
-          A portfolio should behave like software. This section adds a local copilot, terminal commands, and proof-first evidence so teams can inspect the signal faster.
-        </p>
+        <p>{uiText.labIntro[language]}</p>
       </div>
 
       <div className="lab-grid">
-        <CopilotPanel reduceMotion={reduceMotion} />
-        <TerminalPanel reduceMotion={reduceMotion} />
-        <ProofPanel proofMode={proofMode} setProofMode={setProofMode} reduceMotion={reduceMotion} />
+        <CopilotPanel language={language} reduceMotion={reduceMotion} />
+        <TerminalPanel language={language} reduceMotion={reduceMotion} />
+        <ProofPanel language={language} proofMode={proofMode} setProofMode={setProofMode} reduceMotion={reduceMotion} />
       </div>
     </Reveal>
   );
 }
 
-function CopilotPanel({ reduceMotion }: { reduceMotion: boolean }) {
-  const [query, setQuery] = useState(copilotPrompts[0].question);
+function CopilotPanel({ language, reduceMotion }: { language: Language; reduceMotion: boolean }) {
+  const [query, setQuery] = useState(copilotPrompts[0].question[language]);
+  const [prevLanguage, setPrevLanguage] = useState(language);
+
+  if (prevLanguage !== language) {
+    setPrevLanguage(language);
+    setQuery(copilotPrompts[0].question[language]);
+  }
+
   const normalizedQuery = query.trim().toLowerCase();
   const selectedPrompt =
     copilotPrompts.find((prompt) => {
-      const questionMatches = prompt.question.toLowerCase().includes(normalizedQuery);
+      const questionMatches = prompt.question[language].toLowerCase().includes(normalizedQuery);
       const keywordMatches = prompt.keywords.some((keyword) => normalizedQuery.includes(keyword));
 
       return normalizedQuery.length > 1 && (questionMatches || keywordMatches);
@@ -843,8 +849,8 @@ function CopilotPanel({ reduceMotion }: { reduceMotion: boolean }) {
       <div className="lab-panel-header">
         <Bot size={22} />
         <div>
-          <p className="panel-kicker">Local copilot</p>
-          <h3>Portfolio intelligence</h3>
+          <p className="panel-kicker">{uiText.copilotKicker[language]}</p>
+          <h3>{uiText.copilotTitle[language]}</h3>
         </div>
       </div>
 
@@ -853,27 +859,27 @@ function CopilotPanel({ reduceMotion }: { reduceMotion: boolean }) {
         <input
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Ask about AI, DevOps, projects, or experience"
+          placeholder={uiText.copilotPlaceholder[language]}
         />
       </label>
 
       <div className="prompt-row">
         {copilotPrompts.map((prompt) => (
-          <button type="button" key={prompt.question} onClick={() => setQuery(prompt.question)}>
-            {prompt.question}
+          <button type="button" key={prompt.question.en} onClick={() => setQuery(prompt.question[language])}>
+            {prompt.question[language]}
           </button>
         ))}
       </div>
 
       <motion.div
         className="copilot-answer"
-        key={selectedPrompt.question}
+        key={selectedPrompt.question.en}
         initial={reduceMotion ? false : { opacity: 0, y: 12 }}
         animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
         transition={{ duration: 0.22, ease: "easeOut" }}
       >
-        <span>Matched answer</span>
-        <p>{selectedPrompt.answer}</p>
+        <span>{uiText.matchedAnswer[language]}</span>
+        <p>{selectedPrompt.answer[language]}</p>
         <div className="tag-row">
           {selectedPrompt.links.map((link) => (
             <span key={link}>{link}</span>
@@ -884,7 +890,7 @@ function CopilotPanel({ reduceMotion }: { reduceMotion: boolean }) {
   );
 }
 
-function TerminalPanel({ reduceMotion }: { reduceMotion: boolean }) {
+function TerminalPanel({ language, reduceMotion }: { language: Language; reduceMotion: boolean }) {
   const [activeCommand, setActiveCommand] = useState(0);
   const command = terminalCommands[activeCommand];
 
@@ -924,9 +930,9 @@ function TerminalPanel({ reduceMotion }: { reduceMotion: boolean }) {
           transition={{ duration: 0.22, ease: "easeOut" }}
         >
           <span className="terminal-prompt">$ {command.command}</span>
-          <small>{command.description}</small>
+          <small>{command.description[language]}</small>
           {command.output.map((line) => (
-            <p key={line}>{line}</p>
+            <p key={line.en}>{line[language]}</p>
           ))}
         </motion.div>
       </div>
@@ -935,10 +941,12 @@ function TerminalPanel({ reduceMotion }: { reduceMotion: boolean }) {
 }
 
 function ProofPanel({
+  language,
   proofMode,
   setProofMode,
   reduceMotion,
 }: {
+  language: Language;
   proofMode: boolean;
   setProofMode: (value: boolean) => void;
   reduceMotion: boolean;
@@ -952,8 +960,8 @@ function ProofPanel({
       <div className="lab-panel-header">
         <ShieldCheck size={22} />
         <div>
-          <p className="panel-kicker">Proof mode</p>
-          <h3>Evidence overlay</h3>
+          <p className="panel-kicker">{uiText.proofKicker[language]}</p>
+          <h3>{uiText.proofTitle[language]}</h3>
         </div>
       </div>
 
@@ -965,7 +973,7 @@ function ProofPanel({
       >
         <span>
           <Eye size={17} />
-          {proofMode ? "Proof mode active" : "Activate proof mode"}
+          {proofMode ? uiText.proofActive[language] : uiText.proofActivate[language]}
         </span>
         <strong>{proofMode ? "ON" : "OFF"}</strong>
       </button>
@@ -974,15 +982,15 @@ function ProofPanel({
         {proofSignals.map((signal, index) => (
           <motion.div
             className="proof-signal"
-            key={signal.label}
+            key={signal.label.en}
             initial={reduceMotion ? false : { opacity: 0, y: 14 }}
             whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.4 }}
             transition={{ duration: 0.28, delay: index * 0.03, ease: "easeOut" }}
           >
-            <span>{signal.label}</span>
-            <strong>{signal.value}</strong>
-            {proofMode ? <p>{signal.detail}</p> : null}
+            <span>{signal.label[language]}</span>
+            <strong>{signal.value[language]}</strong>
+            {proofMode ? <p>{signal.detail[language]}</p> : null}
             <div className="tag-row">
               {signal.tags.map((tag) => (
                 <span key={tag}>{tag}</span>
@@ -997,15 +1005,17 @@ function ProofPanel({
 
 function ProjectSection({
   copy,
+  language,
   reduceMotion,
 }: {
   copy: (typeof translations)[Language];
+  language: Language;
   reduceMotion: boolean;
 }) {
   return (
     <Reveal as="section" className="content-section" id="projects">
       <div className="section-heading">
-        <p className="eyebrow">Portfolio</p>
+        <p className="eyebrow">{uiText.portfolioEyebrow[language]}</p>
         <h2>{copy.projectsTitle}</h2>
         <p>{copy.projectsIntro}</p>
       </div>
@@ -1044,13 +1054,13 @@ function ProjectSection({
             </div>
 
             <div className="project-body">
-              <p className="project-eyebrow">{project.eyebrow}</p>
+              <p className="project-eyebrow">{project.eyebrow[language]}</p>
               <div className="project-title-row">
                 <h3>{project.title}</h3>
                 <ArrowUpRight size={20} />
               </div>
-              <p>{project.description}</p>
-              <strong>{project.impact}</strong>
+              <p>{project.description[language]}</p>
+              <strong>{project.impact[language]}</strong>
               <div className="tag-row">
                 {project.stack.map((tag) => (
                   <span key={tag}>{tag}</span>
@@ -1064,7 +1074,7 @@ function ProjectSection({
   );
 }
 
-function ArchitectureSection({ reduceMotion }: { reduceMotion: boolean }) {
+function ArchitectureSection({ language, reduceMotion }: { language: Language; reduceMotion: boolean }) {
   const [activeProject, setActiveProject] = useState(0);
   const active = architectureViews[activeProject];
   const layerIcons = [MousePointer2, Database, Server, GitBranch];
@@ -1073,12 +1083,10 @@ function ArchitectureSection({ reduceMotion }: { reduceMotion: boolean }) {
     <Reveal as="section" className="content-section architecture-section" id="architecture" aria-label="Project architecture">
       <div className="section-heading split-heading">
         <div>
-          <p className="eyebrow">Architecture view</p>
-          <h2>Project thinking, not only screenshots.</h2>
+          <p className="eyebrow">{uiText.architectureEyebrow[language]}</p>
+          <h2>{uiText.architectureTitle[language]}</h2>
         </div>
-        <p>
-          The strongest portfolio projects are mapped as systems: user path, core engine, content model, growth layer, and delivery flow.
-        </p>
+        <p>{uiText.architectureIntro[language]}</p>
       </div>
 
       <div className="architecture-shell">
@@ -1107,15 +1115,15 @@ function ArchitectureSection({ reduceMotion }: { reduceMotion: boolean }) {
         >
           <div className="architecture-intro">
             <div>
-              <span>Selected system</span>
+              <span>{uiText.selectedSystem[language]}</span>
               <h3>{active.project}</h3>
             </div>
             <a href={active.href} target="_blank" rel="noreferrer">
-              Open live
+              {uiText.openLive[language]}
               <ArrowUpRight size={15} />
             </a>
           </div>
-          <p>{active.summary}</p>
+          <p>{active.summary[language]}</p>
 
           <div className="architecture-layers">
             {active.layers.map((layer, index) => {
@@ -1124,15 +1132,15 @@ function ArchitectureSection({ reduceMotion }: { reduceMotion: boolean }) {
               return (
                 <motion.article
                   className="architecture-layer"
-                  key={layer.name}
+                  key={layer.name.en}
                   initial={reduceMotion ? false : { opacity: 0, x: -16 }}
                   whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }}
                   viewport={{ once: false, amount: 0.35 }}
                   transition={{ duration: 0.26, delay: index * 0.04, ease: "easeOut" }}
                 >
                   <Icon size={20} />
-                  <h4>{layer.name}</h4>
-                  <p>{layer.detail}</p>
+                  <h4>{layer.name[language]}</h4>
+                  <p>{layer.detail[language]}</p>
                 </motion.article>
               );
             })}
@@ -1140,9 +1148,9 @@ function ArchitectureSection({ reduceMotion }: { reduceMotion: boolean }) {
 
           <div className="architecture-flow">
             {active.flow.map((step, index) => (
-              <span key={step}>
+              <span key={step.en}>
                 <small>{String(index + 1).padStart(2, "0")}</small>
-                {step}
+                {step[language]}
               </span>
             ))}
           </div>
@@ -1158,7 +1166,7 @@ function ArchitectureSection({ reduceMotion }: { reduceMotion: boolean }) {
   );
 }
 
-function InteractiveCvSection({ reduceMotion }: { reduceMotion: boolean }) {
+function InteractiveCvSection({ language, reduceMotion }: { language: Language; reduceMotion: boolean }) {
   const [activeFilter, setActiveFilter] = useState(cvFilters[0].id);
   const selectedFilter = cvFilters.find((filter) => filter.id === activeFilter) ?? cvFilters[0];
   const filteredExperience = experience.filter((item) => selectedFilter.experience.includes(item.company));
@@ -1167,19 +1175,17 @@ function InteractiveCvSection({ reduceMotion }: { reduceMotion: boolean }) {
     <Reveal as="section" className="content-section cv-section" id="cv" aria-label="Interactive CV">
       <div className="section-heading split-heading">
         <div>
-          <p className="eyebrow">Interactive CV</p>
-          <h2>Filter the strongest signal.</h2>
+          <p className="eyebrow">{uiText.cvEyebrow[language]}</p>
+          <h2>{uiText.cvTitle[language]}</h2>
         </div>
-        <p>
-          Recruiters can keep the PDF, while technical readers can filter the experience by AI, frontend, infrastructure, product, or teaching.
-        </p>
+        <p>{uiText.cvIntro[language]}</p>
       </div>
 
       <div className="cv-explorer">
         <div className="cv-sidebar">
           <div className="cv-sidebar-title">
             <Filter size={18} />
-            <span>Choose track</span>
+            <span>{uiText.chooseTrack[language]}</span>
           </div>
           {cvFilters.map((filter) => (
             <button
@@ -1188,11 +1194,11 @@ function InteractiveCvSection({ reduceMotion }: { reduceMotion: boolean }) {
               key={filter.id}
               onClick={() => setActiveFilter(filter.id)}
             >
-              {filter.label}
+              {filter.label[language]}
             </button>
           ))}
           <a className="button-secondary" href="/cv/danila-anikin-cv.pdf">
-            Download PDF
+            {uiText.downloadPdf[language]}
             <FileDown size={16} />
           </a>
         </div>
@@ -1207,17 +1213,17 @@ function InteractiveCvSection({ reduceMotion }: { reduceMotion: boolean }) {
           <div className="cv-results-head">
             <FileText size={22} />
             <div>
-              <span>{selectedFilter.label} track</span>
-              <h3>{selectedFilter.summary}</h3>
+              <span>{`${selectedFilter.label[language]} ${uiText.trackSuffix[language]}`}</span>
+              <h3>{selectedFilter.summary[language]}</h3>
             </div>
           </div>
 
           <div className="cv-role-grid">
             {filteredExperience.map((item) => (
               <article className="cv-role" key={item.company}>
-                <span>{item.kind}</span>
+                <span>{item.kind[language]}</span>
                 <h4>{item.company}</h4>
-                <p>{item.role}</p>
+                <p>{item.role[language]}</p>
               </article>
             ))}
           </div>
@@ -1233,7 +1239,7 @@ function InteractiveCvSection({ reduceMotion }: { reduceMotion: boolean }) {
   );
 }
 
-function SkillGraphSection({ reduceMotion }: { reduceMotion: boolean }) {
+function SkillGraphSection({ language, reduceMotion }: { language: Language; reduceMotion: boolean }) {
   const [activeNode, setActiveNode] = useState(skillGraphNodes[0].id);
   const selectedNode = skillGraphNodes.find((node) => node.id === activeNode) ?? skillGraphNodes[0];
 
@@ -1241,12 +1247,10 @@ function SkillGraphSection({ reduceMotion }: { reduceMotion: boolean }) {
     <Reveal as="section" className="content-section skill-graph-section" id="skill-graph" aria-label="Interactive skill graph">
       <div className="section-heading split-heading">
         <div>
-          <p className="eyebrow">Skill graph</p>
-          <h2>Connected engineering range.</h2>
+          <p className="eyebrow">{uiText.graphEyebrow[language]}</p>
+          <h2>{uiText.graphTitle[language]}</h2>
         </div>
-        <p>
-          The graph connects AI, automation, Linux, DevOps, software, product thinking, and teaching into one coherent engineering profile.
-        </p>
+        <p>{uiText.graphIntro[language]}</p>
       </div>
 
       <div className="skill-graph-layout">
@@ -1267,7 +1271,7 @@ function SkillGraphSection({ reduceMotion }: { reduceMotion: boolean }) {
               transition={{ duration: 0.28, delay: index * 0.03, ease: "easeOut" }}
             >
               <span>{String(index + 1).padStart(2, "0")}</span>
-              {node.label}
+              {node.label[language]}
             </motion.button>
           ))}
         </div>
@@ -1279,9 +1283,9 @@ function SkillGraphSection({ reduceMotion }: { reduceMotion: boolean }) {
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.24, ease: "easeOut" }}
         >
-          <p className="panel-kicker">Selected node</p>
-          <h3>{selectedNode.label}</h3>
-          <p>{selectedNode.detail}</p>
+          <p className="panel-kicker">{uiText.selectedNode[language]}</p>
+          <h3>{selectedNode.label[language]}</h3>
+          <p>{selectedNode.detail[language]}</p>
           <div className="connection-list">
             {selectedNode.links.map((link) => (
               <span key={link}>
@@ -1296,11 +1300,11 @@ function SkillGraphSection({ reduceMotion }: { reduceMotion: boolean }) {
   );
 }
 
-function SkillsSection({ copy }: { copy: (typeof translations)[Language] }) {
+function SkillsSection({ copy, language }: { copy: (typeof translations)[Language]; language: Language }) {
   return (
     <Reveal as="section" className="content-section" id="skills">
       <div className="section-heading">
-        <p className="eyebrow">Stack</p>
+        <p className="eyebrow">{uiText.skillsEyebrow[language]}</p>
         <h2>{copy.skillsTitle}</h2>
         <p>{copy.skillsIntro}</p>
       </div>
@@ -1312,13 +1316,13 @@ function SkillsSection({ copy }: { copy: (typeof translations)[Language] }) {
           return (
             <motion.article
               className="skill-card"
-              key={group.title}
+              key={group.title.en}
               whileHover={{ y: -4, borderColor: "var(--accent)" }}
               transition={{ duration: 0.18, ease: "easeOut" }}
             >
               <div className="skill-title">
                 <Icon size={22} />
-                <h3>{group.title}</h3>
+                <h3>{group.title[language]}</h3>
               </div>
               <div className="skill-list">
                 {group.skills.map((skill) => (
@@ -1336,11 +1340,11 @@ function SkillsSection({ copy }: { copy: (typeof translations)[Language] }) {
   );
 }
 
-function TimelineSection({ copy }: { copy: (typeof translations)[Language] }) {
+function TimelineSection({ copy, language }: { copy: (typeof translations)[Language]; language: Language }) {
   return (
     <Reveal as="section" className="content-section" id="timeline">
       <div className="section-heading">
-        <p className="eyebrow">Education</p>
+        <p className="eyebrow">{uiText.educationEyebrow[language]}</p>
         <h2>{copy.timelineTitle}</h2>
         <p>{copy.timelineIntro}</p>
       </div>
@@ -1367,11 +1371,11 @@ function TimelineSection({ copy }: { copy: (typeof translations)[Language] }) {
   );
 }
 
-function ContactSection({ copy }: { copy: (typeof translations)[Language] }) {
+function ContactSection({ copy, language }: { copy: (typeof translations)[Language]; language: Language }) {
   return (
     <Reveal as="section" className="contact-section" id="contact">
       <div>
-        <p className="eyebrow">Contact</p>
+        <p className="eyebrow">{uiText.contactEyebrow[language]}</p>
         <h2>{copy.contactTitle}</h2>
         <p>{copy.contactIntro}</p>
       </div>
