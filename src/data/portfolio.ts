@@ -31,57 +31,99 @@ export type VisualMode =
   | "2010s"
   | "windows1";
 
-export const languages: Array<{ code: Language; label: string; native: string }> =
+export const languages: Array<{ code: Language; label: Localized; native: string }> =
   [
-    { code: "en", label: "English", native: "English" },
-    { code: "cs", label: "Czech", native: "Česky" },
-    { code: "ru", label: "Russian", native: "Русский" },
-    { code: "de", label: "German", native: "Deutsch" },
-    { code: "es", label: "Spanish", native: "Español" },
-    { code: "fr", label: "French", native: "Français" },
+    { code: "en", label: l("English", "Angličtina", "Английский", "Englisch", "Inglés", "Anglais"), native: "English" },
+    { code: "cs", label: l("Czech", "Čeština", "Чешский", "Tschechisch", "Checo", "Tchèque"), native: "Česky" },
+    { code: "ru", label: l("Russian", "Ruština", "Русский", "Russisch", "Ruso", "Russe"), native: "Русский" },
+    { code: "de", label: l("German", "Němčina", "Немецкий", "Deutsch", "Alemán", "Allemand"), native: "Deutsch" },
+    { code: "es", label: l("Spanish", "Španělština", "Испанский", "Spanisch", "Español", "Espagnol"), native: "Español" },
+    { code: "fr", label: l("French", "Francouzština", "Французский", "Französisch", "Francés", "Français"), native: "Français" },
   ];
 
 export const visualModes: Array<{
   id: VisualMode;
-  label: string;
-  short: string;
-  description: string;
+  label: Localized;
+  short: Localized;
+  description: Localized;
 }> = [
   {
     id: "modern",
-    label: "Modern",
-    short: "Now",
-    description: "A precise AI-era portfolio with motion, command controls, and sharp project previews.",
+    label: l("Modern", "Moderní", "Современный", "Modern", "Moderno", "Moderne"),
+    short: l("Now", "Teď", "Сейчас", "Jetzt", "Ahora", "Now"),
+    description: l(
+      "A precise AI-era portfolio with motion, command controls, and sharp project previews.",
+      "Precizní portfolio AI éry s pohybem, příkazovým ovládáním a ostrými náhledy projektů.",
+      "Точное портфолио AI-эры с движением, командным управлением и чёткими превью проектов.",
+      "Ein präzises Portfolio der AI-Ära mit Motion, Kommandosteuerung und scharfen Projekt-Previews.",
+      "Un portfolio preciso de la era AI con movimiento, controles de comandos y vistas nítidas de proyectos.",
+      "Un portfolio précis de l'ère AI avec du mouvement, des commandes et des aperçus nets des projets.",
+    ),
   },
   {
     id: "1980s",
-    label: "1980s",
-    short: "CRT",
-    description: "Terminal, BBS, monochrome glow, scanlines, and keyboard-first navigation.",
+    label: l("1980s", "80. léta", "1980-е", "1980er", "Años 80", "Années 80"),
+    short: l("CRT", "CRT", "ЭЛТ", "CRT", "CRT", "CRT"),
+    description: l(
+      "Terminal, BBS, monochrome glow, scanlines, and keyboard-first navigation.",
+      "Terminál, BBS, monochromatická záře, scanlines a ovládání primárně klávesnicí.",
+      "Терминал, BBS, монохромное свечение, скан-линии и навигация с клавиатуры.",
+      "Terminal, BBS, monochromes Leuchten, Scanlines und Keyboard-First-Navigation.",
+      "Terminal, BBS, brillo monocromo, scanlines y navegación centrada en el teclado.",
+      "Terminal, BBS, lueur monochrome, scanlines et navigation clavier d'abord.",
+    ),
   },
   {
     id: "1990s",
-    label: "1990s",
-    short: "HTML",
-    description: "Early web energy with table rhythm, blue links, counters, and tiled texture.",
+    label: l("1990s", "90. léta", "1990-е", "1990er", "Años 90", "Années 90"),
+    short: l("HTML", "HTML", "HTML", "HTML", "HTML", "HTML"),
+    description: l(
+      "Early web energy with table rhythm, blue links, counters, and tiled texture.",
+      "Energie raného webu s tabulkovým rytmem, modrými odkazy, počítadly a dlaždicovou texturou.",
+      "Энергия раннего веба: табличный ритм, синие ссылки, счётчики и плиточная текстура.",
+      "Frühe Web-Energie mit Tabellenrhythmus, blauen Links, Countern und gekachelter Textur.",
+      "Energía de la web temprana con ritmo de tablas, enlaces azules, contadores y textura de mosaico.",
+      "L'énergie du premier web : rythme de tableaux, liens bleus, compteurs et texture en mosaïque.",
+    ),
   },
   {
     id: "2000s",
-    label: "2000s",
-    short: "Web 2.0",
-    description: "Glossy tabs, bright badges, product blocks, and optimistic software branding.",
+    label: l("2000s", "Nultá léta", "2000-е", "2000er", "Años 2000", "Années 2000"),
+    short: l("Web 2.0", "Web 2.0", "Web 2.0", "Web 2.0", "Web 2.0", "Web 2.0"),
+    description: l(
+      "Glossy tabs, bright badges, product blocks, and optimistic software branding.",
+      "Lesklé záložky, výrazné odznaky, produktové bloky a optimistický softwarový branding.",
+      "Глянцевые вкладки, яркие бейджи, продуктовые блоки и оптимистичный софтверный брендинг.",
+      "Glänzende Tabs, bunte Badges, Produktblöcke und optimistisches Software-Branding.",
+      "Pestañas brillantes, insignias vivas, bloques de producto y branding de software optimista.",
+      "Onglets brillants, badges vifs, blocs produit et branding logiciel optimiste.",
+    ),
   },
   {
     id: "2010s",
-    label: "2010s",
-    short: "Flat",
-    description: "Flat startup clarity, spacious grids, simple icons, and restrained animation.",
+    label: l("2010s", "10. léta", "2010-е", "2010er", "Años 2010", "Années 2010"),
+    short: l("Flat", "Flat", "Флэт", "Flat", "Flat", "Flat"),
+    description: l(
+      "Flat startup clarity, spacious grids, simple icons, and restrained animation.",
+      "Plochá startupová čistota, vzdušné mřížky, jednoduché ikony a zdrženlivá animace.",
+      "Плоская стартап-чистота, просторные сетки, простые иконки и сдержанная анимация.",
+      "Flache Startup-Klarheit, großzügige Grids, einfache Icons und zurückhaltende Animation.",
+      "Claridad plana de startup, cuadrículas amplias, iconos simples y animación contenida.",
+      "Clarté plate façon startup, grilles aérées, icônes simples et animation sobre.",
+    ),
   },
   {
     id: "windows1",
-    label: "Windows 1",
-    short: "Win",
-    description: "A monochrome desktop with windows, menus, panels, and file-like project views.",
+    label: l("Windows 1", "Windows 1", "Windows 1", "Windows 1", "Windows 1", "Windows 1"),
+    short: l("Win", "Win", "Win", "Win", "Win", "Win"),
+    description: l(
+      "A monochrome desktop with windows, menus, panels, and file-like project views.",
+      "Monochromatická plocha s okny, nabídkami, panely a souborovými pohledy na projekty.",
+      "Монохромный рабочий стол с окнами, меню, панелями и файловыми видами проектов.",
+      "Ein monochromer Desktop mit Fenstern, Menüs, Panels und dateiartigen Projektansichten.",
+      "Un escritorio monocromo con ventanas, menús, paneles y vistas de proyectos tipo archivo.",
+      "Un bureau monochrome avec fenêtres, menus, panneaux et vues de projets façon fichiers.",
+    ),
   },
 ];
 
@@ -1377,6 +1419,24 @@ export const uiText = {
   flatProjects: l("projects", "projektů", "проектов", "Projekte", "proyectos", "projets"),
   flatRoles: l("5 roles", "5 rolí", "5 ролей", "5 Rollen", "5 roles", "5 rôles"),
   flatLanguages: l("6 languages", "6 jazyků", "6 языков", "6 Sprachen", "6 idiomas", "6 langues"),
+  launchTabHome: l("Home", "Domů", "Главная", "Start", "Inicio", "Accueil"),
+  launchTabProjects: l("Projects", "Projekty", "Проекты", "Projekte", "Proyectos", "Projets"),
+  winFile: l("File", "Soubor", "Файл", "Datei", "Archivo", "Fichier"),
+  winView: l("View", "Zobrazit", "Вид", "Ansicht", "Ver", "Affichage"),
+  winRun: l("Run", "Spustit", "Запуск", "Ausführen", "Ejecutar", "Exécuter"),
+  toggleOn: l("ON", "ZAP", "ВКЛ", "EIN", "ON", "ON"),
+  toggleOff: l("OFF", "VYP", "ВЫКЛ", "AUS", "OFF", "OFF"),
+  ariaScrollTop: l("Scroll to top", "Posunout nahoru", "Прокрутить наверх", "Nach oben scrollen", "Volver arriba", "Revenir en haut"),
+  ariaPrimaryNav: l("Primary navigation", "Hlavní navigace", "Основная навигация", "Hauptnavigation", "Navegación principal", "Navigation principale"),
+  ariaCapabilities: l("Capabilities", "Dovednosti", "Возможности", "Fähigkeiten", "Capacidades", "Capacités"),
+  ariaSystemDashboard: l("System status dashboard", "Přehled stavu systému", "Панель статуса системы", "Systemstatus-Dashboard", "Panel de estado del sistema", "Tableau d'état du système"),
+  ariaLab: l("Interactive portfolio lab", "Interaktivní portfolio lab", "Интерактивная лаборатория портфолио", "Interaktives Portfolio-Lab", "Laboratorio interactivo del portfolio", "Labo interactif du portfolio"),
+  ariaArchitecture: l("Project architecture", "Architektura projektů", "Архитектура проектов", "Projektarchitektur", "Arquitectura de proyectos", "Architecture des projets"),
+  ariaSelectArchitecture: l("Select project architecture", "Vybrat architekturu projektu", "Выбрать архитектуру проекта", "Projektarchitektur wählen", "Seleccionar arquitectura del proyecto", "Choisir l'architecture du projet"),
+  ariaCv: l("Interactive CV", "Interaktivní CV", "Интерактивное CV", "Interaktives CV", "CV interactivo", "CV interactif"),
+  ariaSkillGraph: l("Interactive skill graph", "Interaktivní graf dovedností", "Интерактивный граф навыков", "Interaktiver Skill-Graph", "Grafo interactivo de habilidades", "Graphe de compétences interactif"),
+  ariaSkillNodes: l("Skill graph nodes", "Uzly grafu dovedností", "Узлы графа навыков", "Knoten des Skill-Graphen", "Nodos del grafo de habilidades", "Nœuds du graphe de compétences"),
+  ariaCounter: l("Portfolio counter", "Počítadlo portfolia", "Счётчик портфолио", "Portfolio-Zähler", "Contador del portfolio", "Compteur du portfolio"),
 } as const;
 
 export const translations = {

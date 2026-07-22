@@ -187,7 +187,7 @@ export function PortfolioApp() {
 
         <SystemDashboard language={language} reduceMotion={shouldReduceMotion ?? false} />
 
-        <ModeDeck visualMode={visualMode} setVisualMode={updateVisualMode} copy={copy} />
+        <ModeDeck visualMode={visualMode} setVisualMode={updateVisualMode} copy={copy} language={language} />
 
         <PortfolioLab
           language={language}
@@ -217,7 +217,7 @@ export function PortfolioApp() {
         <motion.button
           className="scroll-top-button"
           type="button"
-          aria-label="Scroll to top"
+          aria-label={uiText.ariaScrollTop[language]}
           initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
           animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           exit={shouldReduceMotion ? undefined : { opacity: 0, y: 18 }}
@@ -258,7 +258,7 @@ function Header({
         </span>
       </a>
 
-      <nav className="primary-nav" aria-label="Primary navigation">
+      <nav className="primary-nav" aria-label={uiText.ariaPrimaryNav[language]}>
         {copy.nav.map((item, index) => (
           <a href={navTargets[index] ?? "#profile"} key={item}>
             {item}
@@ -273,7 +273,7 @@ function Header({
           options={languages.map((item) => ({
             value: item.code,
             label: item.native,
-            meta: item.label,
+            meta: item.label[language],
           }))}
           onChange={(value) => setLanguage(value as Language)}
         />
@@ -283,8 +283,8 @@ function Header({
           value={visualMode}
           options={visualModes.map((mode) => ({
             value: mode.id,
-            label: mode.label,
-            meta: mode.short,
+            label: mode.label[language],
+            meta: mode.short[language],
           }))}
           onChange={(value) => setVisualMode(value as VisualMode)}
           wide
@@ -469,7 +469,7 @@ function HeroShowcase({
       {visualMode === "1990s" ? <NinetiesHeroPanel language={language} /> : null}
       {visualMode === "2000s" ? <TwoThousandsHeroPanel language={language} reduceMotion={reduceMotion} /> : null}
       {visualMode === "2010s" ? <TwentyTensHeroPanel language={language} /> : null}
-      {visualMode === "windows1" ? <WindowsOneHeroPanel /> : null}
+      {visualMode === "windows1" ? <WindowsOneHeroPanel language={language} /> : null}
     </motion.div>
   );
 }
@@ -555,7 +555,7 @@ function NinetiesHeroPanel({ language }: { language: Language }) {
           </a>
         ))}
       </div>
-      <div className="hit-counter" aria-label="Portfolio counter">
+      <div className="hit-counter" aria-label={uiText.ariaCounter[language]}>
         {["0", "0", "0", "4", "2", "1"].map((digit, index) => (
           <span key={`${digit}-${index}`}>{digit}</span>
         ))}
@@ -568,8 +568,8 @@ function TwoThousandsHeroPanel({ language, reduceMotion }: { language: Language;
   return (
     <div className="glossy-launcher">
       <div className="launcher-tabs">
-        <span>Home</span>
-        <span>Projects</span>
+        <span>{uiText.launchTabHome[language]}</span>
+        <span>{uiText.launchTabProjects[language]}</span>
         <span>AI</span>
       </div>
       <div className="launcher-core">
@@ -618,13 +618,13 @@ function TwentyTensHeroPanel({ language }: { language: Language }) {
   );
 }
 
-function WindowsOneHeroPanel() {
+function WindowsOneHeroPanel({ language }: { language: Language }) {
   return (
     <div className="win-one-desktop">
       <div className="win-one-menu">
-        <span>File</span>
-        <span>View</span>
-        <span>Run</span>
+        <span>{uiText.winFile[language]}</span>
+        <span>{uiText.winView[language]}</span>
+        <span>{uiText.winRun[language]}</span>
       </div>
       <div className="win-one-window">
         <div className="win-one-title">DANILA.EXE</div>
@@ -703,7 +703,7 @@ function CapabilityMarquee({ language, reduceMotion }: { language: Language; red
   const items = uiText.marquee.map((item) => item[language]);
 
   return (
-    <section className="capability-marquee" aria-label="Capabilities">
+    <section className="capability-marquee" aria-label={uiText.ariaCapabilities[language]}>
       <motion.div
         className="marquee-track"
         animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}
@@ -724,10 +724,12 @@ function ModeDeck({
   visualMode,
   setVisualMode,
   copy,
+  language,
 }: {
   visualMode: VisualMode;
   setVisualMode: (mode: VisualMode) => void;
   copy: (typeof translations)[Language];
+  language: Language;
 }) {
   return (
     <Reveal as="section" className="mode-deck" id="modes" aria-label={copy.modeLabel}>
@@ -746,8 +748,8 @@ function ModeDeck({
             aria-pressed={visualMode === mode.id}
           >
             <span className="shortcut">{index + 1}</span>
-            <strong>{mode.label}</strong>
-            <small>{mode.short}</small>
+            <strong>{mode.label[language]}</strong>
+            <small>{mode.short[language]}</small>
           </button>
         ))}
       </div>
@@ -759,7 +761,7 @@ function SystemDashboard({ language, reduceMotion }: { language: Language; reduc
   const icons = [LayoutDashboard, Rocket, Activity, Globe2];
 
   return (
-    <Reveal as="section" className="system-dashboard" id="system" aria-label="System status dashboard">
+    <Reveal as="section" className="system-dashboard" id="system" aria-label={uiText.ariaSystemDashboard[language]}>
       <div className="section-heading compact">
         <p className="eyebrow">{uiText.systemEyebrow[language]}</p>
         <h2>{uiText.systemTitle[language]}</h2>
@@ -804,7 +806,7 @@ function PortfolioLab({
   reduceMotion: boolean;
 }) {
   return (
-    <Reveal as="section" className="content-section portfolio-lab" id="lab" aria-label="Interactive portfolio lab">
+    <Reveal as="section" className="content-section portfolio-lab" id="lab" aria-label={uiText.ariaLab[language]}>
       <div className="section-heading split-heading">
         <div>
           <p className="eyebrow">{uiText.labEyebrow[language]}</p>
@@ -975,7 +977,7 @@ function ProofPanel({
           <Eye size={17} />
           {proofMode ? uiText.proofActive[language] : uiText.proofActivate[language]}
         </span>
-        <strong>{proofMode ? "ON" : "OFF"}</strong>
+        <strong>{proofMode ? uiText.toggleOn[language] : uiText.toggleOff[language]}</strong>
       </button>
 
       <div className="proof-stack">
@@ -1080,7 +1082,7 @@ function ArchitectureSection({ language, reduceMotion }: { language: Language; r
   const layerIcons = [MousePointer2, Database, Server, GitBranch];
 
   return (
-    <Reveal as="section" className="content-section architecture-section" id="architecture" aria-label="Project architecture">
+    <Reveal as="section" className="content-section architecture-section" id="architecture" aria-label={uiText.ariaArchitecture[language]}>
       <div className="section-heading split-heading">
         <div>
           <p className="eyebrow">{uiText.architectureEyebrow[language]}</p>
@@ -1090,7 +1092,7 @@ function ArchitectureSection({ language, reduceMotion }: { language: Language; r
       </div>
 
       <div className="architecture-shell">
-        <div className="architecture-tabs" role="tablist" aria-label="Select project architecture">
+        <div className="architecture-tabs" role="tablist" aria-label={uiText.ariaSelectArchitecture[language]}>
           {architectureViews.map((view, index) => (
             <button
               className={cn(index === activeProject && "is-active")}
@@ -1172,7 +1174,7 @@ function InteractiveCvSection({ language, reduceMotion }: { language: Language; 
   const filteredExperience = experience.filter((item) => selectedFilter.experience.includes(item.company));
 
   return (
-    <Reveal as="section" className="content-section cv-section" id="cv" aria-label="Interactive CV">
+    <Reveal as="section" className="content-section cv-section" id="cv" aria-label={uiText.ariaCv[language]}>
       <div className="section-heading split-heading">
         <div>
           <p className="eyebrow">{uiText.cvEyebrow[language]}</p>
@@ -1244,7 +1246,7 @@ function SkillGraphSection({ language, reduceMotion }: { language: Language; red
   const selectedNode = skillGraphNodes.find((node) => node.id === activeNode) ?? skillGraphNodes[0];
 
   return (
-    <Reveal as="section" className="content-section skill-graph-section" id="skill-graph" aria-label="Interactive skill graph">
+    <Reveal as="section" className="content-section skill-graph-section" id="skill-graph" aria-label={uiText.ariaSkillGraph[language]}>
       <div className="section-heading split-heading">
         <div>
           <p className="eyebrow">{uiText.graphEyebrow[language]}</p>
@@ -1254,7 +1256,7 @@ function SkillGraphSection({ language, reduceMotion }: { language: Language; red
       </div>
 
       <div className="skill-graph-layout">
-        <div className="skill-graph" aria-label="Skill graph nodes">
+        <div className="skill-graph" aria-label={uiText.ariaSkillNodes[language]}>
           <div className="skill-hub">
             <Terminal size={23} />
             <strong>Danila</strong>
