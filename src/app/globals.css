@@ -1714,6 +1714,22 @@ img {
   --accent: #f2c94c;
 }
 
+.accent-coral {
+  --accent: #ff8a5c;
+}
+
+.accent-violet {
+  --accent: #8b7cf6;
+}
+
+.accent-blue {
+  --accent: #5ea2ff;
+}
+
+.accent-green {
+  --accent: #22d3a6;
+}
+
 .architecture-shell {
   display: grid;
   gap: 12px;
