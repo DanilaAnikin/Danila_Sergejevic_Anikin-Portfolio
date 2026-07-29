@@ -187,6 +187,37 @@ export const projects = [
     accent: "coral",
   },
   {
+    title: "Homelab",
+    href: "https://github.com/DanilaAnikin/homelab",
+    image: "/projects/homelab.png",
+    eyebrow: l(
+      "Self-hosted infrastructure",
+      "Self-hosted infrastruktura",
+      "Self-hosted инфраструктура",
+      "Self-hosted-Infrastruktur",
+      "Infraestructura self-hosted",
+      "Infrastructure self-hosted",
+    ),
+    description: l(
+      "A self-hosted production homelab on a single Lenovo ThinkCentre M920q mini-PC that replaced Vercel, Supabase Cloud, Railway, and Resend — running real SaaS products (Freio, Ripieno, the Lokwave family, GorillaType, Classio, and this portfolio) behind a Cloudflare Tunnel with Dokploy, a per-app self-hosted Supabase, and its own SMTP.",
+      "Self-hosted produkční homelab na jediném mini-PC Lenovo ThinkCentre M920q, který nahradil Vercel, Supabase Cloud, Railway a Resend — provozuje reálné SaaS produkty (Freio, Ripieno, rodinu Lokwave, GorillaType, Classio a toto portfolio) za Cloudflare Tunnelem s Dokploy, self-hosted Supabase pro každou appku a vlastním SMTP.",
+      "Self-hosted продакшн-homelab на одном мини-ПК Lenovo ThinkCentre M920q, заменивший Vercel, Supabase Cloud, Railway и Resend — на нём работают реальные SaaS-продукты (Freio, Ripieno, семья Lokwave, GorillaType, Classio и это портфолио) за Cloudflare Tunnel с Dokploy, отдельным self-hosted Supabase на каждое приложение и собственным SMTP.",
+      "Ein self-hosted Produktions-Homelab auf einem einzigen Mini-PC Lenovo ThinkCentre M920q, das Vercel, Supabase Cloud, Railway und Resend ersetzt — es betreibt echte SaaS-Produkte (Freio, Ripieno, die Lokwave-Familie, GorillaType, Classio und dieses Portfolio) hinter einem Cloudflare Tunnel mit Dokploy, einem self-hosted Supabase pro App und eigenem SMTP.",
+      "Un homelab de producción self-hosted en un único mini-PC Lenovo ThinkCentre M920q que reemplazó a Vercel, Supabase Cloud, Railway y Resend — ejecuta productos SaaS reales (Freio, Ripieno, la familia Lokwave, GorillaType, Classio y este portfolio) tras un Cloudflare Tunnel con Dokploy, un Supabase self-hosted por aplicación y su propio SMTP.",
+      "Un homelab de production self-hosted sur un seul mini-PC Lenovo ThinkCentre M920q qui a remplacé Vercel, Supabase Cloud, Railway et Resend — il fait tourner de vrais produits SaaS (Freio, Ripieno, la famille Lokwave, GorillaType, Classio et ce portfolio) derrière un Cloudflare Tunnel avec Dokploy, un Supabase self-hosted par application et son propre SMTP.",
+    ),
+    impact: l(
+      "Lenovo M920q · i7-9700T · 32 GB RAM · 1 TB NVMe. 66 containers, ~10 production domains, zero open ports, LLM self-healing agents (Uptime Kuma + Prometheus → Claude), and encrypted nightly R2 backups with weekly restore drills.",
+      "Lenovo M920q · i7-9700T · 32 GB RAM · 1 TB NVMe. 66 kontejnerů, ~10 produkčních domén, žádné otevřené porty, self-healing LLM agenti (Uptime Kuma + Prometheus → Claude) a šifrované noční zálohy na R2 s týdenními restore drilly.",
+      "Lenovo M920q · i7-9700T · 32 ГБ RAM · 1 ТБ NVMe. 66 контейнеров, ~10 продакшн-доменов, ноль открытых портов, self-healing LLM-агенты (Uptime Kuma + Prometheus → Claude) и шифрованные ночные бэкапы в R2 с еженедельными restore-тестами.",
+      "Lenovo M920q · i7-9700T · 32 GB RAM · 1 TB NVMe. 66 Container, ~10 Produktionsdomains, keine offenen Ports, self-healing LLM-Agenten (Uptime Kuma + Prometheus → Claude) und verschlüsselte nächtliche R2-Backups mit wöchentlichen Restore-Drills.",
+      "Lenovo M920q · i7-9700T · 32 GB RAM · 1 TB NVMe. 66 contenedores, ~10 dominios de producción, cero puertos abiertos, agentes LLM de auto-reparación (Uptime Kuma + Prometheus → Claude) y copias nocturnas cifradas en R2 con pruebas de restauración semanales.",
+      "Lenovo M920q · i7-9700T · 32 Go RAM · 1 To NVMe. 66 conteneurs, ~10 domaines de production, zéro port ouvert, des agents LLM d'auto-réparation (Uptime Kuma + Prometheus → Claude) et des sauvegardes nocturnes chiffrées sur R2 avec des tests de restauration hebdomadaires.",
+    ),
+    stack: ["Docker", "Dokploy", "Cloudflare Tunnel", "Self-hosted Supabase", "Traefik", "Prometheus / Grafana / Loki", "LLM self-healing"],
+    accent: "green",
+  },
+  {
     title: "Freio",
     href: "https://www.freio.cz/",
     image: "/projects/freio.png",
@@ -281,7 +312,7 @@ export const projects = [
   },
   {
     title: "GorillaType",
-    href: "https://gorilla-type-orpin.vercel.app/",
+    href: "https://gorillatype.anikin.cz/",
     image: "/projects/gorillatype.png",
     eyebrow: l(
       "Typing speed app",
@@ -509,10 +540,10 @@ export const systemSignals = [
   },
   {
     label: l("Delivery", "Doručování", "Доставка", "Delivery", "Entrega", "Livraison"),
-    value: l("Vercel + GitHub", "Vercel + GitHub", "Vercel + GitHub", "Vercel + GitHub", "Vercel + GitHub", "Vercel + GitHub"),
+    value: l("Self-hosted homelab", "Self-hosted homelab", "Self-hosted homelab", "Self-hosted homelab", "Self-hosted homelab", "Self-hosted homelab"),
     detail: l(
-      "Designed for fast static delivery, clean repository workflow, and continuous iteration.",
-      "Navrženo pro rychlé statické doručování, čistý workflow repozitáře a průběžnou iteraci.",
+      "This site is served from a self-hosted homelab (Lenovo M920q) via Dokploy and a Cloudflare Tunnel, with a clean GitHub workflow and continuous iteration.",
+      "Tento web běží na self-hosted homelabu (Lenovo M920q) přes Dokploy a Cloudflare Tunnel, s čistým GitHub workflow a průběžnou iterací.",
       "Спроектировано для быстрой статической доставки, чистого workflow репозитория и постоянных итераций.",
       "Ausgelegt auf schnelle statische Auslieferung, sauberen Repository-Workflow und kontinuierliche Iteration.",
       "Diseñado para una entrega estática rápida, un flujo de repositorio limpio e iteración continua.",
@@ -1067,7 +1098,7 @@ export const architectureViews = [
   },
   {
     project: "GorillaType",
-    href: "https://gorilla-type-orpin.vercel.app/",
+    href: "https://gorillatype.anikin.cz/",
     summary: l(
       "A typing product designed around fast practice, configuration, competitive loops, profiles, rankings, tournaments, and social mechanics.",
       "Produkt pro psaní postavený na rychlém procvičování, konfiguraci, soutěžních smyčkách, profilech, žebříčcích, turnajích a sociálních mechanikách.",
