@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://danila-sergejevic-anikin-portfolio.vercel.app/sitemap.xml",
+    sitemap: "https://anikin.cz/sitemap.xml",
   };
 }

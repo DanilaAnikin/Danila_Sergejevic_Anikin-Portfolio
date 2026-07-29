@@ -18,7 +18,7 @@ export default function Home() {
       addressLocality: "Prague",
       addressCountry: "CZ",
     },
-    url: "https://danila-sergejevic-anikin-portfolio.vercel.app",
+    url: "https://anikin.cz",
     sameAs: [
       "https://github.com/DanilaAnikin",
       "https://www.linkedin.com/in/danila-anikin-7aa950258",

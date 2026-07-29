@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://danila-sergejevic-anikin-portfolio.vercel.app"),
+  metadataBase: new URL("https://anikin.cz"),
   title: {
     default: "Danila Sergejevič Anikin | Software Developer & AI Engineer",
     template: "%s | Danila Sergejevič Anikin",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Danila Sergejevič Anikin | Software Developer & AI Engineer",
     description:
       "AI engineering, automation, Linux systems, DevOps, and modern web software from Prague.",
-    url: "https://danila-sergejevic-anikin-portfolio.vercel.app",
+    url: "https://anikin.cz",
     siteName: "Danila Sergejevič Anikin Portfolio",
     locale: "en_US",
     type: "website",
