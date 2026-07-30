@@ -251,7 +251,14 @@ function Header({
   return (
     <header className="site-header">
       <a className="brand" href="#profile" aria-label="Danila Sergejevič Anikin">
-        <LogoMark />
+        <Image
+          src="/me.png"
+          alt="Danila Sergejevič Anikin"
+          width={36}
+          height={36}
+          className="brand-avatar"
+          priority
+        />
         <span>
           <strong>Danila</strong>
           <small>AI / DevOps / Software</small>
