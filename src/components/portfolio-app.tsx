@@ -1031,15 +1031,19 @@ function ProjectSection({
 
       <div className="project-grid">
         {projects.map((project, index) => (
-          <motion.a
+          <motion.div
             className={cn("project-card", `accent-${project.accent}`)}
-            href={project.href}
-            target="_blank"
-            rel="noreferrer"
             key={project.title}
             whileHover={reduceMotion ? undefined : { y: -5 }}
             transition={{ duration: 0.2, delay: index * 0.03, ease: "easeOut" }}
           >
+            <a
+              className="card-cover"
+              href={project.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={project.title}
+            />
             <div className="project-preview">
               <div className="browser-bar">
                 <span />
@@ -1071,12 +1075,27 @@ function ProjectSection({
               <p>{project.description[language]}</p>
               <strong>{project.impact[language]}</strong>
               <div className="tag-row">
-                {project.stack.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
+                {project.stack.map((tag) => {
+                  const tagHref = (
+                    project as { stackLinks?: Record<string, string> }
+                  ).stackLinks?.[tag];
+                  return tagHref ? (
+                    <a
+                      className="tag-link"
+                      href={tagHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      key={tag}
+                    >
+                      {tag}
+                    </a>
+                  ) : (
+                    <span key={tag}>{tag}</span>
+                  );
+                })}
               </div>
             </div>
-          </motion.a>
+          </motion.div>
         ))}
       </div>
     </Reveal>

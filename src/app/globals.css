@@ -1708,6 +1708,7 @@ img {
 }
 
 .tag-row span,
+.tag-row a,
 .skill-list span {
   display: inline-flex;
   align-items: center;
@@ -1718,6 +1719,28 @@ img {
   color: var(--muted);
   padding: 6px 8px;
   font-size: 0.82rem;
+}
+
+/* Stretched cover link: whole card navigates to project.href … */
+.card-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* … except real tag links, which sit above the cover and open their own site. */
+.tag-row a {
+  position: relative;
+  z-index: 2;
+  text-decoration: none;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.tag-row a:hover {
+  color: var(--foreground);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, var(--soft));
 }
 
 .accent-yellow {

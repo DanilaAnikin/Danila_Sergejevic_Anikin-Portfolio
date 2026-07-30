@@ -308,6 +308,14 @@ export const projects = [
       "Réponses AI aux avis avec validation humaine, 4–8 publications par mois, suivi quotidien des positions, analyse concurrentielle, rapports PDF mensuels.",
     ),
     stack: ["DentalLocal", "AutoLocal", "VetLocal", "BistroLocal", "SalonLocal", "FitLocal"],
+    stackLinks: {
+      DentalLocal: "https://dentallocal.cz/",
+      AutoLocal: "https://autolocal.cz/",
+      VetLocal: "https://vetlocal.cz/",
+      BistroLocal: "https://bistrolocal.cz/",
+      SalonLocal: "https://salonlocal.cz/",
+      FitLocal: "https://fitlocal.cz/",
+    } as Record<string, string>,
     accent: "blue",
   },
   {
