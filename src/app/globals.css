@@ -1729,6 +1729,27 @@ img {
   border-radius: inherit;
 }
 
+/* Suite karta (NicheLocal): 6 klikacích dlaždic nad kompozitním náhledem 3×2,
+   každá otevře svůj web podle toho, kam klikneš. */
+.suite-map {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.suite-map a {
+  display: block;
+  transition: box-shadow 150ms ease, background 150ms ease;
+}
+
+.suite-map a:hover {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
 /* … except real tag links, which sit above the cover and open their own site. */
 .tag-row a {
   position: relative;

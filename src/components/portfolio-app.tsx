@@ -1051,12 +1051,14 @@ function ProjectSection({
               />
             )}
             <div className="project-preview">
-              <div className="browser-bar">
-                <span />
-                <span />
-                <span />
-                <code>{project.href.replace("https://", "")}</code>
-              </div>
+              {!suiteLinks && (
+                <div className="browser-bar">
+                  <span />
+                  <span />
+                  <span />
+                  <code>{project.href.replace("https://", "")}</code>
+                </div>
+              )}
               <Image
                 src={project.image}
                 alt={`${project.title} website preview`}
@@ -1066,6 +1068,22 @@ function ProjectSection({
                 priority={index === 0}
               />
               <span className="preview-shine" />
+              {suiteLinks && (
+                // Klikací mřížka 3×2 nad kompozitním náhledem — každá dlaždice
+                // otevře svůj web (pořadí stack == pořadí dlaždic v obrázku).
+                <div className="suite-map">
+                  {project.stack.map((tag) => (
+                    <a
+                      key={tag}
+                      href={suiteLinks[tag]}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={tag}
+                      title={tag}
+                    />
+                  ))}
+                </div>
+              )}
               {!suiteLinks && (
                 <div className="preview-badge">
                   <span>{copy.openProject}</span>
