@@ -1030,20 +1030,26 @@ function ProjectSection({
       </div>
 
       <div className="project-grid">
-        {projects.map((project, index) => (
+        {projects.map((project, index) => {
+          const suiteLinks = (
+            project as { stackLinks?: Record<string, string> }
+          ).stackLinks;
+          return (
           <motion.div
-            className={cn("project-card", `accent-${project.accent}`)}
+            className={cn("project-card", `accent-${project.accent}`, suiteLinks && "is-suite")}
             key={project.title}
             whileHover={reduceMotion ? undefined : { y: -5 }}
             transition={{ duration: 0.2, delay: index * 0.03, ease: "easeOut" }}
           >
-            <a
-              className="card-cover"
-              href={project.href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={project.title}
-            />
+            {!suiteLinks && (
+              <a
+                className="card-cover"
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={project.title}
+              />
+            )}
             <div className="project-preview">
               <div className="browser-bar">
                 <span />
@@ -1060,25 +1066,25 @@ function ProjectSection({
                 priority={index === 0}
               />
               <span className="preview-shine" />
-              <div className="preview-badge">
-                <span>{copy.openProject}</span>
-                <ArrowUpRight size={14} />
-              </div>
+              {!suiteLinks && (
+                <div className="preview-badge">
+                  <span>{copy.openProject}</span>
+                  <ArrowUpRight size={14} />
+                </div>
+              )}
             </div>
 
             <div className="project-body">
               <p className="project-eyebrow">{project.eyebrow[language]}</p>
               <div className="project-title-row">
                 <h3>{project.title}</h3>
-                <ArrowUpRight size={20} />
+                {!suiteLinks && <ArrowUpRight size={20} />}
               </div>
               <p>{project.description[language]}</p>
               <strong>{project.impact[language]}</strong>
               <div className="tag-row">
                 {project.stack.map((tag) => {
-                  const tagHref = (
-                    project as { stackLinks?: Record<string, string> }
-                  ).stackLinks?.[tag];
+                  const tagHref = suiteLinks?.[tag];
                   return tagHref ? (
                     <a
                       className="tag-link"
@@ -1096,7 +1102,8 @@ function ProjectSection({
               </div>
             </div>
           </motion.div>
-        ))}
+          );
+        })}
       </div>
     </Reveal>
   );
