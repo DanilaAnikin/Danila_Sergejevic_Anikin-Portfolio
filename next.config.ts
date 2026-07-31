@@ -9,6 +9,18 @@ const nextConfig: NextConfig = {
   turbopack: {
     root,
   },
+  // CV PDF se nesmí cachovat — jinak prohlížeč/Cloudflare drží starou verzi
+  // po `max-age` i po nasazení nové. no-store → vždy čerstvá verze.
+  async headers() {
+    return [
+      {
+        source: "/cv/:path*",
+        headers: [
+          { key: "Cache-Control", value: "no-store, must-revalidate" },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

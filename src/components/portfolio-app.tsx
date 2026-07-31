@@ -437,7 +437,7 @@ function Hero({
             {copy.primaryCta}
             <ArrowUpRight size={17} />
           </a>
-          <a className="button-secondary" href="/cv/danila-anikin-cv.pdf">
+          <a className="button-secondary" href="/cv/danila-anikin-cv.pdf?v=2">
             {copy.secondaryCta}
             <FileDown size={17} />
           </a>
@@ -557,7 +557,7 @@ function NinetiesHeroPanel({ language }: { language: Language }) {
       </div>
       <div className="directory-links">
         {["AI.htm", "LINUX.htm", "PROJECTS.htm", "CV.pdf"].map((item) => (
-          <a href={item === "CV.pdf" ? "/cv/danila-anikin-cv.pdf" : "#lab"} key={item}>
+          <a href={item === "CV.pdf" ? "/cv/danila-anikin-cv.pdf?v=2" : "#lab"} key={item}>
             {item}
           </a>
         ))}
@@ -637,7 +637,7 @@ function WindowsOneHeroPanel({ language }: { language: Language }) {
         <div className="win-one-title">DANILA.EXE</div>
         <div className="win-one-icons">
           {["AI", "DEV", "LIN", "CV"].map((item) => (
-            <a href={item === "CV" ? "/cv/danila-anikin-cv.pdf" : "#lab"} key={item}>
+            <a href={item === "CV" ? "/cv/danila-anikin-cv.pdf?v=2" : "#lab"} key={item}>
               <FileText size={20} />
               {item}
             </a>
@@ -1250,7 +1250,7 @@ function InteractiveCvSection({ language, reduceMotion }: { language: Language; 
               {filter.label[language]}
             </button>
           ))}
-          <a className="button-secondary" href="/cv/danila-anikin-cv.pdf">
+          <a className="button-secondary" href="/cv/danila-anikin-cv.pdf?v=2">
             {uiText.downloadPdf[language]}
             <FileDown size={16} />
           </a>
