@@ -150,6 +150,21 @@
         font-style: italic;
       }
 
+      /* Celá vypsaná URL projektu — viditelná i na tisku (a zároveň klikatelná). */
+      .project-list .project-url {
+        display: block;
+        margin-top: 1px;
+        font-size: 8.5pt;
+      }
+
+      .project-list .project-url a {
+        color: #2b4c7e;
+        text-decoration: underline;
+        text-decoration-color: #b7c2d4;
+        text-underline-offset: 2px;
+        word-break: break-all;
+      }
+
       .languages {
         display: flex;
         flex-wrap: wrap;
@@ -273,14 +288,17 @@
           <li>
             <a class="project-link" href="https://www.ripieno.xyz/"><b>Ripieno</b></a> — Commercial multi-agent AI orchestration platform with an autonomous pipeline that generates working full-stack apps; built an evaluation harness, per-role model selection, and budget controls.
             <span class="stack">TypeScript, Next.js, Supabase / PostgreSQL, LLM APIs, Railway, Vercel</span>
+            <span class="project-url"><a href="https://www.ripieno.xyz/">https://www.ripieno.xyz</a></span>
           </li>
           <li>
             <a class="project-link" href="https://github.com/DanilaAnikin/homelab"><b>Homelab</b></a> — Self-hosted production infrastructure on a single Lenovo ThinkCentre M920q mini-PC (i7-9700T, 32&nbsp;GB RAM, 1&nbsp;TB NVMe) that replaced Vercel, Supabase Cloud, Railway, and Resend; runs real SaaS (Freio, Ripieno, the Lokwave family, GorillaType, Classio, this portfolio) behind a Cloudflare Tunnel with Dokploy, per-app self-hosted Supabase, own SMTP, full observability (Prometheus / Grafana / Loki / Uptime Kuma), LLM self-healing agents, and encrypted off-site backups with weekly restore drills.
             <span class="stack">Docker, Dokploy, Cloudflare Tunnel, Self-hosted Supabase, Traefik, Prometheus / Grafana / Loki, systemd</span>
+            <span class="project-url"><a href="https://github.com/DanilaAnikin/homelab">https://github.com/DanilaAnikin/homelab</a></span>
           </li>
           <li>
             <a class="project-link" href="https://www.freio.cz/"><b>Freio</b></a> — B2B lead-generation SaaS for the education / tutoring vertical, with a data-ingestion pipeline (Google Places API) and a client-facing dashboard.
             <span class="stack">TypeScript, Next.js, PostgreSQL, Playwright, shadcn/ui</span>
+            <span class="project-url"><a href="https://www.freio.cz/">https://www.freio.cz</a></span>
           </li>
           <li>
             <b>LaunchWay</b> — Self-hosted PaaS (Railway / Coolify alternative): single-owner deployment platform with a watchdog, load circuit breaker, and MCP self-setup.
@@ -289,6 +307,7 @@
           <li>
             <a class="project-link" href="https://github.com/DanilaAnikin/Daylink_android_app"><b>Daylink</b></a> — Android voice assistant with offline text-to-speech and AES-256-GCM encryption (secondary-school thesis project).
             <span class="stack">Kotlin, Jetpack Compose, MVVM</span>
+            <span class="project-url"><a href="https://github.com/DanilaAnikin/Daylink_android_app">https://github.com/DanilaAnikin/Daylink_android_app</a></span>
           </li>
         </ul>
       </section>
