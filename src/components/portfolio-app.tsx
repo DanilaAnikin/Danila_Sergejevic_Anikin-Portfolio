@@ -1490,7 +1490,10 @@ function Reveal({
       className={className}
       initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: false, amount: 0.16 }}
+      // `amount: "some"` (spustí se, jakmile je vidět jakákoli část) místo číselného
+      // prahu — sekce vyšší než viewport (např. projects na mobilu ~5500px) by jinak
+      // nikdy nedosáhly potřebného % viditelnosti a zůstaly by navždy opacity:0.
+      viewport={{ once: false, amount: "some" }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       {...props}
     >
