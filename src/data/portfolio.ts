@@ -136,7 +136,7 @@ export const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/danila-anikin-7aa950258",
+    href: "https://www.linkedin.com/in/danila-anikin/",
     display: "linkedin.com/in/danila-anikin",
     icon: Network,
   },

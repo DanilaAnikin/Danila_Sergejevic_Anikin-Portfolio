@@ -21,7 +21,7 @@ export default function Home() {
     url: "https://anikin.cz",
     sameAs: [
       "https://github.com/DanilaAnikin",
-      "https://www.linkedin.com/in/danila-anikin-7aa950258",
+      "https://www.linkedin.com/in/danila-anikin/",
       "https://instagram.com/danila.s.anikin",
     ],
     email: "mailto:danila.s.anikin@gmail.com",
