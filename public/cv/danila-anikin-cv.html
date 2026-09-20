@@ -6,7 +6,7 @@
     <style>
       @page {
         size: A4;
-        margin: 14.5mm 18.3mm 13.8mm 18.3mm;
+        margin: 12mm 17mm 11mm 17mm;
       }
 
       * {
@@ -18,8 +18,8 @@
         color: #20262e;
         background: #ffffff;
         font-family: Calibri, Carlito, Arial, Helvetica, sans-serif;
-        font-size: 9.5pt;
-        line-height: 1.32;
+        font-size: 9.2pt;
+        line-height: 1.28;
       }
 
       h1,
@@ -68,7 +68,7 @@
         text-transform: uppercase;
         border-bottom: 1px solid #c9cfd8;
         padding-bottom: 2px;
-        margin: 12px 0 5px;
+        margin: 9px 0 4px;
       }
 
       .summary {
@@ -86,7 +86,7 @@
       }
 
       .job {
-        margin-top: 7px;
+        margin-top: 5px;
       }
 
       .job-head {
@@ -125,7 +125,7 @@
       }
 
       .project-list li {
-        margin: 2.5px 0;
+        margin: 1.5px 0;
       }
 
       .project-list b {
@@ -153,8 +153,8 @@
       /* Celá vypsaná URL projektu — viditelná i na tisku (a zároveň klikatelná). */
       .project-list .project-url {
         display: block;
-        margin-top: 1px;
-        font-size: 8.5pt;
+        margin-top: 0;
+        font-size: 8.25pt;
       }
 
       .project-list .project-url a {
@@ -193,7 +193,7 @@
       <section>
         <h2>Summary</h2>
         <p class="summary">
-          Full-stack software engineer with production experience across the JavaScript / TypeScript ecosystem — React, Vue, and Next.js on the front end, Node.js and Express on the back end — combined with hands-on AI / LLM solution development and cloud infrastructure. Builds and ships end-to-end: from a commercial multi-agent AI orchestration platform and B2B SaaS products to Kubernetes / AWS deployments and Android applications. Comfortable owning products solo and delivering tailored solutions for clients, with scalability and clean architecture as first-order priorities.
+          Full-stack software engineer across the JavaScript / TypeScript ecosystem — React, Vue and Next.js on the front end, Node.js and Express on the back end — combined with hands-on AI / LLM development and cloud infrastructure. Ships end-to-end: a commercial multi-agent AI orchestration platform, SaaS products, Kubernetes / AWS deployments and Android apps. Owns products solo, with scalability and clean architecture as first-order priorities.
         </p>
       </section>
 
@@ -294,6 +294,39 @@
             <a class="project-link" href="https://github.com/DanilaAnikin/homelab"><b>Homelab</b></a> — Self-hosted production infrastructure on a single Lenovo ThinkCentre M920q mini-PC (i7-9700T, 32&nbsp;GB RAM, 1&nbsp;TB NVMe) that replaced Vercel, Supabase Cloud, Railway, and Resend; runs real SaaS (Freio, Ripieno, the Lokwave family, GorillaType, Classio, this portfolio) behind a Cloudflare Tunnel with Dokploy, per-app self-hosted Supabase, own SMTP, full observability (Prometheus / Grafana / Loki / Uptime Kuma), LLM self-healing agents, and encrypted off-site backups with weekly restore drills.
             <span class="stack">Docker, Dokploy, Cloudflare Tunnel, Self-hosted Supabase, Traefik, Prometheus / Grafana / Loki, systemd</span>
             <span class="project-url"><a href="https://github.com/DanilaAnikin/homelab">https://github.com/DanilaAnikin/homelab</a></span>
+          </li>
+          <li>
+            <a class="project-link" href="https://github.com/DanilaAnikin/agent-farm"><b>Perennial</b></a> — Autonomous multi-agent software factory that turns a one-line wish into merged code: a manager writes the spec, an architect emits a dependency DAG, parallel workers build each task in its own git worktree, and a judge plus an end-to-end tester gate the result before it opens a pull request. 41,377 agent attempts across 7 repositories for $44 total, held there by layered per-attempt, per-project and monthly spend caps.
+            <span class="stack">TypeScript, Next.js, Turborepo, Drizzle, PostgreSQL, pgmq, LiteLLM, Docker, Octokit, systemd</span>
+            <span class="project-url"><a href="https://farm.anikin.cz/">https://farm.anikin.cz</a> · <a href="https://github.com/DanilaAnikin/agent-farm">github.com/DanilaAnikin/agent-farm</a></span>
+          </li>
+          <li>
+            <a class="project-link" href="https://www.youtube.com/@fremmmm"><b>Frem</b></a> — Self-hosted pipeline taking a video from script to published YouTube upload: LLM-written scripts, narration with word-level timestamps, generated imagery placed against those timestamps, ffmpeg render on the server's integrated GPU, then scheduled upload via the YouTube Data API. Produced 277 published videos and 60,576 views.
+            <span class="stack">TypeScript, Next.js, Python, ffmpeg / VAAPI, PostgreSQL, Docker, ElevenLabs API, YouTube Data API</span>
+            <span class="project-url"><a href="https://www.youtube.com/@fremmmm">https://youtube.com/@fremmmm</a></span>
+          </li>
+          <li>
+            <a class="project-link" href="https://mimic.anikin.cz/"><b>Mimic</b></a> — Copy-trading platform mirroring a followed trader's positions onto each user's own exchange account: one detection worker polls every watched portfolio once for the whole platform and fans trades out per follower, with encrypted agent keys and per-user isolation so one failure never stalls anyone else. Web app plus native Android and iOS clients.
+            <span class="stack">Next.js, React, TypeScript, Drizzle, PostgreSQL, Kotlin, SwiftUI, Docker</span>
+            <span class="project-url"><a href="https://mimic.anikin.cz/">https://mimic.anikin.cz</a></span>
+          </li>
+          <li>
+            <a class="project-link" href="https://faktura.anikin.cz/"><b>Faktura</b></a> — Czech-compliant invoicing system with immutable issued documents, number series, VAT regimes, advance and tax-payment documents, ČNB exchange rates and CZ/EN PDF output carrying SPAYD and EPC payment QR codes. 261 tests plus a browser smoke run against a real database; separate PDF and job workers, automated backup and restore-drill timers.
+            <span class="stack">Python, Django 5.2, PostgreSQL 17, WeasyPrint, Gunicorn, pytest, Playwright, Docker, Dokploy</span>
+            <span class="project-url"><a href="https://faktura.anikin.cz/">https://faktura.anikin.cz</a></span>
+          </li>
+          <li>
+            <b>Remote Terminal</b> — Browser-based multi-terminal workspace for a home server: real PTYs over a binary WebSocket, tmux-backed sessions that survive app restarts, split panes, session recording with full-text search, and drag-and-drop file transfer. Passkeys, TOTP, role-based accounts and expiring read-only share links; bound to loopback and published behind an identity proxy.
+            <span class="stack">TypeScript, Node.js, Express, WebSocket, node-pty, xterm.js, React, Vite, tmux, Cloudflare Access</span>
+          </li>
+          <li>
+            <b>Outreach agent</b> — Autonomous cold-outreach and inbound-reply agent running unattended: it discovers local businesses, generates a per-brand audit, writes each message with an LLM and sends it through my own mail service under hard daily caps. 1,110 emails across six brands since July 2026, with threaded follow-ups, unsubscribe handling and escalation to a human.
+            <span class="stack">Python, PostgreSQL, systemd, Anthropic API, IMAP / SMTP, self-hosted ESP</span>
+          </li>
+          <li>
+            <a class="project-link" href="https://github.com/DanilaAnikin/jarvis"><b>Jarvis</b></a> — Hands-free personal AI agent for Linux: a wake-word voice loop with speech-to-text and streaming speech output, MCP tool servers for shell, browser, filesystem and desktop control, persistent memory, and a safety layer classifying every tool call before it runs.
+            <span class="stack">TypeScript, Node.js, Claude Agent SDK, MCP, Zod, Whisper STT, Playwright</span>
+            <span class="project-url"><a href="https://github.com/DanilaAnikin/jarvis">https://github.com/DanilaAnikin/jarvis</a></span>
           </li>
           <li>
             <a class="project-link" href="https://www.freio.cz/"><b>Freio</b></a> — Exam-prep platform for Czech university entrance tests (SCIO / NSZ): 7 subjects, 1,400 tests and 63,600 questions, timed mock exams with server-side scoring, plus classrooms, school and company licences, and an iOS app. Covered by 396 test files (Playwright + Vitest).
