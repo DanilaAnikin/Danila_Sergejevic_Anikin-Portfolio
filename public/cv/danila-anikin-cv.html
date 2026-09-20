@@ -6,7 +6,7 @@
     <style>
       @page {
         size: A4;
-        margin: 12mm 17mm 11mm 17mm;
+        margin: 11mm 17mm 9mm 17mm;
       }
 
       * {
@@ -19,7 +19,7 @@
         background: #ffffff;
         font-family: Calibri, Carlito, Arial, Helvetica, sans-serif;
         font-size: 9.2pt;
-        line-height: 1.28;
+        line-height: 1.25;
       }
 
       h1,
@@ -168,8 +168,8 @@
       .languages {
         display: flex;
         flex-wrap: wrap;
-        gap: 4px 26px;
-        margin-top: 3px;
+        gap: 3px 26px;
+        margin-top: 2px;
       }
 
       .languages b {
@@ -322,6 +322,10 @@
           <li>
             <b>Outreach agent</b> — Autonomous cold-outreach and inbound-reply agent running unattended: it discovers local businesses, generates a per-brand audit, writes each message with an LLM and sends it through my own mail service under hard daily caps. 1,110 emails across six brands since July 2026, with threaded follow-ups, unsubscribe handling and escalation to a human.
             <span class="stack">Python, PostgreSQL, systemd, Anthropic API, IMAP / SMTP, self-hosted ESP</span>
+          </li>
+          <li>
+            <b>Mail agent</b> — Sandboxed inbound-mail agent watching 15 mailboxes: each message gets its own headless LLM session with no built-in tools, reaching only that thread through a token-scoped MCP server, while the send / ignore / escalate decision is made in code behind a policy gate. Proposed replies land in Telegram, where I approve, edit or reject them.
+            <span class="stack">TypeScript, Node.js, MCP, SQLite, Zod, Docker (read-only root), Telegram Bot API</span>
           </li>
           <li>
             <a class="project-link" href="https://github.com/DanilaAnikin/jarvis"><b>Jarvis</b></a> — Hands-free personal AI agent for Linux: a wake-word voice loop with speech-to-text and streaming speech output, MCP tool servers for shell, browser, filesystem and desktop control, persistent memory, and a safety layer classifying every tool call before it runs.

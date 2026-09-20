@@ -6,14 +6,47 @@
     "metric": "41,377",
     "metricLabel": "agent attempts across 7 repositories — for $44 in total spend",
     "cards": [
-      { "icon": "1", "title": "Manager", "text": "Turns a one-line wish into a written spec" },
-      { "icon": "2", "title": "Architect", "text": "Emits a dependency graph of buildable tasks" },
-      { "icon": "3", "title": "Workers", "text": "Each task in its own isolated git worktree" },
-      { "icon": "4", "title": "Judge + e2e", "text": "Gates the result before anything is opened" },
-      { "icon": "5", "title": "Pull request", "text": "77 opened, 25 merged across the fleet" },
-      { "icon": "6", "title": "Spend caps", "text": "Per attempt, per project and per month" }
+      {
+        "icon": "1",
+        "title": "Manager",
+        "text": "Turns a one-line wish into a written spec"
+      },
+      {
+        "icon": "2",
+        "title": "Architect",
+        "text": "Emits a dependency graph of buildable tasks"
+      },
+      {
+        "icon": "3",
+        "title": "Workers",
+        "text": "Each task in its own isolated git worktree"
+      },
+      {
+        "icon": "4",
+        "title": "Judge + e2e",
+        "text": "Gates the result before anything is opened"
+      },
+      {
+        "icon": "5",
+        "title": "Pull request",
+        "text": "77 opened, 25 merged across the fleet"
+      },
+      {
+        "icon": "6",
+        "title": "Spend caps",
+        "text": "Per attempt, per project and per month"
+      }
     ],
-    "stack": ["TypeScript", "Next.js", "Turborepo", "Drizzle", "PostgreSQL", "pgmq", "LiteLLM", "Docker"]
+    "stack": [
+      "TypeScript",
+      "Next.js",
+      "Turborepo",
+      "Drizzle",
+      "PostgreSQL",
+      "pgmq",
+      "LiteLLM",
+      "Docker"
+    ]
   },
   "frem": {
     "title": "Frem",
@@ -22,14 +55,46 @@
     "metric": "277 videos",
     "metricLabel": "published from the pipeline — 60,576 views on the channel",
     "cards": [
-      { "icon": "✎", "title": "Script", "text": "Written by an LLM from a chosen topic" },
-      { "icon": "♪", "title": "Narration", "text": "Voice with word-level timestamps" },
-      { "icon": "▦", "title": "Imagery", "text": "Generated frames placed against those marks" },
-      { "icon": "▶", "title": "Render", "text": "ffmpeg on the server's integrated GPU" },
-      { "icon": "◷", "title": "Schedule", "text": "Upload slotted through the YouTube API" },
-      { "icon": "↺", "title": "Self-resume", "text": "Picks work back up after a quota block" }
+      {
+        "icon": "✎",
+        "title": "Script",
+        "text": "Written by an LLM from a chosen topic"
+      },
+      {
+        "icon": "♪",
+        "title": "Narration",
+        "text": "Voice with word-level timestamps"
+      },
+      {
+        "icon": "▦",
+        "title": "Imagery",
+        "text": "Generated frames placed against those marks"
+      },
+      {
+        "icon": "▶",
+        "title": "Render",
+        "text": "ffmpeg on the server's integrated GPU"
+      },
+      {
+        "icon": "◷",
+        "title": "Schedule",
+        "text": "Upload slotted through the YouTube API"
+      },
+      {
+        "icon": "↺",
+        "title": "Self-resume",
+        "text": "Picks work back up after a quota block"
+      }
     ],
-    "stack": ["TypeScript", "Next.js", "Python", "ffmpeg", "VAAPI", "PostgreSQL", "YouTube Data API"]
+    "stack": [
+      "TypeScript",
+      "Next.js",
+      "Python",
+      "ffmpeg",
+      "VAAPI",
+      "PostgreSQL",
+      "YouTube Data API"
+    ]
   },
   "faktura": {
     "title": "Faktura",
@@ -38,14 +103,46 @@
     "metric": "261 tests",
     "metricLabel": "plus a browser smoke run against a real database",
     "cards": [
-      { "icon": "⊘", "title": "Immutable", "text": "Issued documents can never be edited" },
-      { "icon": "#", "title": "Number series", "text": "Per document type, gap-free and audited" },
-      { "icon": "%", "title": "VAT regimes", "text": "Advance and tax-payment documents" },
-      { "icon": "⇄", "title": "ČNB rates", "text": "Foreign currency converted at issue date" },
-      { "icon": "▤", "title": "QR payment", "text": "SPAYD and EPC codes in CZ/EN PDFs" },
-      { "icon": "↻", "title": "Restore drills", "text": "Backup, retention and rehearsed recovery" }
+      {
+        "icon": "⊘",
+        "title": "Immutable",
+        "text": "Issued documents can never be edited"
+      },
+      {
+        "icon": "#",
+        "title": "Number series",
+        "text": "Per document type, gap-free and audited"
+      },
+      {
+        "icon": "%",
+        "title": "VAT regimes",
+        "text": "Advance and tax-payment documents"
+      },
+      {
+        "icon": "⇄",
+        "title": "ČNB rates",
+        "text": "Foreign currency converted at issue date"
+      },
+      {
+        "icon": "▤",
+        "title": "QR payment",
+        "text": "SPAYD and EPC codes in CZ/EN PDFs"
+      },
+      {
+        "icon": "↻",
+        "title": "Restore drills",
+        "text": "Backup, retention and rehearsed recovery"
+      }
     ],
-    "stack": ["Python", "Django 5.2", "PostgreSQL 17", "WeasyPrint", "pytest", "Playwright", "Docker"]
+    "stack": [
+      "Python",
+      "Django 5.2",
+      "PostgreSQL 17",
+      "WeasyPrint",
+      "pytest",
+      "Playwright",
+      "Docker"
+    ]
   },
   "terminal": {
     "title": "Remote Terminal",
@@ -54,14 +151,47 @@
     "metric": "12,767 lines",
     "metricLabel": "of TypeScript across server and web, covered by 22 test files",
     "cards": [
-      { "icon": "▮", "title": "Real PTYs", "text": "Binary WebSocket, not a shell wrapper" },
-      { "icon": "⧉", "title": "tmux-backed", "text": "Sessions survive an app restart" },
-      { "icon": "⌕", "title": "Recorded", "text": "Full-text search across past sessions" },
-      { "icon": "⇪", "title": "Drag & drop", "text": "File transfer and inline images" },
-      { "icon": "⚿", "title": "Passkeys", "text": "TOTP, roles, expiring read-only links" },
-      { "icon": "◎", "title": "Loopback only", "text": "Published behind an identity proxy" }
+      {
+        "icon": "▮",
+        "title": "Real PTYs",
+        "text": "Binary WebSocket, not a shell wrapper"
+      },
+      {
+        "icon": "⧉",
+        "title": "tmux-backed",
+        "text": "Sessions survive an app restart"
+      },
+      {
+        "icon": "⌕",
+        "title": "Recorded",
+        "text": "Full-text search across past sessions"
+      },
+      {
+        "icon": "⇪",
+        "title": "Drag & drop",
+        "text": "File transfer and inline images"
+      },
+      {
+        "icon": "⚿",
+        "title": "Passkeys",
+        "text": "TOTP, roles, expiring read-only links"
+      },
+      {
+        "icon": "◎",
+        "title": "Loopback only",
+        "text": "Published behind an identity proxy"
+      }
     ],
-    "stack": ["TypeScript", "Node.js", "Express", "node-pty", "xterm.js", "React", "Vite", "tmux"]
+    "stack": [
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "node-pty",
+      "xterm.js",
+      "React",
+      "Vite",
+      "tmux"
+    ]
   },
   "outreach": {
     "title": "Outreach agent",
@@ -70,14 +200,46 @@
     "metric": "1,110 emails",
     "metricLabel": "sent since July 2026 — every one written and sent without a human",
     "cards": [
-      { "icon": "⌕", "title": "Discovery", "text": "Finds local businesses worth contacting" },
-      { "icon": "▤", "title": "Per-brand audit", "text": "Generated before a word is written" },
-      { "icon": "✎", "title": "LLM copy", "text": "Each message written for that prospect" },
-      { "icon": "✉", "title": "Own ESP", "text": "Sent through my self-hosted mail service" },
-      { "icon": "◷", "title": "Hard caps", "text": "Five per brand per day, follow-ups threaded" },
-      { "icon": "↑", "title": "Escalation", "text": "Hands over to a human after four replies" }
+      {
+        "icon": "⌕",
+        "title": "Discovery",
+        "text": "Finds local businesses worth contacting"
+      },
+      {
+        "icon": "▤",
+        "title": "Per-brand audit",
+        "text": "Generated before a word is written"
+      },
+      {
+        "icon": "✎",
+        "title": "LLM copy",
+        "text": "Each message written for that prospect"
+      },
+      {
+        "icon": "✉",
+        "title": "Own ESP",
+        "text": "Sent through my self-hosted mail service"
+      },
+      {
+        "icon": "◷",
+        "title": "Hard caps",
+        "text": "Five per brand per day, follow-ups threaded"
+      },
+      {
+        "icon": "↑",
+        "title": "Escalation",
+        "text": "Hands over to a human after four replies"
+      }
     ],
-    "stack": ["Python", "PostgreSQL", "systemd", "Anthropic API", "IMAP", "SMTP", "Telegram"]
+    "stack": [
+      "Python",
+      "PostgreSQL",
+      "systemd",
+      "Anthropic API",
+      "IMAP",
+      "SMTP",
+      "Telegram"
+    ]
   },
   "jarvis": {
     "title": "Jarvis",
@@ -86,13 +248,92 @@
     "metric": "5,532 lines",
     "metricLabel": "of TypeScript — open source, runs on your own computer",
     "cards": [
-      { "icon": "◉", "title": "Wake word", "text": "Always-on loop, no button to press" },
-      { "icon": "♪", "title": "Voice both ways", "text": "Speech-to-text in, streamed speech out" },
-      { "icon": "⌘", "title": "MCP tools", "text": "Shell, browser, filesystem, desktop" },
-      { "icon": "◫", "title": "Memory", "text": "Persists across conversations and reboots" },
-      { "icon": "⚠", "title": "Safety layer", "text": "Safe / confirm / dangerous, before running" },
-      { "icon": "↻", "title": "Self-editing", "text": "Can change its own source and re-verify" }
+      {
+        "icon": "◉",
+        "title": "Wake word",
+        "text": "Always-on loop, no button to press"
+      },
+      {
+        "icon": "♪",
+        "title": "Voice both ways",
+        "text": "Speech-to-text in, streamed speech out"
+      },
+      {
+        "icon": "⌘",
+        "title": "MCP tools",
+        "text": "Shell, browser, filesystem, desktop"
+      },
+      {
+        "icon": "◫",
+        "title": "Memory",
+        "text": "Persists across conversations and reboots"
+      },
+      {
+        "icon": "⚠",
+        "title": "Safety layer",
+        "text": "Safe / confirm / dangerous, before running"
+      },
+      {
+        "icon": "↻",
+        "title": "Self-editing",
+        "text": "Can change its own source and re-verify"
+      }
     ],
-    "stack": ["TypeScript", "Node.js", "Claude Agent SDK", "MCP", "Zod", "Whisper STT"]
+    "stack": [
+      "TypeScript",
+      "Node.js",
+      "Claude Agent SDK",
+      "MCP",
+      "Zod",
+      "Whisper STT"
+    ]
+  },
+  "mailagent": {
+    "title": "Mail agent",
+    "subtitle": "Reads the inbox, drafts the reply — but never sends it alone",
+    "badge": "15 mailboxes · draft mode",
+    "metric": "0 tools",
+    "metricLabel": "given to the model — it reaches one thread and nothing else",
+    "cards": [
+      {
+        "icon": "◫",
+        "title": "Per-message run",
+        "text": "Each email gets its own headless session"
+      },
+      {
+        "icon": "⊘",
+        "title": "No built-ins",
+        "text": "Model starts with an empty toolbelt"
+      },
+      {
+        "icon": "⌘",
+        "title": "Scoped MCP",
+        "text": "Token grants that one thread, nothing more"
+      },
+      {
+        "icon": "⚖",
+        "title": "Policy gate",
+        "text": "Reply, ignore or escalate decided in code"
+      },
+      {
+        "icon": "✈",
+        "title": "Telegram",
+        "text": "Approve, edit or reject before anything sends"
+      },
+      {
+        "icon": "▮",
+        "title": "Locked down",
+        "text": "Read-only root, all capabilities dropped"
+      }
+    ],
+    "stack": [
+      "TypeScript",
+      "Node.js",
+      "MCP",
+      "SQLite",
+      "Zod",
+      "Docker",
+      "Telegram Bot API"
+    ]
   }
 }
