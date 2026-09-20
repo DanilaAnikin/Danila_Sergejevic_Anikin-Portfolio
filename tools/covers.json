@@ -335,5 +335,51 @@
       "Docker",
       "Telegram Bot API"
     ]
+  },
+  "launchhub": {
+    "title": "LaunchHub",
+    "subtitle": "One core, four ways in — the control plane behind my own products",
+    "badge": "internal · homelab",
+    "metric": "4 entry points",
+    "metricLabel": "web, worker, CLI and MCP over a single shared core",
+    "cards": [
+      {
+        "icon": "▤",
+        "title": "Web",
+        "text": "The surface a person actually clicks"
+      },
+      {
+        "icon": "↻",
+        "title": "Worker",
+        "text": "Long jobs run outside the request"
+      },
+      {
+        "icon": "▸",
+        "title": "CLI",
+        "text": "Same operations, scriptable from a shell"
+      },
+      {
+        "icon": "⌘",
+        "title": "MCP",
+        "text": "So an agent can drive it too"
+      },
+      {
+        "icon": "◫",
+        "title": "Shared core",
+        "text": "One implementation, not four copies"
+      },
+      {
+        "icon": "◎",
+        "title": "Provisioning",
+        "text": "Creates apps on the homelab and runs them"
+      }
+    ],
+    "stack": [
+      "Next.js",
+      "Hono",
+      "Drizzle",
+      "Turborepo",
+      "Docker"
+    ]
   }
 }
