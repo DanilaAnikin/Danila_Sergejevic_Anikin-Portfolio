@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Project cover</title>
+    <!--
+      Šablona náhledového obrázku projektu (1440×1000).
+
+      Používá se u projektů, které nemají co vyfotit — buď nemají veřejné UI
+      (outreach agent), nebo je za přihlášením (Perennial, Faktura, terminál),
+      nebo by screenshot ukázal cookie lištu místo obsahu (YouTube kanál Fremu).
+      Projekty s živým webem se pořád fotí, viz ripieno.png nebo mimic.png.
+
+      Vzhled navazuje na homelab.png: tmavě modré plátno, tyrkysové akcenty,
+      karty s ikonou. Obsah se dosazuje ze souboru tools/covers.json skriptem
+      tools/make-covers.mjs, ať se text nemusí psát do HTML ručně.
+    -->
+    <style>
+      @font-face { font-family: "Fallback"; src: local("DejaVu Sans"); }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { width: 1440px; height: 1000px; }
+      body {
+        font-family: Inter, "Segoe UI", Roboto, "DejaVu Sans", sans-serif;
+        background: #0b1322;
+        color: #e8eefb;
+        position: relative;
+        overflow: hidden;
+      }
+      /* Jemné světlo za obsahem, aby plocha nebyla mrtvá. */
+      .glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(10px);
+        pointer-events: none;
+      }
+      .glow-a { width: 900px; height: 900px; left: 270px; top: -180px;
+        background: radial-gradient(circle, rgba(45,212,191,0.10) 0%, rgba(45,212,191,0) 62%); }
+      .glow-b { width: 760px; height: 760px; right: -160px; bottom: -220px;
+        background: radial-gradient(circle, rgba(96,165,250,0.10) 0%, rgba(96,165,250,0) 64%); }
+      .dots {
+        position: absolute; inset: 0;
+        background-image: radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px);
+        background-size: 26px 26px;
+      }
+      .wrap { position: relative; padding: 70px 84px 96px; height: 100%; display: flex; flex-direction: column; }
+      h1 { font-size: 64px; font-weight: 800; letter-spacing: -1.4px; line-height: 1; }
+      .sub { margin-top: 16px; font-size: 25px; color: #9fb2cf; font-weight: 400; }
+      .rule { margin-top: 20px; width: 132px; height: 5px; border-radius: 99px; background: #2dd4bf; }
+      .badge {
+        position: absolute; right: 84px; top: 78px;
+        display: flex; align-items: center; gap: 11px;
+        padding: 13px 24px; border-radius: 99px;
+        border: 1px solid rgba(148,180,220,0.30); background: rgba(19,32,54,0.75);
+        font-size: 19px; color: #b9cae4; font-family: "DejaVu Sans Mono", ui-monospace, monospace;
+      }
+      .dot { width: 10px; height: 10px; border-radius: 50%; background: #2dd4bf; }
+
+      /* Pruh s hlavním číslem — to, co má na obrázku utkvět. */
+      .hero {
+        margin-top: 44px; border-radius: 20px; padding: 28px 34px;
+        border: 1px solid rgba(45,212,191,0.34);
+        background: linear-gradient(90deg, rgba(20,45,54,0.92) 0%, rgba(17,32,52,0.80) 100%);
+        display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap;
+      }
+      .hero .num { font-size: 46px; font-weight: 800; color: #5eead4; letter-spacing: -1px; }
+      .hero .lbl { font-size: 23px; color: #c7d6ee; }
+
+      .grid { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+      .card {
+        /* Pevná výška, jinak zůstane pod mřížkou prázdná díra nad chipy. */
+        min-height: 172px;
+        border-radius: 18px; padding: 26px 28px;
+        border: 1px solid rgba(148,180,220,0.20);
+        background: rgba(17,29,50,0.84);
+        display: flex; gap: 17px; align-items: flex-start;
+      }
+      .ico {
+        flex: 0 0 auto; width: 46px; height: 46px; border-radius: 13px;
+        background: rgba(45,212,191,0.14); color: #5eead4;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 23px; font-weight: 800;
+      }
+      .card h3 { font-size: 22px; font-weight: 700; line-height: 1.2; }
+      .card p { margin-top: 7px; font-size: 18px; line-height: 1.38; color: #94a9c9; }
+
+      .chips { margin-top: auto; padding-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+      .chip {
+        padding: 11px 20px; border-radius: 99px; font-size: 18px;
+        border: 1px solid rgba(148,180,220,0.24); background: rgba(16,27,46,0.8); color: #9db1d1;
+        font-family: "DejaVu Sans Mono", ui-monospace, monospace;
+      }
+      .chips .lead { border: 0; background: none; color: #63799b; letter-spacing: 2.4px;
+        text-transform: uppercase; font-size: 15px; padding-left: 2px; }
+    </style>
+  </head>
+  <body>
+    <div class="glow glow-a"></div>
+    <div class="glow glow-b"></div>
+    <div class="dots"></div>
+    <div class="wrap">
+      <div class="badge"><span class="dot"></span><span id="badge"></span></div>
+      <h1 id="title"></h1>
+      <div class="sub" id="sub"></div>
+      <div class="rule"></div>
+      <div class="hero"><span class="num" id="num"></span><span class="lbl" id="lbl"></span></div>
+      <div class="grid" id="grid"></div>
+      <div class="chips" id="chips"></div>
+    </div>
+    <script>
+      // Data dosazuje make-covers.mjs přes ?data=<base64 JSON>.
+      const raw = new URLSearchParams(location.search).get("data");
+      const d = JSON.parse(decodeURIComponent(escape(atob(raw))));
+      document.getElementById("title").textContent = d.title;
+      document.getElementById("sub").textContent = d.subtitle;
+      document.getElementById("badge").textContent = d.badge;
+      document.getElementById("num").textContent = d.metric;
+      document.getElementById("lbl").textContent = d.metricLabel;
+      document.getElementById("grid").innerHTML = d.cards
+        .map((c) => `<div class="card"><div class="ico">${c.icon}</div><div><h3>${c.title}</h3><p>${c.text}</p></div></div>`)
+        .join("");
+      document.getElementById("chips").innerHTML =
+        '<span class="chip lead">stack</span>' + d.stack.map((s) => `<span class="chip">${s}</span>`).join("");
+    </script>
+  </body>
+</html>
